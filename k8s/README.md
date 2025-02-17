@@ -1,8 +1,15 @@
 # Kubernetes (k8s)
 
+## Hangar 747
+
+### Namespace
+
 The first thing I want to create is a namespace called `hangar-747`.
 
-## Hangar 747 Namespace
+What exactly is a namespace?
+
+A **namespace** is just a logical grouping of things. In this case, services, pods, nodes, ingresses, etc live in a
+namespace.
 
 How to list `k8s` namespaces?
 
@@ -24,6 +31,8 @@ How to create a namespace file?
 k create ns hangar-747 --dry-run=client -o yaml > namespace.yaml
 ```
 
+Here, we can remove the `creationTimestamp: null` property, since it can't be set manually
+
 How to apply the namespace?
 
 ```shell
@@ -37,8 +46,16 @@ k config current-context
 k config set-context --current --namespace=hangar-747
 ```
 
+How to describe a namespace>
+
+```shell
+k describe ns hangar-747
+```
+
 How to delete a namespace?
 
 ```shell
 k delete ns hangar-747
 ```
+
+### Deployment

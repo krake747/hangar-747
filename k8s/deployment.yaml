@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: skyops
+  name: skyops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skyops
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: skyops
+    spec:
+      containers:
+        - image: skyops-api:latest
+          name: skyops-api
+          imagePullPolicy: IfNotPresent
+          resources: {}
+status: {}

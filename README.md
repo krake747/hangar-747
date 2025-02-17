@@ -4,9 +4,9 @@ My homelab playground.
 
 ## Tech Stack
 
-- WSL with Ununtu distro (for now)
-- Docker Engine
-- Kubernetes via minikube
+-   WSL with Ununtu distro (for now)
+-   Docker Engine
+-   Kubernetes via minikube
 
 ## Setup for WSL
 
@@ -48,4 +48,14 @@ Verfiy the version via:
 
 ```bash
 k9s version
+```
+
+### Bash
+
+Add an alias `d` for docker and `k` for `kubectl` to the `.bashrc` file. Open it and add these three lines.
+
+```bash
+alias d='docker'
+alias k='kubectl'
+complete -o default -F __start_kubectl k
 ```

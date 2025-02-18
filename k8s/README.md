@@ -225,4 +225,10 @@ We should see something like this:
 | ------ | -------- | ------------- | ----------- | -------------- | ----- | ---------- |
 | skyops | NodePort | 10.102.167.86 | <none>      | 7000:30372/TCP | 5m31s | app=skyops |
 
-In this case we can navigate to ???
+This creates a tunnel to access (might be related to using docker driver on linux)
+
+```shell
+minikube service skyops -n hangar-747
+```
+
+This provides a url that we can access.

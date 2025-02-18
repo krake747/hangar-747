@@ -150,3 +150,79 @@ k port-forward pod/<entire pod-name> 7001:8080
 This will forward the port to 7001 so we can access it locally.
 
 ### Service
+
+A service is like a load balancer which offers a stable and fixed address (IP or DNS name) to access a set of pods and
+route traffic to them.
+
+We need a service because pods are ephemeral. We don't expect a pod to have a long lifespan. So when pods get added or
+removed we can't keep track of the contantly changing IP addresses. This is where `k8s` services come in handy.
+
+There are four different types of `k8s` services:
+
+1. `ClusterIP` - Default and internal access only
+2. `NodePort` - Accessible from the outside the cluster via `<NodeIP>:<NodePort>`
+3. `LoadBalancer` - External load balancer (often in cloud)
+4. `ExternalName` - Maps a service to an external DNS name
+
+How to get a service?
+
+```shell
+k get service
+```
+
+Alternatively, this is the shorthand command
+
+```shell
+k get svc
+```
+
+Or we need to additionally specify the namespace:
+
+```shell
+k get svc -n=default
+```
+
+How to create a service?
+
+**ClusterIP**
+
+This is the default type for a Kubernetes service.
+
+```shell
+k expose deploy skyops --type=ClusterIP --port=7000 --target-port=8080 --dry-run=client -o yaml > clusterip-service.yaml
+```
+
+This will expose port 7000 to external clients (within the cluster), and route the traffic to container port 8080.
+
+Inside another pod in the same cluster we could try to contact it via: `curl http://skyops:7000`.
+
+We can use `k port-forward service/skyops 7000:7000` to expose it and test via `curl http://localhost:7000`
+
+**NodePort**
+
+```shell
+k expose deploy skyops --type=NodePort --port=7000 --target-port=8080 --dry-run=client -o yaml > service.yaml
+```
+
+-   `port: 7000`: The port exposed by the service.
+-   `targetPort: 8080`: The container port to which the service will forward traffic.
+
+How to apply a service?
+
+```shell
+k apply -f service.yaml
+```
+
+We do the NodePort example here. Once it is applied we run
+
+```shell
+k get svc skyops -o wide
+```
+
+We should see something like this:
+
+| NAME   | TYPE     | CLUSTER-IP    | EXTERNAL-IP | PORT(S)        | AGE   | SELECTOR   |
+| ------ | -------- | ------------- | ----------- | -------------- | ----- | ---------- |
+| skyops | NodePort | 10.102.167.86 | <none>      | 7000:30372/TCP | 5m31s | app=skyops |
+
+In this case we can navigate to ???

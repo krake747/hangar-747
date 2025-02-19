@@ -60,6 +60,7 @@ helm uninstall my-nginx
 To learn more about Helm and how to write Helm templates I follow the official 
 [Getting started](https://helm.sh/docs/chart_template_guide/getting_started/) guide.
 
+In that guide we create a Helm chart from scratch.
 
 
 

@@ -47,4 +47,10 @@ spec:
             requests:
               cpu: "250m"
               memory: "256Mi"
+          volumeMounts:
+            - name: thumbnails-volume
+              mountPath: /thumbnails
+      volumes:
+        - name: thumbnails-volume
+          emptyDir: {}
 status: {}

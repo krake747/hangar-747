@@ -69,13 +69,15 @@ In that guide we create a Helm chart from scratch.
 One of the microservices that I would want to have is [Gotenberg](https://gotenberg.dev/) which will allow me to
 convert numerous document formats. I want to use helm to set it up in my homelab.
 
-I am using this [Helm chart](https://artifacthub.io/packages/helm/maikumori/gotenberg) from ArtifactHub which I need to
-add to my repository.
+I am using this [Helm chart](https://artifacthub.io/packages/helm/maikumori/gotenberg) from ArtifactHub. I can add it
+to my repository.
 
 ```shell
 helm repo add maikumori https://maikumori.github.io/helm-charts
 helm repo update
 ```
+
+To install it, I run the following command
 
 ```shell
 helm install gotenberg --namespace hangar-747 maikumori/gotenberg

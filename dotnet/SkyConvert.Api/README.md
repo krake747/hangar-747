@@ -1,6 +1,6 @@
 # SkyConvert.Api
 
-Sky Operations to coordinate flights and schedules.
+Sky Conversions to convert documents.
 
 ## Setup
 

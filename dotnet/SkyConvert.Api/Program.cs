@@ -40,7 +40,7 @@ app.MapGet(
 app.MapPost(
     "thumbnails",
     static async (
-        [FromServices] ILogger<Program> logger, [FromServices] GotenbergClient gotenberg,
+        [FromServices] ILogger<Program> logger, [FromServices] IGotenbergClient gotenberg,
         HttpRequest request, CancellationToken token = default
     ) =>
     {

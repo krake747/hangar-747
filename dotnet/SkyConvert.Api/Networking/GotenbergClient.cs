@@ -15,23 +15,27 @@ internal sealed class GotenbergClient(HttpClient httpClient) : IGotenbergClient
         var formFile = request.Form.Files[0];
 
         if (Path.GetExtension(formFile.FileName) is ".jpg" or ".jpeg" or ".png" or ".gif")
+        {
             return await ConvertImageFileAsync(formFile, token);
+        }
 
         using var multipartFormDataContent = new MultipartFormDataContent();
         using var memoryStream = new MemoryStream();
         await formFile.CopyToAsync(memoryStream, token);
-        // memoryStream.Seek(0, SeekOrigin.Begin);
-        memoryStream.Position = 0;
+        memoryStream.Seek(0, SeekOrigin.Begin);
 
-        var fileContent = new ByteArrayContent(memoryStream.ToArray());
+        var fileContent = new StreamContent(memoryStream);
         fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
         multipartFormDataContent.Add(new StringContent("1-1"), "nativePageRanges");
         multipartFormDataContent.Add(fileContent, "files", formFile.FileName);
 
         var response = await httpClient.PostAsync("/forms/libreoffice/convert", multipartFormDataContent, token);
-        if (response.IsSuccessStatusCode is false) throw new Exception("Failed to convert the file to PDF.");
+        if (response.IsSuccessStatusCode is false)
+        {
+            throw new Exception("Failed to convert the file to PDF.");
+        }
 
-        var pdfFile = Path.Combine(formFile.FileName, ".pdf");
+        var pdfFile = Path.ChangeExtension(formFile.FileName, ".pdf");
         await using var fileStream = new FileStream(pdfFile, FileMode.Create);
         await response.Content.CopyToAsync(fileStream, token);
 

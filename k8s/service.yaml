@@ -4,6 +4,7 @@ metadata:
   labels:
     app: skyops
   name: skyops
+  namespace: hangar-747
 spec:
   ports:
   - port: 7000

@@ -1,3 +1,3 @@
 kubectl apply -f ./hangar-747-namespace.yaml
-kubectl apply -f ./deployment.yaml
-kubectl apply -f ./service.yaml
+kubectl apply -f ./skyconvert.yaml
+kubectl apply -f ./skyops.yaml

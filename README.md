@@ -67,3 +67,6 @@ alias d='docker'
 alias k='kubectl'
 complete -o default -F __start_kubectl k
 ```
+
+Inside the `dotfiles` directory we can have look of my `.bashrc` file which contains aliases for `git`, `docker` and `k8s`.
+ 

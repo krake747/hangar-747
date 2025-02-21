@@ -9,6 +9,7 @@ RUN dotnet publish "SkyConvert.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publi
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
+RUN apt-get -y update && apt-get -y install ghostscript
 EXPOSE 8080
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "SkyConvert.Api.dll"]

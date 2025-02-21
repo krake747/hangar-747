@@ -4,12 +4,17 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>bc801418-e95f-4b96-8867-75295cd4fc13</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
         <Content Include="..\.dockerignore">
             <Link>.dockerignore</Link>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.4.0"/>
     </ItemGroup>
 
 </Project>

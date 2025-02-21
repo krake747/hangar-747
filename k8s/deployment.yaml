@@ -19,5 +19,11 @@ spec:
         - image: skyops-api:latest
           name: skyops-api
           imagePullPolicy: IfNotPresent
-          resources: {}
+          resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
 status: {}

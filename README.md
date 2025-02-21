@@ -29,6 +29,14 @@ Verfiy the installation via:
 minikube start
 ```
 
+In case the `kubectl` client and server don't match, we can update this via:
+
+```bash
+curl -LO "https://dl.k8s.io/release/v1.32.0/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client
+```
+
 ### K9s
 
 K9s is a TUI to manage a Kubernetes cluster.

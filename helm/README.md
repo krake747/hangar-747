@@ -2,15 +2,15 @@
 
 Helm helps me manage Kubernetes applications.
 
-A *Chart* is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or 
+A *Chart* is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or
 service inside of a Kubernetes cluster.
 
 A *Repository* is the place where charts can be collected and shared. See [Artifacthub.io](https://artifacthub.io/)
 
-A *Release* is an instance of a chart running in a Kubernetes cluster. One chart can often be installed many times 
+A *Release* is an instance of a chart running in a Kubernetes cluster. One chart can often be installed many times
 into the same cluster.
 
-Helm installs *charts* into Kubernetes, creating a new *release* for each installation. And to find new charts, you 
+Helm installs *charts* into Kubernetes, creating a new *release* for each installation. And to find new charts, you
 can search Helm chart *repositories*.
 
 ## Setup Helm
@@ -39,28 +39,44 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 This will install the `nginx` chart
 
-```bash
+```shell
 helm install my-nginx bitnami/nginx
 ```
 
 ## List Helm releases
 
-```bash
+```shell
 helm list
 ```
 
 ## Uninstall a Helm chart
 
-```bash
+```shell
 helm uninstall my-nginx
 ```
 
 ## Getting Started with Helm
 
-To learn more about Helm and how to write Helm templates I follow the official 
+To learn more about Helm and how to write Helm templates I follow the official
 [Getting started](https://helm.sh/docs/chart_template_guide/getting_started/) guide.
 
 In that guide we create a Helm chart from scratch.
 
+# Hangar 747
 
+## Gotenberg
 
+One of the microservices that I would want to have is [Gotenberg](https://gotenberg.dev/) which will allow me to
+convert numerous document formats. I want to use helm to set it up in my homelab.
+
+I am using this [Helm chart](https://artifacthub.io/packages/helm/maikumori/gotenberg) from ArtifactHub which I need to
+add to my repository.
+
+```shell
+helm repo add maikumori https://maikumori.github.io/helm-charts
+helm repo update
+```
+
+```shell
+helm install gotenberg --namespace hangar-747 maikumori/gotenberg
+```

@@ -39,6 +39,14 @@ docker run -d -p 7000:8080 skyops-api:latest
 
 Here, we check if we can communicate with the Api running inside of the Docker container
 
-```bash
+```shell
 curl http://localhost:7000
+```
+
+## Minikube
+
+If we want to load the local Docker image into Minikube we run
+
+```shell
+minikube image load skyops-api:latest
 ```

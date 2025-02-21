@@ -5,9 +5,8 @@ Sky Operations to coordinate flights and schedules.
 ## Setup
 
 ```shell
-dotnet new sln -n SkyOps
 dotnet new web -n SkyOps.Api
-dotnet sln SkyOps.sln add SkyOps.Api/SkyOps.Api.csproj
+dotnet sln Hangar747.sln add SkyOps.Api/SkyOps.Api.csproj
 ```
 
 ## Local Dev

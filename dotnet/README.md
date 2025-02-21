@@ -11,3 +11,9 @@ sudo add-apt-repository ppa:dotnet/backports
 ```shell
 sudo apt-get update && sudo apt-get install -y dotnet-sdk-9.0
 ```
+
+## Setup the Solution File
+
+```shell
+dotnet new sln -n Hangar747
+```

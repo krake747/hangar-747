@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+# https://www.mkdocs.org/user-guide/configuration/#configuration
+site_name: Flight Manual
+site_url: https://mydomain.org/flightmanual
+theme:
+  name: material

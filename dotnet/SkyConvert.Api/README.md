@@ -69,9 +69,53 @@ If we want to load the local Docker image into Minikube we run
 minikube image load skyconvert-api:latest
 ```
 
+Once we apply the `k8s/skyconvert.yaml` deployment the pod should start up.
+
+Let's say we want to inspect the `thumbnails-volume`.
+
+```shell
+k get pods -l app=skyconvert -n=hangar-747
+```
+
+We can access and inspect the pod's mounted volume with `Bash`.
+
+```shell
+k exec -it skyconvert-[...] -- /bin/bash
+```
+
+We inspect it with
+
+```shell
+ls -lah /thumbnails
+```
+
+If we want to monitor changes in real time:
+
+```shell
+watch ls -lah /thumbnails
+```
+
+**Note:** If we get the `watch` command not found then we can try and install it with
+
+```shell
+apt update && apt install -y procps
+```
+
+Then we try to re-run the watch command above and create a test file.
+
+```shell
+echo "hello test 2" > /thumbnails/test2.txt
+```
+
 ## Gotenberg
 
-Testing `Gotenberg` locally
+It can be that we need `Ghostscript` for converting Pdfs to images.
+
+```shell
+sudo apt update && sudo apt install ghostscript
+```
+
+Testing `Gotenberg` locally.
 
 ```shell
 curl -X POST -F "files=@.input/x.txt" -F "nativePageRanges=1-1" -o ".output/x.pdf" http://localhost:3000/forms/libreoffice/convert
@@ -82,6 +126,3 @@ Testing `SkyConvert` locally from solution root
 ```shell
 curl -X POST -F "files=@.input/x.txt" http://localhost:5034/thumbnails
 ```
-
-
-

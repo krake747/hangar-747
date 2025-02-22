@@ -2,7 +2,9 @@ obj/
 bin/
 
 .idea/
+*.DotSettings.user
 
 .containers/
 .input/
 .output/
+

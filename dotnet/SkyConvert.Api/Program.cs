@@ -5,21 +5,24 @@ using SkyConvert.Api.Networking;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton(static sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    return new VolumeManager(config, Directory.GetCurrentDirectory());
+});
+
+
 builder.Services.AddHttpClient<IGotenbergClient, GotenbergClient>("gotenberg", static (sp, client) =>
 {
     var connectionString = sp.GetRequiredService<IConfiguration>().GetConnectionString("Gotenberg") ?? "";
     client.BaseAddress = new Uri(connectionString);
 });
 
-var thumbnailsDirectory = Directory.GetCurrentDirectory()
-    .Pipe(root => Path.Combine(root, builder.Configuration.GetValue<string>("Directory:Thumbnails") ?? "thumbnails"))
-    .Pipe(Directory.CreateDirectory);
-
 var app = builder.Build();
 
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(thumbnailsDirectory.FullName),
+    FileProvider = new PhysicalFileProvider(app.Services.GetRequiredService<VolumeManager>().Thumbnails.FullName),
     RequestPath = "/thumbnails"
 });
 
@@ -30,7 +33,7 @@ app.MapGet(
 
 app.MapGet(
     "/health/gotenberg",
-    async ([FromServices] IHttpClientFactory factory, CancellationToken token = default) =>
+    static async ([FromServices] IHttpClientFactory factory, CancellationToken token = default) =>
     {
         using var client = factory.CreateClient("gotenberg");
         return Results.Ok(await client.GetAsync("health", token));
@@ -41,7 +44,7 @@ app.MapPost(
     "thumbnails",
     static async (
         [FromServices] ILogger<Program> logger, [FromServices] IGotenbergClient gotenberg,
-        HttpRequest request, CancellationToken token = default
+        [FromServices] VolumeManager directoryManager, HttpRequest request, CancellationToken token = default
     ) =>
     {
         logger.LogInformation("Processing generate thumbnail request");
@@ -56,9 +59,25 @@ app.MapPost(
             return Results.BadRequest("No files were uploaded.");
         }
 
-        var t = await gotenberg.GenerateThumbnails(request, token);
+        var thumbnail = await gotenberg.GenerateThumbnails(request, directoryManager.Thumbnails, token);
 
-        string[] thumbnails = [t];
+        string[] thumbnails = [thumbnail];
+
+        return Results.Ok(new { Thumbnails = thumbnails });
+    }
+);
+
+app.MapGet(
+    "thumbnails",
+    static ([FromServices] VolumeManager directoryManager) =>
+    {
+        string[] thumbnails =
+        [
+            ..Directory
+                .EnumerateFiles(directoryManager.Thumbnails.FullName)
+                .Select(f => $"/thumbnails/{Path.GetFileName(f)}")
+        ];
+
         return Results.Ok(new { Thumbnails = thumbnails });
     }
 );

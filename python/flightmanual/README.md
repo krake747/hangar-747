@@ -39,6 +39,20 @@ pip install --upgrade --force-reinstall mkdocs-material
 pip show mkdocs-material
 ```
 
+## Docker
+
+From this projects root
+
+```shell
+d build -t flightmanual:latest -f Dockerfile .
+```
+
+To load it manually into `minikube`
+
+```shell
+minikube image load flightmanual:latest
+```
+
 ## Useful Commands
 
 - `mkdocs new [dir-name]` - Creates a new project.
@@ -49,4 +63,3 @@ pip show mkdocs-material
 [![Built with Material for MkDocs](https://img.shields.io/badge/Material_for_MkDocs-526CFE?style=for-the-badge&logo=MaterialForMkDocs&logoColor=white)](https://squidfunk.github.io/mkdocs-material/)
 
 and [MkDocs](https://www.mkdocs.org).
-

@@ -6,7 +6,6 @@ site_author: Kevin Kraemer
 site_url: https://mydomain.org/flightmanual
 repo_name: krake747/hangar-747
 repo_url: https://github.com/krake747/hangar-747/tree/main/python/flightmanual
-docs_dir: docs
 theme:
   name: material
   language: en

@@ -2,8 +2,5 @@
 
 internal static class FunctionalExtensions
 {
-    public static TOut Pipe<TIn, TOut>(this TIn input, Func<TIn, TOut> func)
-    {
-        return func(input);
-    }
+    public static TOut Pipe<TIn, TOut>(this TIn input, Func<TIn, TOut> func) => func(input);
 }

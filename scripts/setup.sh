@@ -92,11 +92,13 @@ sudo mv k9s /usr/local/bin/
 rm k9s_Linux_amd64.tar.gz
 
 
-# -+- Installing programming languages -+-
+# -+- Check Versions -+-
 echo "Fresh setup complete! Checking versions..."
+source ~/.bashr
 python3 --version
 dotnet --version
 go version
+nvm --version
 lazygit --version
 docker --version
 kubectl --version

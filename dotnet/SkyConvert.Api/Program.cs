@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 using SkyConvert.Api.Common;
@@ -10,7 +11,6 @@ builder.Services.AddSingleton(static sp =>
     var config = sp.GetRequiredService<IConfiguration>();
     return new VolumeManager(config, Directory.GetCurrentDirectory());
 });
-
 
 builder.Services.AddHttpClient<IGotenbergClient, GotenbergClient>("gotenberg", static (sp, client) =>
 {
@@ -29,6 +29,22 @@ app.UseStaticFiles(new StaticFileOptions
 app.MapGet(
     "/",
     () => Results.Ok(new { Message = "Hello from SkyConvert! Would you like to convert a document?" })
+);
+
+app.MapGet(
+    "/skyops",
+    static async (
+        [FromServices] ILogger<Program> logger, [FromServices] IHttpClientFactory factory,
+        [FromServices] IConfiguration config
+    ) =>
+    {
+        logger.LogInformation("Processing SkyConvert to SkyOps request");
+        using var client = factory.CreateClient();
+        var skyOpsUrl = config.GetValue<string>("Networking:SkyOps") ?? "";
+        client.BaseAddress = new Uri(skyOpsUrl);
+        var response = await client.GetFromJsonAsync<JsonElement>("");
+        return Results.Ok(new { Message = response.GetProperty("message").GetString() });
+    }
 );
 
 app.MapGet(

@@ -17,3 +17,17 @@ sudo apt-get update && sudo apt-get install -y dotnet-sdk-9.0
 ```shell
 dotnet new sln -n Hangar747
 ```
+
+## User Secrets
+
+```json
+{
+    "ConnectionStrings": {
+        "Gotenberg": "http://localhost:3000/"
+    },
+    "Networking": {
+        "SkyOps": "http://localhost:7000/",
+        "SkyConvert": "http://localhost:7001/"
+    }
+}
+```

@@ -7,17 +7,16 @@ metadata:
   namespace: hangar-747
 spec:
   ports:
-  - port: 7000
-    protocol: TCP
-    targetPort: 8080
+    - port: 7001
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: skyconvert
-  type: NodePort
+  type: ClusterIP
 status:
   loadBalancer: {}
 
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,6 +39,8 @@ spec:
         - image: skyconvert-api:latest
           name: skyconvert-api
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
           resources:
             limits:
               cpu: "500m"
@@ -54,3 +55,13 @@ spec:
         - name: thumbnails-volume
           emptyDir: {}
 status: {}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: skyconvert
+  namespace: hangar-747
+data:
+  Networking__SkyOps: "http://skyops.hangar-747.svc.cluster.local:7000/"
+  Networking__SkyConvert: "http://skyconvert.hangar-747.svc.cluster.local:7001/"

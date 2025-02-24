@@ -1,0 +1,18 @@
+services:
+  skyops-api:
+    image: skyops-api:latest
+    container_name: skyops
+    build:
+      context: .
+      dockerfile: ./SkyOps.Api/Dockerfile
+    ports:
+      - 7000:8080
+
+  skyconvert-api:
+    image: skyconvert-api:latest
+    container_name: skyconvert
+    build:
+      context: .
+      dockerfile: ./SkyConvert.Api/Dockerfile
+    ports:
+      - 7001:8080

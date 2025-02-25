@@ -232,3 +232,7 @@ minikube service skyops -n hangar-747
 ```
 
 This provides a url that we can access.
+
+## ConfigMap
+
+## Ingress

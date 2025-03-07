@@ -6,11 +6,11 @@
     "scripts": {
         "build:css": "npx @tailwindcss/cli -i ./wwwroot/css/app.css -o wwwroot/styles.min.css --minify",
         "watch:css": "npx @tailwindcss/cli -i ./wwwroot/css/app.css -o wwwroot/styles.min.css --minify --watch",
-        "format:test": "prettier --list-different \"./**/*.{ts,html,css,scss,json,razor}\"",
-        "format:write": "prettier --write \"./**/*.{ts,html,css,scss,json,razor}\""
+        "format:test": "prettier --list-different \"./**/*.{ts,html,css,scss,json}\"",
+        "format:write": "prettier --write \"./**/*.{ts,html,css,scss,json}\""
     },
     "devDependencies": {
-        "prettier": "^3.5.3",
+        "prettier": "3.5.3",
         "prettier-plugin-tailwindcss": "^0.6.11"
     }
 }

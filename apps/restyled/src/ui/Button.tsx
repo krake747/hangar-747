@@ -29,7 +29,7 @@ const SIZE_STYLES: Record<ButtonSize, Record<string, string>> = {
     }
 };
 
-// Template Literal Syntax which allows us to define CSS styles inside a template literal
+// Tagged Template Literal Syntax which allows us to define CSS styles inside a template literal
 // It allows us to use regular CSS and JavaScript expressions
 const ButtonBase = styled.button`
     display: block;

@@ -23,6 +23,17 @@ Additional configuration:
 - CSS
 - No SSR and SSG support
 
+We update the tsconfig with
+
+```json
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "erasableSyntaxOnly": true,
+    }
+}
+```
+
 ### VS Code
 
 We add a `buenowind.code-workspace` file for some common configuration settings and VS code extensions.

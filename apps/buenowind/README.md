@@ -37,3 +37,11 @@ We update the tsconfig with
 ### VS Code
 
 We add a `buenowind.code-workspace` file for some common configuration settings and VS code extensions.
+
+### Prettier
+
+We add a `.prettierrc` file for standardizing our formatting, a prettier dev dependency and some `npm` scripts.
+
+```shell
+npm i -D prettier
+```

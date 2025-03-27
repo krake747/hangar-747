@@ -45,3 +45,7 @@ We add a `.prettierrc` file for standardizing our formatting, a prettier dev dep
 ```shell
 npm i -D prettier
 ```
+
+### Docker
+
+We add support for Docker with `compose`, `Dockerfile`, `.dockerignore` and `nginx.conf` files.

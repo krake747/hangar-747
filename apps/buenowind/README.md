@@ -64,6 +64,10 @@ npm i tailwind-merge
 We need the offical VS Code extension to endhance our editor setup with Intellisence and a prettier plugin
 to have class sorting. We update our prettier with
 
+```shell
+npm i -D prettier prettier-plugin-tailwindcss
+```
+
 ```json
 {
     "tailwindFunctions": ["cva", "tw"],

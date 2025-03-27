@@ -15,7 +15,7 @@ npm i -g @angular/cli
 Create BuenoWind application.
 
 ```shell
-ng new buenowind --prefix bw --routing=true --inline-template --inline-style
+ng new buenowind --prefix bw --routing true --style css  --inline-template --inline-style
 ```
 
 Additional configuration:
@@ -40,6 +40,46 @@ We update the tsconfig with
     }
 }
 ```
+
+### TailwindCSS
+
+We have a dependency on [TailwindCSS](https://tailwindcss.com/) for styling our application.
+
+We follow the [Angular Framework guide](https://tailwindcss.com/docs/installation/framework-guides/angular).
+
+```shell
+npm i tailwindcss @tailwindcss/postcss postcss --force
+```
+
+In addition, we include two other dependencies `class-variance-authority` and `tailwind-merge` to better manage how we
+create UI components with TailwindCSS.
+
+TODO: Why we need these two?
+
+```shell
+npm i class-variance-authority
+npm i tailwind-merge
+```
+
+We need the offical VS Code extension to endhance our editor setup with Intellisence and a prettier plugin
+to have class sorting. We update our prettier with
+
+```json
+{
+    "tailwindFunctions": ["cva", "tw"],
+    "plugins": ["prettier-plugin-tailwindcss"]
+}
+```
+
+Note: `"tw"` is needed for this utility helper function below.
+
+```ts
+export const tw = (strings: TemplateStringsArray, ...values: TemplateStringsArray[]) =>
+    String.raw({ raw: strings }, ...values);
+```
+
+We also added basic CSS reset code in the `styles.css`.
+It is from Josh Comeau [A Modern CSS Reset](https://www.joshwcomeau.com/css/custom-css-reset/).
 
 ## Tools
 

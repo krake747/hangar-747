@@ -5,8 +5,10 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
+        "build:ci": "ng build --configuration production",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
+        "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
         "format:test": "prettier --list-different \"./**/*.{ts,html,css,json}\"",
         "format:write": "prettier --write \"./**/*.{ts,html,css,json}\""
     },

@@ -4,6 +4,8 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Setup
 
+### Angular
+
 Install Angular CLI
 
 ```shell
@@ -20,3 +22,7 @@ Additional configuration:
 
 - CSS
 - No SSR and SSG support
+
+### VS Code
+
+We add a `buenowind.code-workspace` file for some common configuration settings and VS code extensions.

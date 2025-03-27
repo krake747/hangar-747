@@ -1,0 +1,80 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "editor.rulers": [120],
+        "editor.wordWrapColumn": 120,
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 100,
+        "emmet.showSuggestionsAsSnippets": true,
+        "[html]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.tabSize": 4
+        },
+        "[css]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.tabSize": 4
+        },
+        "[javascript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.tabSize": 4
+        },
+        "[typescript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.tabSize": 4
+        },
+        "[json]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.tabSize": 4
+        },
+        "[jsonc]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.tabSize": 4
+        },
+        "[yaml]": {
+            "editor.defaultFormatter": "redhat.vscode-yaml",
+            "editor.tabSize": 2
+        },
+        "[dockercompose]": {
+            "editor.defaultFormatter": "redhat.vscode-yaml",
+            "editor.tabSize": 2
+        },
+        "[markdown]": {
+            "editor.wordWrap": "on",
+            "editor.renderWhitespace": "all"
+        },
+        "tailwindCSS.classFunctions": ["tw", "cva"],
+        "tailwindCSS.experimental.classRegex": [
+            ["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+            ["cx\\(((?:[^()]|\\([^()]*\\))*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+        ],
+        "prettier.requireConfig": true
+    },
+    "extensions": {
+        "recommendations": [
+            "EditorConfig.EditorConfig",
+            "usernamehw.errorlens",
+            "mhutchie.git-graph",
+            "formulahendry.auto-rename-tag",
+            "redhat.vscode-yaml",
+            "VisualStudioExptTeam.vscodeintellicode",
+            "VisualStudioExptTeam.intellicode-api-usage-examples",
+            "ms-playwright.playwright",
+            "ms-vscode-remote.remote-containers",
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "bradlc.vscode-tailwindcss",
+            "Angular.ng-template",
+            "mattpocock.ts-error-translator",
+            "expertly-simple.ng-evergreen",
+        ]
+    }
+}

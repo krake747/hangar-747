@@ -1,0 +1,14 @@
+FROM python:3.13-slim
+
+WORKDIR /src
+
+COPY ./architecture/requirements.txt /src/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./architecture/mkdocs.yml /src/mkdocs.yml
+RUN mkdir -p /src/docs
+
+EXPOSE 8000
+
+ENTRYPOINT ["mkdocs"]
+CMD ["serve", "--dev-addr=0.0.0.0:8000"]

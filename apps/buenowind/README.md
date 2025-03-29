@@ -18,19 +18,18 @@ Create BuenoWind application.
 ng new buenowind --prefix bw --routing true --style css  --inline-template --inline-style
 ```
 
-Additional configuration:
+Additional configuration during the `ng new` prompt:
 
-- CSS
-- No SSR and SSG support
+We use plain CSS instead of SCSS to avoid extra build steps and because TailwindCSS provides the necessary styling capabilities. Additionally, we skip SSR and SSG support since our application requires user authentication, making client-side rendering the preferred approach.
 
-To update all packages we run these two commands in sequentially
+To update all packages after scaffolding the project, we run the following commands sequentially:
 
 ```shell
-npx ng update
+ng update
 npx npm-check-updates -u
 ```
 
-We update the tsconfig with
+We update the tsconfig with some extra configuration
 
 ```json
 {
@@ -41,32 +40,70 @@ We update the tsconfig with
 }
 ```
 
+`noImplicitAny` setting forces TypeScript to require explicit type annotations for variables and function parameters where the type cannot be inferred.
+
+`erasableSyntaxOnly` marks enums, namespaces and class parameter properties as errors. These pieces of syntax are not considered erasable. [erasableSyntaxOnly](https://www.totaltypescript.com/erasable-syntax-only)
+
 ### TailwindCSS
 
 We have a dependency on [TailwindCSS](https://tailwindcss.com/) for styling our application.
 
-We follow the [Angular Framework guide](https://tailwindcss.com/docs/installation/framework-guides/angular).
+We follow the [Angular Framework guide](https://tailwindcss.com/docs/installation/framework-guides/angular) to install it.
 
 ```shell
 npm i tailwindcss @tailwindcss/postcss postcss --force
 ```
 
-In addition, we include two other dependencies `class-variance-authority` and `tailwind-merge` to better manage how we
-create UI components with TailwindCSS.
+In addition, we include two other dependencies `class-variance-authority` and `tailwind-merge`.
+We use them to efficiently manage and compose Tailwind CSS classes in our UI components to ensure cleaner,
+more maintainable styling across the project.
 
-TODO: Why we need these two?
+- `class-variance-authority` helps define consistent component variants.
+- `tailwind-merge` intelligently merges and deduplicates classes to prevent conflicts.
 
 ```shell
 npm i class-variance-authority
 npm i tailwind-merge
 ```
 
-We need the offical VS Code extension to endhance our editor setup with Intellisence and a prettier plugin
-to have class sorting. We update our prettier with
+We also added basic CSS reset code in the `styles.css`.
+It is from [Josh Comeau's A Modern CSS Reset](https://www.joshwcomeau.com/css/custom-css-reset/).
+
+## Tools
+
+As an Angular project grows, increasing coupling and technical debt can slow development and introduce unexpected bugs. Maintaining a scalable architecture helps preserve development speed and stability.
+
+Building a strong foundation together with automated, tooling based architecture validation can preserve development
+velocity in the long run.
+
+We want to avoid "Hope-based" architecture. If we ignore the support of dedicated automated tooling, we’re just hoping
+that it stays that way and everyone involved will pay attention and review perfectly 100% of the time, which is just highly unlikely.
+
+### VS Code
+
+We add the `buenowind.code-workspace` file to centralize common configuration settings and recommended VS Code extensions.
+This helps streamline setup, ensuring we all have the same tools for a consistent development environment.
+
+### Prettier
+
+We add a `.prettierrc` file to enforce consistent code formatting across the project.
+This helps maintain clean, readable code and reduces formatting-related discrepancies.
+This ensures a smoother development workflow with fewer stylistic conflicts
+
+```shell
+npm i -D prettier
+```
+
+We also add the offical VS Code extension to endhance our editor setup with Intellisence.
+Then we add a prettier plugin to have the offical TailwindCSS class sorting.
+
+We install it via `npm`.
 
 ```shell
 npm i -D prettier prettier-plugin-tailwindcss
 ```
+
+Then we add the plugin to the `.prettierrc` file.
 
 ```json
 {
@@ -75,28 +112,11 @@ npm i -D prettier prettier-plugin-tailwindcss
 }
 ```
 
-Note: `"tw"` is needed for this utility helper function below.
+Note: `"tw"` is optional and if we use it then it is needed for this utility helper function below.
 
 ```ts
 export const tw = (strings: TemplateStringsArray, ...values: TemplateStringsArray[]) =>
     String.raw({ raw: strings }, ...values);
-```
-
-We also added basic CSS reset code in the `styles.css`.
-It is from Josh Comeau [A Modern CSS Reset](https://www.joshwcomeau.com/css/custom-css-reset/).
-
-## Tools
-
-### VS Code
-
-We add a `buenowind.code-workspace` file for some common configuration settings and VS code extensions.
-
-### Prettier
-
-We add a `.prettierrc` file for standardizing our formatting, a prettier dev dependency and some `npm` scripts.
-
-```shell
-npm i -D prettier
 ```
 
 ### Docker
@@ -115,20 +135,21 @@ We can the following command to analyze our code for potential issues and enforc
 ng lint #TODO
 ```
 
-### Build Visualizers
-
-We can install tools to generate visual representations of our bundle size and dependencies for better optimization
-insights.
-
-```shell
-npm i -D esbuild-visualizer source-map-explorer http-server #TODO
-```
-
 ### Dependency graph analysis
 
-We can generate dependency graphs for analyzing our project structure.
+`madge` is one of the best tools that we can use to evaluate the overall health of the code base from the perspective of its dependency graph. With this tool we can generate dependency graphs for analyzing our project structure.
+
+We want to achieve a general sense of "one-way-ness" clean dependency graph.
 
 ```shell
 sudo apt-get install graphviz # TODO
 npm install -D madge npm-run-all
+```
+
+### Build Visualizers
+
+We can install tools to generate visual representations of our bundle size and dependencies for better optimization insights.
+
+```shell
+npm i -D esbuild-visualizer source-map-explorer http-server #TODO
 ```

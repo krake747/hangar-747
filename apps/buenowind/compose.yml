@@ -1,0 +1,23 @@
+name: hangar-747
+
+services:
+  buenowind:
+    image: buenowind
+    container_name: buenowind
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4201:80"
+
+  buenowind.docs:
+    image: buenowind.docs
+    container_name: buenowind.docs
+    build:
+      context: .
+      dockerfile: architecture/Dockerfile
+    ports:
+      - "4202:8000"
+    volumes:
+      - ./architecture/mkdocs.yml:/src/mkdocs.yml
+      - ./architecture/docs:/src/docs

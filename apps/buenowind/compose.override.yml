@@ -1,0 +1,12 @@
+name: hangar-747
+
+services:
+  buenowind.docs:
+    develop:
+      watch:
+        - action: sync
+          path: ./architecture/mkdocs.yml
+          target: /src/mkdocs.yml
+        - action: sync
+          path: ./architecture/docs
+          target: /src/docs

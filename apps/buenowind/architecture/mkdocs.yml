@@ -1,0 +1,101 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+# https://www.mkdocs.org/user-guide/configuration/#configuration
+site_name: Bueno Wind Docs
+site_description: Architecture documentation for Bueno Wind
+site_author: Kevin Kraemer
+site_url: https://mydomain.org/buenowind-docs
+repo_name: krake747/hangar-747
+repo_url: https://github.com/krake747/hangar-747/tree/main/apps/buenowind/
+theme:
+  name: material
+  language: en
+  direction: ltr
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      primary: red
+      accent: light blue
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: red
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  # admonitions
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # code snippets
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  # images
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+
+nav:
+  - Home: README.md
+  - Theory:
+      - Basics:
+          - basics/index.md
+      - Angular:
+          - angular/index.md
+          - angular/standalones.md
+          - angular/template-context.md
+          - angular/injectables.md
+          - angular/injector-hierarchy.md
+          - angular/function-based-logic.md
+      - Eager vs lazy:
+          - eager-vs-lazy/index.md
+          - eager-vs-lazy/eager-part.md
+          - eager-vs-lazy/lazy-part.md
+          - eager-vs-lazy/routing-based-lazy-loading.md
+          - eager-vs-lazy/defer-based-lazy-loading.md
+  - Key Concepts:
+      - Lazy Loading:
+          - lazy-loading/index.md
+          - lazy-loading/faster-startup-time-for-users.md
+          - lazy-loading/faster-developer-feedback-loop.md
+          - lazy-loading/isolation-benefit.md
+          - lazy-loading/heuristics.md
+      - Isolation:
+          - isolation/index.md
+          - isolation/features-as-a-black-box.md
+          - isolation/local-impact.md
+          - isolation/local-testing.md
+          - isolation/extensibility-and-evolution-of-the-code-base.md
+      - One Way Dependency Graph:
+          - one-way-dependency-graph/index.md

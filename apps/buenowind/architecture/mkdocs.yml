@@ -45,9 +45,12 @@ theme:
     - navigation.tabs
     - navigation.footer
     - navigation.indexes
-    - navigation.sections
     - content.code.copy
     - content.code.annotate
+
+plugins:
+  - search
+  - tags
 
 markdown_extensions:
   # admonitions
@@ -65,6 +68,9 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.blocks.caption
+  # content tabs
+  - pymdownx.tabbed:
+      alternate_style: true
 
 nav:
   - Home: README.md
@@ -93,9 +99,52 @@ nav:
           - lazy-loading/heuristics.md
       - Isolation:
           - isolation/index.md
-          - isolation/features-as-a-black-box.md
           - isolation/local-impact.md
-          - isolation/local-testing.md
           - isolation/extensibility-and-evolution-of-the-code-base.md
+          - isolation/features-as-a-black-box.md
       - One Way Dependency Graph:
           - one-way-dependency-graph/index.md
+  - Implementation Hints:
+      - State vs View logic:
+          - state-vs-view-logic/index.md
+      - Correct level of abstraction:
+          - correct-level-of-abstraction/index.md
+          - correct-level-of-abstraction/framework-vs-application-business-logic.md
+          - correct-level-of-abstraction/short-term-vs-long-term-thinking.md
+          - correct-level-of-abstraction/optimizing-for-the-wrong-thing.md
+          - correct-level-of-abstraction/common-negative-consequences-of-adding-abstractions.md
+          - correct-level-of-abstraction/correct-level-of-technical-abstraction.md
+          - correct-level-of-abstraction/how-to-handle-verbosity.md
+  - The Big Picture:
+      - the-big-picture/index.md
+      - the-big-picture/app.md
+      - the-big-picture/main.md
+      - Core:
+          - core/index.md
+          - core/standalone-core.md
+          - core/grouping-core-logic-in-folders-per-domain.md
+      - Layout:
+          - layout/index.md
+          - layout/single-layout.md
+          - layout/multiple-layouts.md
+          - layout/custom-layout-per-feature.md
+      - UI:
+          - ui/index.md
+          - ui/standalones-only.md
+          - ui/generic-reuseable-ui-components.md
+          - ui/eager-vs-lazy-bundling-implications.md
+          - ui/how-to-handle-types-and-interfaces.md
+          - ui/how-to-handle-complex-pipes.md
+      - Feature:
+          - feature/index.md
+          - feature/black-box-nature.md
+          - feature/fractal-nature.md
+          - feature/nested-lazy-sub-features.md
+          - feature/sharing-logic-between-lazy-features.md
+          - feature/sharing-features.md
+      - Pattern:
+          - pattern/index.md
+          - pattern/pattern-vs-ui-core-feature.md
+          - pattern/when-to-create-a-pattern.md
+      - the-big-picture/relationship-between-types.md
+      - the-big-picture/most-common-dependency-graph-issues.md

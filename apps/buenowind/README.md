@@ -76,7 +76,7 @@ As an Angular project grows, increasing coupling and technical debt can slow dev
 Building a strong foundation together with automated, tooling based architecture validation can preserve development
 velocity in the long run.
 
-We want to avoid "Hope-based" architecture. If we ignore the support of dedicated automated tooling, we’re just hoping
+We want to avoid "Hope-based" architecture. If we ignore the support of dedicated automated tooling, we're just hoping
 that it stays that way and everyone involved will pay attention and review perfectly 100% of the time, which is just highly unlikely.
 
 ### VS Code

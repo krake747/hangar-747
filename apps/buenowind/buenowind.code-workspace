@@ -80,6 +80,8 @@
             "VisualStudioExptTeam.intellicode-api-usage-examples",
             "ms-playwright.playwright",
             "ms-vscode-remote.remote-containers",
+            "yzhang.markdown-all-in-one",
+            "DavidAnson.vscode-markdownlint",
             "dbaeumer.vscode-eslint",
             "esbenp.prettier-vscode",
             "bradlc.vscode-tailwindcss",

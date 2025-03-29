@@ -1,24 +1,12 @@
-# Angular Enterprise Architecture
+# Docs
 
-The information provided is sourced from the book [Angular Enterprise Architecture](https://angularexperts.io/products/ebook-angular-enterprise-architecture), which is highly recommended for anyone looking to create scalable Angular applications.
-The different sections only provide condensed summaries and explanations.
+To generate the documentation website we just need to run from the root folder which contains the `compose.yml`
+and `compose.override.yaml`.
 
-## Theory
+```docker
+docker compose watch buenowind.docs
+```
 
-### Base underlying reality
+Using `docker` we can avoid installing Python 🐍 on our local machine.
 
-[The Browser](docs/the-browser.md)
-
-[The Bundler](docs/the-bundler.md)
-
-[Angular](docs/angular.md)
-
-[Eager vs lazy part of the application](docs/eager-vs-lazy-part-of-the-application.md)
-
-### Key concepts
-
-[Lazy Loading](docs/lazy-loading.md)
-
-[Isolation](docs/isolation.md)
-
-[One way dependency graph](docs/one-way-dependency-graph.md)
+For more info on customization visit [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)

@@ -125,6 +125,8 @@ export const tw = (strings: TemplateStringsArray, ...values: TemplateStringsArra
     String.raw({ raw: strings }, ...values);
 ```
 
+We also might want to add a `.prettierignore` file.
+
 ### Docker
 
 We add support for Docker with `compose`, `Dockerfile`, `.dockerignore` and `nginx.conf` files.
@@ -168,6 +170,18 @@ npm i -D eslint-plugin-boundaries eslint-import-resolver-typescript
 
 We then do the setup in `eslint.config.js`. (git commit "tools(apps): add automated architecture validation")
 
+### Bundle size analysis (and budgets)
+
+**Bundle size matters** because a large bundle slows down how fast our app loads for users and increases the time it takes developers to build and test changes.
+
+Tools like `@angular-experts/hawkeye` help us see what's inside our bundle. See [Hawkeye](https://angularexperts.io/blog/hawkeye-esbuild-analyzer)
+
+```shell
+npx @angular-experts/hawkeye init
+```
+
+This will update our `package.json` with the new `analyze` command (we might need to fix a typo to `-y`)
+
 ### Dependency graph analysis
 
 `madge` is one of the best tools that we can use to evaluate the overall health of the code base from the perspective of its dependency graph. With this tool we can generate dependency graphs for analyzing our project structure.
@@ -177,12 +191,4 @@ We want to achieve a general sense of "one-way-ness" clean dependency graph.
 ```shell
 sudo apt-get install graphviz # TODO
 npm install -D madge npm-run-all
-```
-
-### Build Visualizers
-
-We can install tools to generate visual representations of our bundle size and dependencies for better optimization insights.
-
-```shell
-npm i -D esbuild-visualizer source-map-explorer http-server #TODO
 ```

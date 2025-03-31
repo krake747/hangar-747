@@ -11,7 +11,8 @@
         "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
         "format:test": "prettier --list-different \"./**/*.{ts,html,css,json}\"",
         "format:write": "prettier --write \"./**/*.{ts,html,css,json}\"",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "analyze": "ng build --stats-json --named-chunks && npx -y @angular-experts/hawkeye dist/buenowind/stats.json"
     },
     "private": true,
     "dependencies": {

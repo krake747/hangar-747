@@ -149,6 +149,16 @@ This will install three npm packages.
 - `eslint`
 - `typescript-eslint`
 
+### Automated Architecture Validation
+
+This requires `ESLint`.
+
+```shell
+npm i -D eslint-plugin-boundaries eslint-import-resolver-typescript
+```
+
+We then do the setup in `eslint.config.js`. (git commit "tools(apps): add automated architecture validation")
+
 ### Dependency graph analysis
 
 `madge` is one of the best tools that we can use to evaluate the overall health of the code base from the perspective of its dependency graph. With this tool we can generate dependency graphs for analyzing our project structure.

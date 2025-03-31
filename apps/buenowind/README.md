@@ -18,6 +18,12 @@ Create BuenoWind application.
 ng new buenowind --prefix bw --routing true --style css  --inline-template --inline-style
 ```
 
+Create environment files.
+
+```shell
+ng g environments
+```
+
 Additional configuration during the `ng new` prompt:
 
 We use plain CSS instead of SCSS to avoid extra build steps and because TailwindCSS provides the necessary styling capabilities. Additionally, we skip SSR and SSG support since our application requires user authentication, making client-side rendering the preferred approach.

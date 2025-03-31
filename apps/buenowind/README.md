@@ -202,3 +202,18 @@ npm install -D madge npm-run-all
 ```
 
 We update our `package.json` with some scripts. They start with `analyze:deps`.
+
+### Angular Schematics
+
+We update the schematics to include in the `angular.json`.
+
+```json
+{
+    "@schematics/angular:component": {
+        "inlineTemplate": true,
+        "inlineStyle": true,
+        "changeDetection": "OnPush",
+        "style": "css"
+    }
+}
+```

@@ -184,11 +184,21 @@ This will update our `package.json` with the new `analyze` command (we might nee
 
 ### Dependency graph analysis
 
-`madge` is one of the best tools that we can use to evaluate the overall health of the code base from the perspective of its dependency graph. With this tool we can generate dependency graphs for analyzing our project structure.
-
+The idea is to keep the code organized by ensuring that dependencies between different parts of the system are clean and straightforward.
+This makes the code easier to maintain and extend.
+We use automated tools to check that the dependencies stay clean at a high level,
+but sometimes problems like circular dependencies can still sneak in.
 We want to achieve a general sense of "one-way-ness" clean dependency graph.
 
+`madge` is one of the best tools that we can use to evaluate the overall health of the code base from the perspective of its dependency graph.
+With this tool we can generate dependency graphs for analyzing our project structure.
+
+Additional dependency, [`Graphviz`](https://www.graphviz.org/) is required in order to generate
+visual graphs which is the best way to read `madge` output.
+
 ```shell
-sudo apt-get install graphviz # TODO
+sudo apt-get install graphviz
 npm install -D madge npm-run-all
 ```
+
+We update our `package.json` with some scripts. They start with `analyze:deps`.

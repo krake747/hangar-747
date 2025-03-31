@@ -12,7 +12,14 @@
         "format:test": "prettier --list-different \"./**/*.{ts,html,css,json}\"",
         "format:write": "prettier --write \"./**/*.{ts,html,css,json}\"",
         "lint": "ng lint",
-        "analyze": "ng build --stats-json --named-chunks && npx -y @angular-experts/hawkeye dist/buenowind/stats.json"
+        "analyze": "ng build --stats-json --named-chunks && npx -y @angular-experts/hawkeye dist/buenowind/stats.json",
+        "analyze:deps": "npm-run-all analyze:deps:*",
+        "analyze:deps:all": "madge src/main.ts --ts-config tsconfig.json --image ./deps/_all.png",
+        "analyze:deps:ui": "madge --extensions ts --ts-config tsconfig.json --image ./deps/ui.png src/app/ui/",
+        "analyze:deps:pattern": "madge --extensions ts --ts-config tsconfig.json --image ./deps/pattern.png src/app/pattern/",
+        "analyze:deps:feature": "madge --extensions ts --ts-config tsconfig.json --image ./deps/feature.png src/app/feature/",
+        "analyze:deps:layout": "madge --extensions ts --ts-config tsconfig.json --image ./deps/layout.png src/app/layout/",
+        "analyze:deps:core": "madge --extensions ts --ts-config tsconfig.json --image ./deps/core.png src/app/core/"
     },
     "private": true,
     "dependencies": {
@@ -45,6 +52,8 @@
         "karma-coverage": "~2.2.1",
         "karma-jasmine": "~5.1.0",
         "karma-jasmine-html-reporter": "~2.1.0",
+        "madge": "^8.0.0",
+        "npm-run-all": "^4.1.5",
         "prettier": "^3.5.3",
         "prettier-plugin-tailwindcss": "^0.6.11",
         "typescript": "~5.8.2",

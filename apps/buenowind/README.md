@@ -133,6 +133,15 @@ We add support for Docker with `compose`, `Dockerfile`, `.dockerignore` and `ngi
 docker compose up buenowind
 ```
 
+We need to add two npm commands to the `pacage.json`
+
+```json
+{
+    "build:ci": "ng build --configuration production",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+}
+```
+
 ### ESlint
 
 We can the following command to analyze our code for potential issues and enforce coding standards.

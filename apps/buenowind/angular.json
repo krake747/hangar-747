@@ -10,7 +10,8 @@
                     "inlineTemplate": true,
                     "inlineStyle": true,
                     "changeDetection": "OnPush",
-                    "style": "css"
+                    "style": "css",
+                    "displayBlock": true
                 }
             },
             "root": "",

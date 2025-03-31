@@ -210,10 +210,14 @@ We update the schematics to include in the `angular.json`.
 ```json
 {
     "@schematics/angular:component": {
-        "inlineTemplate": true,
-        "inlineStyle": true,
+        "inlineTemplate": true, // We should make html files when number of lines is above x amount.
+        "inlineStyle": true, // Since we are using TailwindCSS, we don't really need the extra file.
         "changeDetection": "OnPush",
-        "style": "css"
+        "style": "css",
+        // Adds :host { display: block; } to the component's stylesheet, ensuring the component renders as a block-level element. 
+        // This is useful for layout purposes.
+        // We can use TailwindCSS @apply there as well if we want
+        "displayBlock": true 
     }
 }
 ```

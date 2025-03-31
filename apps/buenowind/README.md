@@ -132,8 +132,16 @@ docker compose up buenowind
 We can the following command to analyze our code for potential issues and enforce coding standards.
 
 ```shell
-ng lint #TODO
+ng lint # This installs ESLint and the Angular plugin
 ```
+
+[Setting Up ESLint and Prettier in Angular with VS Code and WebStorm](https://senoritadeveloper.medium.com/setting-up-eslint-and-prettier-in-angular-with-vs-code-and-webstorm-4be8d558caea)
+
+This will install three npm packages.
+
+- `angular-eslint`
+- `eslint`
+- `typescript-eslint`
 
 ### Dependency graph analysis
 

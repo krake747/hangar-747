@@ -2,8 +2,10 @@ FROM python:3.13-slim
 
 WORKDIR /src
 
+RUN pip install uv
+
 COPY ./bw-docs/requirements.txt /src/requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN uv pip install -r requirements.txt --system
 
 COPY ./bw-docs/mkdocs.yml /src/mkdocs.yml
 # For the compose.yml bind mounts

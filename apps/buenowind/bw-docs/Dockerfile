@@ -5,7 +5,6 @@ WORKDIR /src
 RUN pip install uv
 
 COPY ./requirements.txt ./mkdocs.yml ./docs /src/
-
 RUN uv pip install -r requirements.txt --system
 
 EXPOSE 8000

@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 # https://www.mkdocs.org/user-guide/configuration/#configuration
 site_name: Bueno Wind Docs
-site_description: Architecture documentation for Bueno Wind
+site_description: Documentation for Bueno Wind
 site_author: Kevin Kraemer
 site_url: https://mydomain.org/buenowind-docs
 repo_name: krake747/hangar-747

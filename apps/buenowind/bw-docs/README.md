@@ -14,7 +14,7 @@ For more info on customization visit [Material for MkDocs](https://squidfunk.git
 ## Build
 
 ```shell
-cd architecture
+cd bw-docs
 docker build -f Dockerfile -t my-mkdocs .
 docker run -p 8000:8000 my-mkdocs
 ```

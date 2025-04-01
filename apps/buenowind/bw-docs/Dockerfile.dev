@@ -2,10 +2,10 @@ FROM python:3.13-slim
 
 WORKDIR /src
 
-COPY ./architecture/requirements.txt /src/requirements.txt
+COPY ./bw-docs/requirements.txt /src/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./architecture/mkdocs.yml /src/mkdocs.yml
+COPY ./bw-docs/mkdocs.yml /src/mkdocs.yml
 # For the compose.yml bind mounts
 RUN mkdir -p /src/docs
 

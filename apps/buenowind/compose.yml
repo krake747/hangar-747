@@ -15,9 +15,9 @@ services:
     container_name: buenowind.docs
     build:
       context: .
-      dockerfile: architecture/Dockerfile.dev
+      dockerfile: bw-docs/Dockerfile.dev
     ports:
       - "4202:8000"
     volumes:
-      - ./architecture/mkdocs.yml:/src/mkdocs.yml
-      - ./architecture/docs:/src/docs
+      - ./bw-docs/mkdocs.yml:/src/mkdocs.yml
+      - ./bw-docs/docs:/src/docs

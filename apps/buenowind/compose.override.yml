@@ -5,8 +5,8 @@ services:
     develop:
       watch:
         - action: sync
-          path: ./architecture/mkdocs.yml
+          path: ./bw-docs/mkdocs.yml
           target: /src/mkdocs.yml
         - action: sync
-          path: ./architecture/docs
+          path: ./bw-docs/docs
           target: /src/docs

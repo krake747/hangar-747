@@ -13,6 +13,6 @@ README.md
 LICENSE
 
 deps/
-architecture/
-!architecture/requirements.txt
-!architecture/mkdocs.yml
+bw-docs/
+!bw-docs/requirements.txt
+!bw-docs/mkdocs.yml

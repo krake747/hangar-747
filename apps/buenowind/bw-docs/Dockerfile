@@ -2,9 +2,11 @@ FROM python:3.13-slim
 
 WORKDIR /src
 
+RUN pip install uv
+
 COPY ./requirements.txt ./mkdocs.yml ./docs /src/
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN uv pip install -r requirements.txt --system
 
 EXPOSE 8000
 

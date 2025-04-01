@@ -4,6 +4,10 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Setup
 
+### Pnpm
+
+We favour pnpm as a package manager [pnpm](https://pnpm.io/)
+
 ### Angular
 
 Install Angular CLI

@@ -1,6 +1,6 @@
 # Angular
 
-Angular provides well-defined building blocks such as**components, directives, pipes,**
+Angular provides well-defined building blocks such as **components, directives, pipes,**
 **services,and routes**, offering a structured approach to application development.
 
 - Components handle the UI with templates.

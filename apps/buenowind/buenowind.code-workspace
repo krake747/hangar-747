@@ -87,7 +87,8 @@
             "bradlc.vscode-tailwindcss",
             "Angular.ng-template",
             "mattpocock.ts-error-translator",
-            "expertly-simple.ng-evergreen"
+            "expertly-simple.ng-evergreen",
+            "joshuamorony.angular-inline-jumper"
         ]
     }
 }

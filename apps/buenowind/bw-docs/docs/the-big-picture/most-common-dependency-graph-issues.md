@@ -1,6 +1,6 @@
 # Most comon type of dependency graph issues
 
-When working on an existing Angular app, you might run into problems where different parts depend on
+When working on an existing Angular app, we might run into problems where different parts depend on
 each other in ways that make the app harder to maintain and slower to load.
 
 ## Feature depends on another feature

@@ -22,7 +22,7 @@ related to orders).
 
 ### Scalability
 
-As our app grows, this structure lets you add new logic or features in a consistent and logical way,
+As our app grows, this structure lets us add new logic or features in a consistent and logical way,
 without having to deal with a mix of services, reducers, and other building blocks in one folder.
 
 ## Specialized Folders

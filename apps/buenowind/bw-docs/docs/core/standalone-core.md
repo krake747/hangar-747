@@ -40,7 +40,7 @@ Some things in our app need to be done before the app can fully function.
 For example, we might need to fetch the user's authentication token or load their profile before
 anything else happens.
 
-We set this up in `provideCore()` using `provideEnvironmentInitializer()`, which allows you to
+We set this up in `provideCore()` using `provideEnvironmentInitializer()`, which allows us to
 run code that needs to execute during startup. We could dispatch an event to load the user's data or
 initialize some services.
 
@@ -79,5 +79,5 @@ initializing the app. Everything that's crucial to the app's startup is in one p
 ### Clean and manageable
 
 We only need to call `provideCore()` in the `app.config.ts` file, making the setup very clean and
-easy to manage. You avoid putting setup logic all over the place and ensure that things are initialized
+easy to manage. We avoid putting setup logic all over the place and ensure that things are initialized
 in the right order.

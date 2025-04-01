@@ -77,6 +77,16 @@ nav:
   - Theory:
       - Basics:
           - basics/index.md
+          - basics/one-way-binding.md
+          - basics/two-way-binding.md
+          - basics/template-variable.md
+          - basics/embedded-templates.md
+          - basics/control-flow-syntax.md
+          - basics/decorators.md
+          - basics/directives.md
+          - basics/components.md
+          - basics/input-and-output.md
+          - basics/signals.md
       - Angular:
           - angular/index.md
           - angular/standalones.md
@@ -84,12 +94,28 @@ nav:
           - angular/injectables.md
           - angular/injector-hierarchy.md
           - angular/function-based-logic.md
+          - angular/dependency-injection.md
+          - angular/change-detection.md
       - Eager vs lazy:
           - eager-vs-lazy/index.md
           - eager-vs-lazy/eager-part.md
           - eager-vs-lazy/lazy-part.md
           - eager-vs-lazy/routing-based-lazy-loading.md
           - eager-vs-lazy/defer-based-lazy-loading.md
+      - Signal APIs:
+          - signal-apis/index.md
+          - signal-apis/writable-signal.md
+          - signal-apis/computed.md
+          - signal-apis/effect.md
+          - signal-apis/input.md
+          - signal-apis/output.md
+          - signal-apis/view-queries.md
+          - signal-apis/content-queries.md
+          - signal-apis/model.md
+          - signal-apis/resource.md
+          - signal-apis/rx-resource.md
+          - signal-apis/http-resource.md
+          - signal-apis/linked-signal.md
   - Key Concepts:
       - Lazy Loading:
           - lazy-loading/index.md

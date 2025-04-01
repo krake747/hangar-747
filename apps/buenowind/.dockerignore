@@ -1,13 +1,18 @@
 node_modules
+dist
 npm-debug.log
-Dockerfile*
+pnpm-debug.log
 docker-compose*
+compose*
 .dockerignore
 .git
 .gitignore
+.vscode
+idea/
 README.md
 LICENSE
-.vscode
 
-dist/node_modules
-dist/npm-debug.log
+deps/
+architecture/
+!architecture/requirements.txt
+!architecture/mkdocs.yml

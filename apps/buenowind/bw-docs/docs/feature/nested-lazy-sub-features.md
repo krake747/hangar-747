@@ -18,16 +18,14 @@ keeping the app fast and organized.
             component: OrderComponent,
             children: [
                 {
-                    {
-                        // will be displayed when navigated to and will be added to the parent view
-                        path: "dashboard",
-                        loadChildren: () => import("./dashboard/dashboard.routes")
-                    },
-                    {
-                        path: "definitions",
-                        loadChildren: () => import("./definitions/definitions.routes")
-                    },
-                }
+                    // will be displayed when navigated to and will be added to the parent view
+                    path: "dashboard",
+                    loadChildren: () => import("./dashboard/dashboard.routes")
+                },
+                {
+                    path: "definitions",
+                    loadChildren: () => import("./definitions/definitions.routes")
+                },
             ]
         },
     ];

@@ -52,7 +52,7 @@ module.exports = tseslint.config(
                         },
                         {
                             from: ["feature"],
-                            allow: ["env", "core", "ui", "pattern", "feature"]
+                            allow: ["env", "core", "ui", "pattern"]
                         },
                         {
                             from: ["feature-routes"],

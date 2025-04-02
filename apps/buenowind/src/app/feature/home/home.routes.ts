@@ -5,6 +5,20 @@ export default [
     {
         path: "",
         providers: [],
-        component: HomeComponent
+        component: HomeComponent,
+        children: [
+            {
+                path: "tom",
+                loadChildren: () => import("../john/john.routes")
+            }
+        ]
+    },
+    {
+        path: "john",
+        loadChildren: () => import("../john/john.routes")
+    },
+    {
+        path: "p/:name",
+        loadChildren: () => import("../pretty-name/pretty-name.routes")
     }
 ] as Routes;

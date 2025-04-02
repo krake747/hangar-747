@@ -2,11 +2,11 @@ import { Routes } from "@angular/router";
 import { MainLayoutComponent } from "./layout/main-layout/main-layout.component";
 
 export const routes: Routes = [
-    // {
-    //     path: "",
-    //     pathMatch: "full", // Ensures exact match for empty path
-    //     redirectTo: "home"
-    // },
+    {
+        path: "",
+        pathMatch: "full", // Ensures exact match for empty path
+        redirectTo: "home"
+    },
     {
         path: "",
         component: MainLayoutComponent,
@@ -19,6 +19,6 @@ export const routes: Routes = [
     },
     {
         path: "**", // fallback route (can be used to display dedicated 404 lazy feature)
-        redirectTo: ""
+        redirectTo: "home"
     }
 ];

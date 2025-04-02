@@ -60,6 +60,9 @@ importers:
       '@angular/compiler-cli':
         specifier: ^19.2.4
         version: 19.2.4(@angular/compiler@19.2.4)(typescript@5.8.2)
+      '@eslint/js':
+        specifier: ^9.23.0
+        version: 9.23.0
       '@types/jasmine':
         specifier: ~5.1.7
         version: 5.1.7

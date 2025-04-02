@@ -30,66 +30,31 @@ module.exports = tseslint.config(
                         },
                         {
                             from: "core",
-                            allow: [
-                                ["env", { app: "${from.app}" }],
-                                ["core", { app: "${from.app}" }]
-                            ]
+                            allow: ["env", "core"]
                         },
                         {
                             from: "ui",
-                            allow: [
-                                ["env", { app: "${from.app}" }],
-                                ["ui", { app: "${from.app}" }]
-                            ]
+                            allow: ["env", "ui"]
                         },
                         {
                             from: "layout",
-                            allow: [
-                                ["env", { app: "${from.app}" }],
-                                ["core", { app: "${from.app}" }],
-                                ["ui", { app: "${from.app}" }],
-                                ["pattern", { app: "${from.app}" }],
-                                ["layout", { app: "${from.app}" }]
-                            ]
+                            allow: ["env", "ui", "pattern", "layout"]
                         },
                         {
                             from: "app",
-                            allow: [
-                                ["env", { app: "${from.app}" }],
-                                ["app", { app: "${from.app}" }],
-                                ["core", { app: "${from.app}" }],
-                                ["layout", { app: "${from.app}" }],
-                                ["feature-routes", { app: "${from.app}" }]
-                            ]
+                            allow: ["env", "app", "core", "layout", "feature-routes"]
                         },
                         {
                             from: ["pattern"],
-                            allow: [
-                                ["env", { app: "${from.app}" }],
-                                ["core", { app: "${from.app}" }],
-                                ["ui", { app: "${from.app}" }],
-                                ["pattern", { app: "${from.app}" }]
-                            ]
+                            allow: ["env", "core", "ui", "pattern"]
                         },
                         {
                             from: ["feature"],
-                            allow: [
-                                ["env", { app: "${from.app}" }],
-                                ["core", { app: "${from.app}" }],
-                                ["ui", { app: "${from.app}" }],
-                                ["pattern", { app: "${from.app}" }],
-                                ["feature", { app: "${from.app}", feature: "${from.feature}" }]
-                            ]
+                            allow: ["env", "core", "ui", "pattern", "feature"]
                         },
                         {
                             from: ["feature-routes"],
-                            allow: [
-                                ["env", { app: "${from.app}" }],
-                                ["core", { app: "${from.app}" }],
-                                ["pattern", { app: "${from.app}" }],
-                                ["feature", { app: "${from.app}", feature: "${from.feature}" }],
-                                ["feature-routes", { app: "${from.app}", feature: "!${from.feature}" }]
-                            ]
+                            allow: ["env", "core", "pattern", "feature", "feature-routes"]
                         }
                     ]
                 }

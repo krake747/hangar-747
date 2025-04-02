@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from "./home.component";
 
-export default <Routes>[
+export default [
     {
         path: "",
         providers: [],
         component: HomeComponent
     }
-];
+] as Routes;

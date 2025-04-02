@@ -164,7 +164,24 @@ This will install three npm packages.
 - `eslint`
 - `typescript-eslint`
 
-### Automated Architecture Validation
+#### ESLint - Prettier
+
+This requires `ESLint`.
+
+```js
+module.exports = [
+  // Any other config imports go at the top
+  eslintPluginPrettierRecommended,
+];
+```
+
+This will:
+
+- Enable the `prettier/prettier` rule.
+- Disable the `arrow-body-style` and `prefer-arrow-callback` rules which are problematic with this plugin.
+- Enable the `eslint-config-prettier` config which will turn off ESLint rules that conflict with Prettier.
+
+#### ESLint - Automated Architecture Validation
 
 This requires `ESLint`.
 

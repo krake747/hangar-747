@@ -96,6 +96,10 @@ nav:
           - angular/function-based-logic.md
           - angular/dependency-injection.md
           - angular/change-detection.md
+          - angular/dependency-injection.md
+          - angular/navigation-between-routes.md
+          - angular/fetching-data-from-api.md
+          - angular/reactive-forms.md
       - Eager vs lazy:
           - eager-vs-lazy/index.md
           - eager-vs-lazy/eager-part.md
@@ -130,6 +134,9 @@ nav:
           - isolation/features-as-a-black-box.md
       - One Way Dependency Graph:
           - one-way-dependency-graph/index.md
+      - State Management:
+          - state-management/index.md
+          - state-management/rxjs-and-signals.md
   - Implementation Hints:
       - State vs View logic:
           - state-vs-view-logic/index.md

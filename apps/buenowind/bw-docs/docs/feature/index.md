@@ -11,7 +11,7 @@ by our users!
 
 - Implementation in `feature/<feature-name>/` folder
 - Complete isolation between features, features can't import from one another
-- Always lazy loaded with the help of loadChildren() (pointing to feature route config) instead of
+- Always lazy loaded with the help of `loadChildren()` (pointing to feature route config) instead of
 `loadComponent()` as that ensures uniform API and universal extendability
 - **Black box** - can contain any kind of implementation and building blocks. Even if it gets dirty,
 the isolation prevents the spread, and it won't affect the rest of the application

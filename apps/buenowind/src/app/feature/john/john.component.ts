@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Subject } from "rxjs";
 import { map, startWith, switchMap } from "rxjs/operators";
+import { FaIconDirective } from "../../ui/fa-icon.directive";
 
 type CatFact = {
     fact: string;
@@ -11,7 +12,7 @@ type CatFact = {
 
 @Component({
     selector: "bw-john",
-    imports: [],
+    imports: [FaIconDirective],
     template: `
         <p class="p-2 pb-3">{{ catFact() }}</p>
         <button
@@ -20,6 +21,13 @@ type CatFact = {
         >
             Get New Fact
         </button>
+        <div class="bg-gray-50 p-4">
+            <i class="fa-solid fa-coffee"></i>
+            <span class="text-green-500">
+                <span bwFaIcon [type]="'solid'" [icon]="'coffee'"></span>
+            </span>
+            <span class="fab fa-github"></span>
+        </div>
     `,
     styles: `
         :host {

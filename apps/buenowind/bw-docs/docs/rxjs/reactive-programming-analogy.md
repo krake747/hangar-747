@@ -1,4 +1,4 @@
-# Reactive Programming Analogy
+# Reactive programming analogy
 
 One of the key concepts for reactive style programming is that we have data coming from some **source**
 and it will end up in some **sink**.

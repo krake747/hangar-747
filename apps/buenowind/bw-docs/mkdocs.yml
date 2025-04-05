@@ -101,7 +101,6 @@ nav:
           - angular/fetching-data-from-api.md
           - angular/reactive-forms.md
       - Eager vs lazy:
-          - eager-vs-lazy/index.md
           - eager-vs-lazy/eager-part.md
           - eager-vs-lazy/lazy-part.md
           - eager-vs-lazy/routing-based-lazy-loading.md
@@ -131,6 +130,7 @@ nav:
           - rxjs/creation-operators.md
           - rxjs/higher-order-observables.md
           - rxjs/flattening-operators.md
+          - rxjs/async-pipe.md
   - Key Concepts:
       - Lazy Loading:
           - lazy-loading/index.md
@@ -148,6 +148,7 @@ nav:
       - State Management:
           - state-management/index.md
           - state-management/rxjs-and-signals.md
+          - state-management/when-does-managing-state-become-hard.md
   - Implementation Hints:
       - State vs View logic:
           - state-vs-view-logic/index.md

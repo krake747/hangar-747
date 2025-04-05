@@ -121,6 +121,7 @@ instead of the full state management process. This approach minimizes complexity
 
         private error$ = new Subject<ErrorResponse[] | ErrorResponse | string | null>();
 
+        // concatMap ensures the requests are handled in order
         private portfolioCreated$ = this.create$.pipe(
             concatMap((createPortfolio) =>
                 this.http.post<PortfolioId>(ApiEndpoints.Portfolios, createPortfolio).pipe(
@@ -130,6 +131,7 @@ instead of the full state management process. This approach minimizes complexity
             )
         );
 
+        // mergeMap for allows the requests to run concurrently,
         private portfolioUpdated$ = this.update$.pipe(
             mergeMap((updatePortfolio) =>
                 this.http
@@ -162,6 +164,10 @@ instead of the full state management process. This approach minimizes complexity
 
         constructor() {
             // reducers
+
+            // switchMap ensures only the latest HTTP request is handled, so if a new command is triggered
+            // before the previous one completes, the previous one is cancelled, keeping the state
+            // and UI up to date
             merge(
                 this.portfolioCreated$,
                 this.portfolioUpdated$,

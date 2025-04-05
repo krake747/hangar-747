@@ -128,6 +128,8 @@ nav:
           - rxjs/subjects.md
           - rxjs/commonly-used-operators.md
           - rxjs/creation-operators.md
+          - rxjs/higher-order-observables.md
+          - rxjs/flattening-operators.md
   - Key Concepts:
       - Lazy Loading:
           - lazy-loading/index.md

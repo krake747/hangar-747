@@ -126,6 +126,8 @@ nav:
           - rxjs/reactive-programming-analogy.md
           - rxjs/observer-pattern.md
           - rxjs/subjects.md
+          - rxjs/commonly-used-operators.md
+          - rxjs/creation-operators.md
   - Key Concepts:
       - Lazy Loading:
           - lazy-loading/index.md

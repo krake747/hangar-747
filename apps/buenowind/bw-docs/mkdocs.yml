@@ -122,8 +122,9 @@ nav:
           - signal-apis/linked-signal.md
       - RxJS:
           - rxjs/index.md
-          - rxjs/observables.md
           - rxjs/reactive-programming-analogy.md
+          - rxjs/declarative-and-reactive-coding.md
+          - rxjs/observables.md
           - rxjs/observer-pattern.md
           - rxjs/subjects.md
           - rxjs/commonly-used-operators.md

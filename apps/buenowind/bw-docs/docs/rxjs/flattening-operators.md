@@ -38,6 +38,8 @@ and starts a new one.
     2. We pass the searchterm into the get call, and subscribes to it (**inner observable**)
     3. Emits the value from the inner observable
 
+[`switchMap` marbles](https://rxjsmarbles.dev/switchMap)
+
 ## `concatMap`
 
 `concatMap` is an operator that handles each value emitted by an observable one at a time.
@@ -62,6 +64,8 @@ but it can be slower because each request is handled sequentially, one after the
        **inner observable**.
     3. Once the first file upload completes, the next file is uploaded, and so on.
 
+[`concatMap` marbles](https://rxjsmarbles.dev/concatMap)
+
 ## `mergeMap`
 
 We use `mergeMap` when we want to subscribe to all inner observables as soon as we receive new values,
@@ -83,6 +87,8 @@ regardless of the order.
     Here, if four requests are sent, `mergeMap` will process them in parallel and emit results as
     they complete. This is useful when we don’t care about the order of results and just want all
     data as quickly as possible.
+
+[`mergeMap` marbles](https://rxjsmarbles.dev/mergeMap)
 
 ## `exhaustMap`
 
@@ -106,3 +112,5 @@ ongoing inner observable.
     Here, if multiple requests are triggered, `exhaustMap` will ignore all new requests until the
     current request finishes. It's useful when we don’t want to start processing new values until
     the current one is fully handled.
+
+[`exhaustMap` marbles](https://rxjsmarbles.dev/exhaustMap)

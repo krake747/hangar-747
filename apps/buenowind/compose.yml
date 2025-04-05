@@ -14,8 +14,8 @@ services:
     image: buenowind.docs
     container_name: buenowind.docs
     build:
-      context: .
-      dockerfile: bw-docs/Dockerfile.dev
+      context: ./bw-docs
+      dockerfile: Dockerfile
     ports:
       - "4202:8000"
     volumes:

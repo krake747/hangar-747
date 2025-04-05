@@ -164,6 +164,10 @@ This will install three npm packages.
 - `eslint`
 - `typescript-eslint`
 
+```shell
+pnpm add -D @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/template-parser
+```
+
 #### ESLint - Prettier
 
 This requires `ESLint`.

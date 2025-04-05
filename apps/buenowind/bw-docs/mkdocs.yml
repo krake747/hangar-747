@@ -147,8 +147,10 @@ nav:
           - one-way-dependency-graph/index.md
       - State Management:
           - state-management/index.md
-          - state-management/rxjs-and-signals.md
           - state-management/when-does-managing-state-become-hard.md
+          - state-management/why-a-state-management-approach-matters.md
+          - state-management/rxjs-and-signals.md
+          - state-management/state-management-with-rxjs-and-signals.md
   - Implementation Hints:
       - State vs View logic:
           - state-vs-view-logic/index.md

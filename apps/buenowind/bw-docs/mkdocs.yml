@@ -120,6 +120,10 @@ nav:
           - signal-apis/rx-resource.md
           - signal-apis/http-resource.md
           - signal-apis/linked-signal.md
+      - RxJS:
+          - rxjs/index.md
+          - rxjs/observables.md
+          - rxjs/reactive-programming-analogy.md
   - Key Concepts:
       - Lazy Loading:
           - lazy-loading/index.md

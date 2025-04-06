@@ -131,6 +131,7 @@ nav:
           - rxjs/higher-order-observables.md
           - rxjs/flattening-operators.md
           - rxjs/async-pipe.md
+          - rxjs/handling-manual-subscriptions.md
   - Key Concepts:
       - Lazy Loading:
           - lazy-loading/index.md
@@ -151,13 +152,10 @@ nav:
           - state-management/why-a-state-management-approach-matters.md
           - state-management/rxjs-and-signals.md
           - state-management/state-management-with-rxjs-and-signals.md
-          - state-management/signal-store.md
+          - state-management/ngrx-signal-store.md
           - state-management/state-adapt.md
           - state-management/signal-slice.md
-          - state-management/ngrx-component-store.md
-          - state-management/ngrx-store.md
           - state-management/ngxs.md
-          - state-management/elf.md
   - Implementation Hints:
       - State vs View logic:
           - state-vs-view-logic/index.md

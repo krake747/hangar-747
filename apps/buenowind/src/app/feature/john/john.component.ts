@@ -22,7 +22,7 @@ type CatFact = {
             Get New Fact
         </button>
         <div class="bg-gray-50 p-4">
-            <i class="fa-solid fa-coffee"></i>
+            <i class="fas fa-coffee"></i>
             <span class="text-green-500">
                 <span bwFaIcon [type]="'solid'" [icon]="'coffee'"></span>
             </span>

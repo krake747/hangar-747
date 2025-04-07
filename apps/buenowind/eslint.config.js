@@ -77,20 +77,7 @@ module.exports = tseslint.config(
                     style: "kebab-case"
                 }
             ],
-            "@angular-eslint/template/attribute-spacing": [
-                "error",
-                {
-                    // Disallow multiline attributes
-                    multiline: {
-                        allow: true
-                    },
-                    // Allow single-line attributes
-                    singleline: {
-                        allow: true
-                    }
-                }
-            ],
-            "@typescript-eslint/consistent-type-definitions": ["error", "type"] // Enforce using 'type' over 'interface'
+            "@typescript-eslint/consistent-type-definitions": ["off"]
         },
         settings: {
             "import/resolver": {

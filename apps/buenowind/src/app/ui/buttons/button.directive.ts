@@ -24,7 +24,7 @@ const butttonVariants = cva(
                     "hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800",
                     "disabled:border-gray-200 disabled:bg-white disabled:text-gray-400"
                 ],
-                tertiary: ["bg-transparent text-teal-700", "hover:bg-teal-50 hover:text-teal-800"],
+                tertiary: ["bg-transparent text-teal-700", "hover:bg-teal-50 hover:text-teal-800"]
             },
             size: {
                 sm: ["text-sm/5", "px-3 py-2"],

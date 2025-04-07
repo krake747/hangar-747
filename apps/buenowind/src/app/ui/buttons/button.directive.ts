@@ -5,10 +5,16 @@ import { twMerge } from "tailwind-merge";
 export type ButtonVariants = VariantProps<typeof butttonVariants>;
 
 const butttonVariants = cva(
-    "flex cursor-pointer items-center justify-center gap-2 rounded-lg font-semibold outline-teal-500 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 active:scale-[0.98]",
+    [
+        "flex cursor-pointer items-center justify-center gap-2 rounded-lg font-semibold whitespace-nowrap outline-teal-500 transition-colors duration-200",
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500",
+        "active:scale-[0.98]",
+        "disabled:pointer-events-none disabled:bg-gray-100"
+    ],
     {
         variants: {
             variant: {
+                none: "",
                 primary: [
                     "bg-teal-600 text-white shadow-sm",
                     "hover:bg-teal-700",
@@ -52,7 +58,12 @@ export class ButtonDirective {
     size = input<ButtonVariants["size"]>();
     variant = input<ButtonVariants["variant"]>();
 
+    class = input<string>();
+
     computedClass = computed(() => {
-        return twMerge(butttonVariants({ variant: this.variant(), size: this.size() }));
+        return twMerge(
+            butttonVariants({ variant: this.variant(), size: this.size() }),
+            this.class()
+        );
     });
 }

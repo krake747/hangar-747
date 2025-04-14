@@ -11,7 +11,7 @@ import { FaIconDirective } from "../../../ui/fa-icon.directive";
             <i bwFaIcon type="solid" icon="mug-hot"></i>
             Hello 1
         </button>
-        <button bwButton variant="none" class="hover:text-amber-800">
+        <button bwButton variant="primary" class="hover:text-amber-800">
             <i bwFaIcon type="solid" icon="mug-hot" class="group size-4 shrink-0"></i>
             Hello 2
         </button>

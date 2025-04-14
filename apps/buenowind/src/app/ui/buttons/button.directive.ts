@@ -6,7 +6,7 @@ export type ButtonVariants = VariantProps<typeof butttonVariants>;
 
 const butttonVariants = cva(
     [
-        "flex cursor-pointer items-center justify-center gap-2 rounded-lg font-semibold whitespace-nowrap outline-teal-500 transition-colors duration-200",
+        "flex cursor-pointer items-center justify-center gap-2 rounded-lg font-semibold whitespace-nowrap outline-teal-500 transition-colors",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500",
         "active:scale-[0.98]",
         "disabled:pointer-events-none disabled:bg-gray-100"
@@ -47,6 +47,21 @@ const butttonVariants = cva(
     }
 );
 
+/**
+ * Directive to apply consistent button styles using Tailwind CSS and variants.
+ *
+ * Usage:
+ * ```html
+ * <button bwButton variant="primary" size="sm" class="w-full">Click me</button>
+ * ```
+ *
+ * Features:
+ * - Supports `variant` and `size` inputs to control button styling via `buttonVariants`.
+ * - Allows additional Tailwind or custom classes through the `class` input.
+ * - Automatically merges and resolves class conflicts using `twMerge`.
+ *
+ * This directive promotes reusability and visual consistency across all buttons.
+ */
 @Directive({
     selector: "[bwButton]",
     standalone: true,
@@ -55,12 +70,34 @@ const butttonVariants = cva(
     }
 })
 export class ButtonDirective {
+    /**
+     * The size of the button.
+     * Accepts predefined sizes from the ButtonVariants type, such as 'sm', 'md', or 'lg'.
+     */
     size = input<ButtonVariants["size"]>();
+
+    /**
+     * The visual variant of the button.
+     * Accepts values like 'primary', 'secondary', 'outline', etc., defined in ButtonVariants.
+     */
     variant = input<ButtonVariants["variant"]>();
 
+    /**
+     * Additional CSS classes to apply to the button.
+     * Useful for extending or overriding default styles with Tailwind or custom classes.
+     */
     class = input<string>();
 
-    computedClass = computed(() => {
+    /**
+     * Computes the final CSS class string for the button.
+     *
+     * - Merges the base styles from `buttonVariants` based on the current `variant` and `size` inputs.
+     * - Applies any additional custom classes provided via the `class` input.
+     * - Uses `twMerge` to intelligently merge Tailwind CSS classes, avoiding conflicts.
+     *
+     * This ensures the button has consistent styling while allowing customization.
+     */
+    readonly computedClass = computed(() => {
         return twMerge(
             butttonVariants({ variant: this.variant(), size: this.size() }),
             this.class()

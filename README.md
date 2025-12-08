@@ -1,3 +1,76 @@
+# DevOps Journey via hangar-747
+
+This document outlines the roadmap, goals, and topics I will cover to build a strong foundational understanding of DevOps and cloud-native engineering.
+I already work as a full-stack developer (frontend + backend), and now I want to extend my skills into platform engineering, automation, and cloud operations.
+
+## Goals
+
+Build a practical foundation in DevOps principles and modern cloud infrastructure.
+To achieve this, I will learn how to design, deploy, and operate cloud-native applications.
+
+## Tech Stack
+
+* [Go](https://go.dev/) for building cloud tooling and microservices
+* [OpenTofu](https://opentofu.org/)/[Terraform](https://developer.hashicorp.com/terraform) for infrastructure as code
+* [Azure](https://azure.microsoft.com/en-us/get-started/azure-portal) as the cloud platform
+* [Kubernetes (K8s)](https://kubernetes.io/) as the orchestration layer
+* [Helm](https://helm.sh/) for application packaging and deployment
+
+I will also establish consistent workflows for CI/CD, environment management, and observability.
+
+## Roadmap
+
+I am currently progressing through the foundational stages of DevOps with a focus on cloud-native development and Azure.
+This section outlines where I am right now and the concrete goals I plan to achieve next.
+
+### 1. Learn Go Basics
+
+**Goal:** Build simple cloud-native utilities and services.
+
+**Focus areas:**
+
+* basic syntax, modules, and struct/method patterns
+* concurrency fundamentals
+* building CLI tools
+* building small HTTP services
+
+`/golang` directory contains my learning projects.
+
+### 2. Build CI/CD Pipelines with GitHub Actions
+
+**Goal:** Automatically build and test Go and .NET projects.
+
+**Focus areas:**
+
+* build container images
+* push images to Azure Container Registry
+* prepare workflows for future Kubernetes and infrastructure automation
+
+This phase establishes the automation backbone of the entire DevOps workflow.
+
+### 3. Learn OpenTofu (Terraform) to Create Cloud Environments
+
+**Goal:** Provision Azure resources using infrastructure as code and build reusable OpenTofu modules.
+
+**Focus areas:**
+
+* Azure Container Registry (ACR) for storing Docker images
+* Azure Container Apps environment as an initial lightweight hosting platform
+
+### 4. Leanr Kubernetes fundamentals
+
+**Goal:** Understand how to deploy, scale, and manage containerized applications using Kubernetes.
+
+TBD
+
+### 5. Learn Helm for Application Packaging and Deployment
+
+**Goal:** Package, configure, and deploy applications consistently across environments using Helm charts.
+
+TBD
+
+---
+
 # hangar-747
 
 My homelab playground.
@@ -69,7 +142,7 @@ complete -o default -F __start_kubectl k
 ```
 
 Inside the `dotfiles` directory we can have look of my `.bashrc` file which contains aliases for `git`, `docker` and `k8s`.
- 
+
 ### Lazygit
 
 Sometimes I want to have a better overview of my git commit history. I am exploring `lazygit` as an alternative.

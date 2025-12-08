@@ -27,6 +27,14 @@ func (b Book) String() string {
 	return fmt.Sprintf("%v by %v (copies: %v)", b.Title, b.Author, b.Copies)
 }
 
+func (b *Book) SetCopies(copies int) error {
+	if copies < 0 {
+		return fmt.Errorf("negative number of copies: %d", copies)
+	}
+	b.Copies = copies
+	return nil
+}
+
 func (catalog Catalog) GetAllBooks() []Book {
 	return slices.Collect(maps.Values(catalog))
 }

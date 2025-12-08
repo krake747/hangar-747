@@ -84,3 +84,26 @@ func TestAddBook_AddsGiveBookToCatalog(t *testing.T) {
 		t.Fatalf("added book not found")
 	}
 }
+
+func TestSetCopies_SetsNumberOfCopiesToGivenValue(t *testing.T) {
+	t.Parallel()
+	book := books.Book{
+		Copies: 5,
+	}
+	err := book.SetCopies(12)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if book.Copies != 12 {
+		t.Fatalf("want 12 copies, got %d", book.Copies)
+	}
+}
+
+func TestSetCopies_ReturnsErrorIfCopiesNegative(t *testing.T) {
+	t.Parallel()
+	book := books.Book{}
+	err := book.SetCopies(-1)
+	if err == nil {
+		t.Error("want error for negative copies, got nil")
+	}
+}

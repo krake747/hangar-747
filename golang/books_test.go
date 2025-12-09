@@ -1,10 +1,11 @@
 package books_test
 
 import (
-	"books"
 	"cmp"
 	"slices"
 	"testing"
+
+	"books"
 )
 
 func getTestCatalog() books.Catalog {

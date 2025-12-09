@@ -32,7 +32,7 @@ deps:
 # Format code
 fmt:
 	@echo "Formatting code..."
-	go fmt ./...
+	gofumpt -l -w .
 
 # Show help
 help:

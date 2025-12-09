@@ -2,13 +2,23 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+	"os"
+
+	"books"
 )
 
 func main() {
-	http.ListenAndServe("0.0.0.0:3000", http.HandlerFunc(hello))
-}
-
-func hello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello, World!")
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: server <CATALOG FILE>")
+		return
+	}
+	catalog, err := books.OpenCatalog(os.Args[1])
+	if err != nil {
+		fmt.Printf("opening catalog: %v\n", err)
+		return
+	}
+	err = books.ListenAndServe("0.0.0.0:3000", catalog)
+	if err != nil {
+		fmt.Println(err)
+	}
 }

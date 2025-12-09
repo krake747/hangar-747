@@ -33,7 +33,7 @@ func main() {
 		return
 	}
 
-	err = catalog.Sync("testdata/catalog")
+	err = catalog.Sync()
 	if err != nil {
 		fmt.Printf("writing catalog: %v\n", err)
 		return

@@ -1,0 +1,41 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"strconv"
+
+	"books"
+)
+
+func main() {
+	if len(os.Args) != 3 {
+		fmt.Println("Usage: copies <BOOK_ID> <NUMBER_OF_COPIES>")
+		return
+	}
+
+	catalog, err := books.OpenCatalog("testdata/catalog.json")
+	if err != nil {
+		fmt.Printf("opening catalog: %v\n", err)
+		return
+	}
+
+	ID := os.Args[1]
+	copies, err := strconv.Atoi(os.Args[2])
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	err = catalog.SetCopies(ID, copies)
+	if err != nil {
+		fmt.Printf("updating book: %v\n", err)
+		return
+	}
+
+	err = catalog.Sync("testdata/catalog.json")
+	if err != nil {
+		fmt.Printf("writing catalog: %v\n", err)
+		return
+	}
+}

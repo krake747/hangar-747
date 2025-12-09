@@ -9,5 +9,4 @@
     "bracketSameLine": false,
     "arrowParens": "avoid",
     "htmlWhitespaceSensitivity": "ignore",
-    "plugins": ["prettier-plugin-tailwindcss"]
 }

@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	http.ListenAndServe(":3000", http.HandlerFunc(hello))
+	http.ListenAndServe("0.0.0.0:3000", http.HandlerFunc(hello))
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {

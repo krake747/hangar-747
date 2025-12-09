@@ -14,7 +14,7 @@ func main() {
 		return
 	}
 
-	catalog, err := books.OpenCatalog("testdata/catalog.json")
+	catalog, err := books.OpenCatalog("testdata/catalog")
 	if err != nil {
 		fmt.Printf("opening catalog: %v\n", err)
 		return
@@ -33,7 +33,7 @@ func main() {
 		return
 	}
 
-	err = catalog.Sync("testdata/catalog.json")
+	err = catalog.Sync("testdata/catalog")
 	if err != nil {
 		fmt.Printf("writing catalog: %v\n", err)
 		return

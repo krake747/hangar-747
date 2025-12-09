@@ -13,7 +13,7 @@ func main() {
 		return
 	}
 
-	catalog, err := books.OpenCatalog("testdata/catalog.json")
+	catalog, err := books.OpenCatalog("testdata/catalog")
 	if err != nil {
 		fmt.Printf("opening catalog: %v\n", err)
 		return

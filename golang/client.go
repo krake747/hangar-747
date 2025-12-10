@@ -2,6 +2,7 @@ package books
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -15,47 +16,43 @@ func NewClient(addr string) *Client {
 	return &Client{addr: addr}
 }
 
-func (client *Client) GetAllBooks() ([]Book, error) {
-	resp, err := http.Get("http://" + client.addr + "/v1/list/")
+func (client *Client) MakeAPIRequest(URI string, result any) error {
+	resp, err := http.Get("http://" + client.addr + "/v1/" + URI)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("unexpected status %d", resp.StatusCode)
+	if resp.StatusCode == http.StatusNotFound {
+		return errors.New("not found")
 	}
-	bookList := []Book{}
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("unexpected status %d", resp.StatusCode)
+	}
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	err = json.Unmarshal(data, &bookList)
+	err = json.Unmarshal(data, result)
 	if err != nil {
-		return nil, fmt.Errorf("%v in %q", err, data)
+		return fmt.Errorf("%v in %q", err, data)
+	}
+	return nil
+}
+
+func (client *Client) GetAllBooks() ([]Book, error) {
+	bookList := []Book{}
+	err := client.MakeAPIRequest("list", &bookList)
+	if err != nil {
+		return nil, err
 	}
 	return bookList, nil
 }
 
 func (client *Client) GetBook(ID string) (Book, error) {
-	resp, err := http.Get("http://" + client.addr + "/v1/find/" + ID)
-	if err != nil {
-		return Book{}, err
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode == http.StatusNotFound {
-		return Book{}, fmt.Errorf("%q not found", ID)
-	}
-	if resp.StatusCode != http.StatusOK {
-		return Book{}, fmt.Errorf("unexpected status %d", resp.StatusCode)
-	}
 	book := Book{}
-	data, err := io.ReadAll(resp.Body)
+	err := client.MakeAPIRequest("find/"+ID, &book)
 	if err != nil {
 		return Book{}, err
-	}
-	err = json.Unmarshal(data, &book)
-	if err != nil {
-		return Book{}, fmt.Errorf("%v in %q", err, data)
 	}
 	return book, nil
 }

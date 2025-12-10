@@ -4,31 +4,43 @@ This folder tracks my progress as I learn Go for cloud-native development and De
 
 ## Learning Resources
 
-* **[Tour of Go](https://go.dev/tour/)**
-* **[Effective Go](https://go.dev/doc/effective_go)**
-* **[The Deeper Love of Go](https://bitfieldconsulting.com/books/deeper)** (by Josh Arundel)
+- **[Tour of Go](https://go.dev/tour/)**
+- **[Effective Go](https://go.dev/doc/effective_go)**
+- **[The Deeper Love of Go](https://bitfieldconsulting.com/books/deeper)** (by Josh Arundel)
 
-## 1. Learn Go Basics (Current)
+## 1. Learn Go Basics (Completed)
 
 Focus areas:
 
-* syntax, types, structs, functions, methods
-* slices, maps, pointers
-* error handling
-* modules
-* basic concurrency (goroutines, channels)
+- syntax, types, structs, functions, methods
+- slices, maps, pointers
+- error handling
+- modules
+- basic concurrency (goroutines, channels)
 
 Goal: write small, idiomatic Go programs.
 
-## 2. Build a Simple Web API with Echo
+### Reflections
+
+I learned the fundamentals of Go; it does not provide safeguards, it is a very explicit language
+which is the complete opposite of what I enjoy the most, functional languages. However, going
+through the book I appreciate how simple it is to get started with Go.
+
+Things I still need to wrap my head around are goroutines, since I am more familiar with the
+async/await paradigm for concurrency.
+
+There are still more advanced topics like channels, select statements, context, interfaces, and
+generics that I need to experience, play around with, and learn.
+
+## 2. Build a Simple Web API with Echo (Current)
 
 Next step:
 
-* set up an Echo project
-* basic routing
-* JSON responses
-* request handling
-* logging and middleware
-* containerizing the API
+- set up an Echo project
+- basic routing
+- JSON responses
+- request handling
+- logging and middleware
+- containerizing the API
 
 Goal: create a minimal Go web service to build on later.

@@ -1,4 +1,4 @@
-.PHONY: all build clean test gotest deps fmt help
+.PHONY: all build clean test gotest deps fmt fmt-md help
 
 # Default target
 all: deps fmt test build
@@ -37,6 +37,11 @@ fmt:
 	@echo "Formatting code..."
 	gofumpt -l -w .
 
+# Format markdown files
+fmt-md:
+	@echo "Formatting markdown files..."
+	npx prettier --write '**/*.md'
+
 # Show help
 help:
 	@echo "Available commands:"
@@ -46,4 +51,5 @@ help:
 	@echo "  gotest   - Run tests with gotestdox"
 	@echo "  deps     - Download dependencies and install tools"
 	@echo "  fmt      - Format code"
+	@echo "  fmt-md   - Format markdown files"
 	@echo "  help     - Show this help message"

@@ -2,6 +2,7 @@ package books
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"maps"
 	"os"
@@ -57,12 +58,6 @@ func OpenCatalog(path string) (*Catalog, error) {
 	return catalog, nil
 }
 
-func (catalog *Catalog) GetAllBooks() []Book {
-	catalog.mu.RLock()
-	defer catalog.mu.RUnlock()
-	return slices.Collect(maps.Values(catalog.data))
-}
-
 func (catalog *Catalog) Sync() error {
 	catalog.mu.RLock()
 	defer catalog.mu.RUnlock()
@@ -78,15 +73,10 @@ func (catalog *Catalog) Sync() error {
 	return nil
 }
 
-func (catalog *Catalog) AddBook(book Book) error {
-	catalog.mu.Lock()
-	defer catalog.mu.Unlock()
-	_, ok := catalog.data[book.ID]
-	if ok {
-		return fmt.Errorf("ID %q already exists", book.ID)
-	}
-	catalog.data[book.ID] = book
-	return nil
+func (catalog *Catalog) GetAllBooks() []Book {
+	catalog.mu.RLock()
+	defer catalog.mu.RUnlock()
+	return slices.Collect(maps.Values(catalog.data))
 }
 
 func (catalog *Catalog) GetBook(ID string) (Book, bool) {
@@ -104,6 +94,46 @@ func (catalog *Catalog) GetCopies(ID string) (int, error) {
 		return 0, fmt.Errorf("ID %q not found", ID)
 	}
 	return book.Copies, nil
+}
+
+func (catalog *Catalog) AddCopies(ID string, copies int) (int, error) {
+	catalog.mu.Lock()
+	defer catalog.mu.Unlock()
+	book, ok := catalog.data[ID]
+	if !ok {
+		return 0, fmt.Errorf("ID %q not found", ID)
+	}
+	book.Copies += copies
+	catalog.data[ID] = book
+	return book.Copies, nil
+}
+
+var ErrNotEnoughStock = errors.New("not enough stock")
+
+func (catalog *Catalog) SubCopies(ID string, copies int) (int, error) {
+	catalog.mu.Lock()
+	defer catalog.mu.Unlock()
+	book, ok := catalog.data[ID]
+	if !ok {
+		return 0, fmt.Errorf("ID %q not found", ID)
+	}
+	if book.Copies < copies {
+		return 0, fmt.Errorf("%w: %d", ErrNotEnoughStock, book.Copies)
+	}
+	book.Copies -= copies
+	catalog.data[ID] = book
+	return book.Copies, nil
+}
+
+func (catalog *Catalog) AddBook(book Book) error {
+	catalog.mu.Lock()
+	defer catalog.mu.Unlock()
+	_, ok := catalog.data[book.ID]
+	if ok {
+		return fmt.Errorf("ID %q already exists", book.ID)
+	}
+	catalog.data[book.ID] = book
+	return nil
 }
 
 func (catalog *Catalog) SetCopies(ID string, copies int) error {

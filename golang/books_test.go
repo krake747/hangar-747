@@ -192,6 +192,27 @@ func TestSetCopies_IsRaceFree(t *testing.T) {
 	}
 }
 
+func TestGetBook_OnClientFindsBookByID(t *testing.T) {
+	t.Parallel()
+	client := getTestClient(t)
+	got, err := client.GetBook("abc")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got != ABC {
+		t.Fatalf("want %#v, got %#v", ABC, got)
+	}
+}
+
+func TestGetBook_OnClientReturnsErrorWhenBookNotFound(t *testing.T) {
+	t.Parallel()
+	client := getTestClient(t)
+	_, err := client.GetBook("bogus")
+	if err == nil {
+		t.Fatal("want error when book not found, got nil")
+	}
+}
+
 func TestServerListsAllBooks(t *testing.T) {
 	t.Parallel()
 	addr := randomLocalAddr(t)
@@ -306,6 +327,20 @@ func getTestCatalog() *books.Catalog {
 	return catalog
 }
 
+func getTestClient(t *testing.T) *books.Client {
+	t.Helper()
+	addr := randomLocalAddr(t)
+	catalog := getTestCatalog()
+	catalog.Path = t.TempDir() + "/catalog"
+	go func() {
+		err := books.ListenAndServe(addr, catalog)
+		if err != nil {
+			panic(err)
+		}
+	}()
+	return books.NewClient(addr)
+}
+
 func assertTestBooks(t *testing.T, got []books.Book) {
 	t.Helper()
 	want := []books.Book{
@@ -339,3 +374,18 @@ func randomLocalAddr(t *testing.T) string {
 	defer l.Close()
 	return l.Addr().String()
 }
+
+var (
+	ABC = books.Book{
+		Title:  "In the Company of Cheerful Ladies",
+		Author: "Alexander McCall Smith",
+		Copies: 1,
+		ID:     "abc",
+	}
+	XYZ = books.Book{
+		Title:  "White Heat",
+		Author: "Dominic Sandbrook",
+		Copies: 2,
+		ID:     "xyz",
+	}
+)

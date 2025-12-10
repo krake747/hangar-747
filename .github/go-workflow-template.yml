@@ -27,4 +27,4 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: Go-results-{{package}}
-          path: golang/{{package}}/go-test-results--{{package}}.json
+          path: golang/{{package}}/go-test-results-{{package}}.json

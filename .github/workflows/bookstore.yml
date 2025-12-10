@@ -15,17 +15,16 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
-          go-version: "1.25.x"
-          cache: false
+          go-version: "1.25.5"
       - run: go version
-
+      
       - name: Run tests
         run: |-
           cd golang/bookstore
-          go test ./... -json > TestResults-bookstore.json
+          go test ./... -json > go-test-results-bookstore.json
 
       - name: Upload Go test results
         uses: actions/upload-artifact@v5
         with:
           name: Go-results-bookstore
-          path: golang/bookstore/TestResults-bookstore.json
+          path: golang/bookstore/go-test-results--bookstore.json

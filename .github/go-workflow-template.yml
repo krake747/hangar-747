@@ -21,13 +21,12 @@ jobs:
       - name: Go version
         run: go version
 
+      - name: Install dependencies
+        run: |-
+            cd golang/{{package}}
+            make deps
+
       - name: Run tests
         run: |-
-          cd golang/{{package}}
-          go test ./... -json | tee go-test-results-{{package}}.json
-
-      - name: Upload Go test results
-        uses: actions/upload-artifact@v5
-        with:
-          name: Go-results-{{package}}
-          path: golang/{{package}}/go-test-results-{{package}}.json
+            cd golang/{{package}}
+            make test

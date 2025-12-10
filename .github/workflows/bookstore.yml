@@ -21,13 +21,12 @@ jobs:
       - name: Go version
         run: go version
 
+      - name: Install dependencies
+        run: |-
+            cd golang/bookstore
+            make deps
+
       - name: Run tests
         run: |-
-          cd golang/bookstore
-          go test ./... -json | tee go-test-results-bookstore.json
-
-      - name: Upload Go test results
-        uses: actions/upload-artifact@v5
-        with:
-          name: Go-results-bookstore
-          path: golang/bookstore/go-test-results-bookstore.json
+            cd golang/bookstore
+            make test

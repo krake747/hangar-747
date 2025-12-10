@@ -56,3 +56,12 @@ func (client *Client) GetBook(ID string) (Book, error) {
 	}
 	return book, nil
 }
+
+func (client *Client) GetCopies(ID string) (int, error) {
+	copies := 0
+	err := client.MakeAPIRequest("getcopies/"+ID, &copies)
+	if err != nil {
+		return 0, err
+	}
+	return copies, nil
+}

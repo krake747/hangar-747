@@ -24,7 +24,7 @@ jobs:
           go test ./... -json > TestResults-{{package}}.json
 
       - name: Upload Go test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: Go-results-{{package}}
           path: golang/{{package}}/TestResults-{{package}}.json

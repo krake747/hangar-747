@@ -1,0 +1,30 @@
+name: "{{package}}"
+
+on:
+  push:
+    paths:
+      - "golang/{{package}}/**"
+      - ".github/workflows/{{package}}.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.25.x"
+          cache: false
+
+      - name: Run tests
+        run: |-
+          cd golang/{{package}}
+          go test ./... -json > TestResults-{{package}}.json
+
+      - name: Upload Go test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Go-results-{{package}}
+          path: golang/{{package}}/TestResults-{{package}}.json

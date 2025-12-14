@@ -1,10 +1,10 @@
-name: "skyops"
+name: "{{name}}"
 
 on:
   push:
     paths:
-      - "dotnet/SkyOps.Api/**"
-      - ".github/workflows/dotnet-skyops.yml"
+      - "dotnet/{{project}}/**"
+      - ".github/workflows/dotnet-{{name}}.yml"
 
 jobs:
   build-and-test:

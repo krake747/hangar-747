@@ -1,4 +1,3 @@
 <Solution>
-  <Project Path="SkyConvert.Api/SkyConvert.Api.csproj" />
   <Project Path="SkyOps.Api/SkyOps.Api.csproj" />
 </Solution>

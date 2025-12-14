@@ -6,12 +6,12 @@ Sky Operations to coordinate flights and schedules.
 
 ```shell
 dotnet new web -n SkyOps.Api
-dotnet sln Hangar747.sln add SkyOps.Api/SkyOps.Api.csproj
+dotnet sln Hangar747.slnx add SkyOps.Api/SkyOps.Api.csproj
 ```
 
 ## Local Dev
 
-Execute from root directory the following command to run the api:
+Execute from the root directory the following command to run the api:
 
 ```shell
 dotnet run --project SkyOps.Api
@@ -25,7 +25,7 @@ curl http://localhost:5134
 
 ## Docker Image
 
-Execute from root directory the following command to build Docker image:
+Execute from the root directory the following command to build a Docker image:
 
 ```docker
 docker build -t skyops-api:latest -f SkyOps.Api/Dockerfile .
@@ -37,7 +37,7 @@ We can start a new docker container via
 docker run -d -p 7000:8080 skyops-api:latest
 ```
 
-Here, we check if we can communicate with the Api running inside of the Docker container
+Here, we check if we can communicate with the Api running inside the Docker container
 
 ```shell
 curl http://localhost:7000
@@ -45,7 +45,7 @@ curl http://localhost:7000
 
 ## Minikube
 
-If we want to load the local Docker image into Minikube we run
+If we want to load the local Docker image into Minikube, we run
 
 ```shell
 minikube image load skyops-api:latest

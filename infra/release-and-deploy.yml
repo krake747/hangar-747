@@ -1,0 +1,179 @@
+name: Release and Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: "Choose version bump type (patch/minor/major)"
+        required: true
+        default: "patch"
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  IMAGE_NAME: owlie-api
+  CONTAINER_APP_NAME: hangar-api-dev
+  CONTAINER_APP_ENV: hangarappenvdev
+  RESOURCE_GROUP: hangar-rg
+  TARGET_PORT: 8080
+  ACR: ${{ vars.ACR_LOGIN_SERVER }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      GIT_TAG: ${{ steps.set-tag.outputs.GIT_TAG }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Determine Git tag
+        id: set-tag
+        run: |
+          set -euo pipefail
+
+          # Get latest semver tag
+          LATEST_TAG=$(git tag -l "v*" | sort -V | tail -1)
+          if [[ -z "$LATEST_TAG" || ! "$LATEST_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            MAJOR=0; MINOR=0; PATCH=0
+          else
+            IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST_TAG#v}"
+          fi
+
+          case "${{ github.event.inputs.bump_type }}" in
+            patch) PATCH=$((PATCH + 1)) ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+          esac
+
+          GIT_TAG="v${MAJOR}.${MINOR}.${PATCH}"
+
+          echo "GIT_TAG=$GIT_TAG" >> $GITHUB_ENV
+          echo "GIT_TAG=$GIT_TAG" >> $GITHUB_OUTPUT
+
+      - name: Validate Git tag format
+        run: |
+          [[ "$GIT_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+
+      - name: Check if tag already exists
+        run: |
+          if git tag -l | grep -q "^$GIT_TAG$"; then
+            echo "Tag $GIT_TAG already exists."
+            exit 1
+          fi
+
+  build-and-test:
+    needs: release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal
+
+      - name: Echo Git tag
+        run: echo "Building Git tag ${{ needs.release.outputs.GIT_TAG }}"
+
+  push-image-to-acr:
+    needs:
+      - release
+      - build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Configure Azure ACR
+        uses: azure/docker-login@v2
+        with:
+          login-server: ${{ env.ACR }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          set -euo pipefail
+          docker build -f Owlie.Api/Dockerfile \
+            -t ${{ env.ACR }}/${{ env.IMAGE_NAME }}:${{ needs.release.outputs.GIT_TAG }} \
+            -t ${{ env.ACR }}/${{ env.IMAGE_NAME }}:latest \
+            --label org.opencontainers.image.version=${{ needs.release.outputs.GIT_TAG }} \
+            --label org.opencontainers.image.revision=${{ github.sha }} .
+
+          docker push ${{ env.ACR }}/${{ env.IMAGE_NAME }}:${{ needs.release.outputs.GIT_TAG }}
+          docker push ${{ env.ACR }}/${{ env.IMAGE_NAME }}:latest
+
+  deploy-to-aca:
+    needs:
+      - release
+      - push-image-to-acr
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy container app
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          registryUrl: ${{ env.ACR }}
+          imageToDeploy: ${{ env.ACR }}/${{ env.IMAGE_NAME }}:${{ needs.release.outputs.GIT_TAG }}
+          targetPort: ${{ env.TARGET_PORT }}
+          ingress: external
+          containerAppName: ${{ env.CONTAINER_APP_NAME }}
+          containerAppEnvironment: ${{ env.CONTAINER_APP_ENV }}
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
+          environmentVariables: |
+            ASPNETCORE_ENVIRONMENT=Production
+            ASPNETCORE_URLS=http://+:${{ env.TARGET_PORT }}
+
+  push-tag:
+    needs:
+      - release
+      - deploy-to-aca
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create and push Git tag
+        run: |
+          git tag -a "${{ needs.release.outputs.GIT_TAG }}" -m "Release ${{ needs.release.outputs.GIT_TAG }}"
+          git push origin "${{ needs.release.outputs.GIT_TAG }}"

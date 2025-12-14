@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyOps.Api", "SkyOps.Api\Sk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyConvert.Api", "SkyConvert.Api\SkyConvert.Api.csproj", "{C345BF13-92A6-40FA-9946-CBEE04F94A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TailBlaze", "TailBlaze\TailBlaze.csproj", "{644C8A3B-498E-4385-BDDD-5847217FA644}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +24,5 @@ Global
 		{C345BF13-92A6-40FA-9946-CBEE04F94A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C345BF13-92A6-40FA-9946-CBEE04F94A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C345BF13-92A6-40FA-9946-CBEE04F94A40}.Release|Any CPU.Build.0 = Release|Any CPU
-		{644C8A3B-498E-4385-BDDD-5847217FA644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{644C8A3B-498E-4385-BDDD-5847217FA644}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{644C8A3B-498E-4385-BDDD-5847217FA644}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{644C8A3B-498E-4385-BDDD-5847217FA644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -34,7 +34,9 @@ This section outlines where I am right now and the concrete goals I plan to achi
 * building CLI tools
 * building small HTTP services
 
-`/golang` directory contains my learning projects.
+`/golang` directory contains my Go learning projects, and the `dotnet/` directory contains my .NET learning projects.
+
+This phase builds the foundational programming skills for developing cloud-native applications and tooling.
 
 ### 2. Build CI/CD Pipelines with GitHub Actions
 
@@ -46,7 +48,9 @@ This section outlines where I am right now and the concrete goals I plan to achi
 * push images to Azure Container Registry
 * prepare workflows for future Kubernetes and infrastructure automation
 
-This phase establishes the automation backbone of the entire DevOps workflow.
+This phase establishes the automation backbone of the entire DevOps workflow. 
+
+See the `.github` folder for CI/CD workflow files and `infra/` for deployment and infrastructure automation workflows.
 
 ### 3. Learn OpenTofu (Terraform) to Create Cloud Environments
 
@@ -58,8 +62,11 @@ This phase establishes the automation backbone of the entire DevOps workflow.
 * Azure Container Apps (ACA) environment as an initial lightweight hosting platform
 * Azure Storage Account for Terraform state storage
 
+This phase introduces infrastructure as code principles, enabling automated and version-controlled cloud resource management.
+
 For detailed Terraform configurations, see [/infra/azure/README.md](./infra/azure/README.md).
-and a deployed resource [Web Api](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)
+and a live deployed resource [Web Api](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)
+
 
 ### 4. Learn Kubernetes fundamentals
 

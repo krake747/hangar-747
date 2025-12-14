@@ -1,14 +1,13 @@
 # Hangar 747 Infra
 
-> **Note:** To navigate to the root project, run `cd ..` and check the README there.
+This repository contains infrastructure as code configurations for deploying cloud resources.
 
-## 3. Learn OpenTofu (Terraform) to Create Cloud Environments
+## Azure Infrastructure
 
-**Goal:** Provision Azure resources using infrastructure as code and build reusable OpenTofu modules.
+The `azure/` folder contains Terraform (OpenTofu) configurations for deploying Azure services, including
+container apps, storage, and more. For details on how to deploy Azure services, see [azure/README.md](azure/README.md).
 
-**Focus areas:**
+## CI/CD Pipeline
 
-* Azure Container Registry (ACR) for storing Docker images
-* Azure Container Apps environment as an initial lightweight hosting platform
-
-For detailed Azure infrastructure setup, see [azure/README.md](azure/README.md).
+The template workflow automates the personal IAC for a private project. It runs in the CI/CD pipeline to deploy
+the following resource: [Web Api](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)

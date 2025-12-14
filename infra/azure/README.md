@@ -4,7 +4,6 @@ This directory contains Terraform (OpenTofu) configurations for deploying Azure 
 storage, and more.
 
 > Note: The current files are from a private personal project. I modified them to fit this repo.
->
 > [Deployed Resource](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)
 
 ## Infrastructure Overview
@@ -17,6 +16,15 @@ The Terraform configurations deploy the following resources:
 - **Container Registry**: `hangarregistry{env}` for storing container images
 - **Container App Environment**: Runtime environment for container apps
 - **Container App**: `hangar-api-{env}` running the application
+
+The `reference-rg` and the `terraform` container in the storage account host the Terraform state file,
+enabling CI/CD deployments without needing to manage local state files.
+
+The Container App provides a simple and scalable way to host Docker images, offering benefits like automatic scaling,
+built-in load balancing, and integration with Azure's ecosystem for easy deployment and management.
+
+As a best practice, all resources are tagged with `environment` and `src` keys for better organization,
+cost tracking, and resource management.
 
 ```mermaid
 graph TD
@@ -122,4 +130,5 @@ az provider register --namespace Microsoft.Sql
 az provider register --namespace Microsoft.App
 ```
 
-Ensure you have the correct credentials and roles assigned. Check your Azure account permissions and service principal roles if authentication fails.
+Ensure you have the correct credentials and roles assigned. Check your Azure account permissions and service
+principal roles if authentication fails.

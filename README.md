@@ -10,7 +10,7 @@ To achieve this, I will learn how to design, deploy, and operate cloud-native ap
 
 ## Tech Stack
 
-* [Go](https://go.dev/) for building cloud tooling and microservices
+* [Go](https://go.dev/) and [.NET](https://dotnet.microsoft.com/en-us/) for building cloud tooling and microservices
 * [OpenTofu](https://opentofu.org/)/[Terraform](https://developer.hashicorp.com/terraform) for infrastructure as code
 * [Azure](https://azure.microsoft.com/en-us/get-started/azure-portal) as the cloud platform
 * [Kubernetes (K8s)](https://kubernetes.io/) as the orchestration layer
@@ -55,11 +55,13 @@ This phase establishes the automation backbone of the entire DevOps workflow.
 **Focus areas:**
 
 * Azure Container Registry (ACR) for storing Docker images
-* Azure Container Apps environment as an initial lightweight hosting platform
+* Azure Container Apps (ACA) environment as an initial lightweight hosting platform
+* Azure Storage Account for Terraform state storage
 
-For detailed Terraform configurations, see [infra/azure/README.md](infra/azure/README.md).
+For detailed Terraform configurations, see [/infra/azure/README.md](./infra/azure/README.md).
+and a deployed resource [Web Api](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)
 
-### 4. Leanr Kubernetes fundamentals
+### 4. Learn Kubernetes fundamentals
 
 **Goal:** Understand how to deploy, scale, and manage containerized applications using Kubernetes.
 

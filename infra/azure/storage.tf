@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "terraform_state" {
-  name                     = "krakeiacfiles"
+  name                     = "hangariacfiles"
   resource_group_name      = azurerm_resource_group.reference_rg.name
   location                 = var.region_location
   account_tier             = "Standard"

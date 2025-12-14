@@ -57,6 +57,8 @@ This phase establishes the automation backbone of the entire DevOps workflow.
 * Azure Container Registry (ACR) for storing Docker images
 * Azure Container Apps environment as an initial lightweight hosting platform
 
+For detailed Terraform configurations, see [infra/azure/README.md](infra/azure/README.md).
+
 ### 4. Leanr Kubernetes fundamentals
 
 **Goal:** Understand how to deploy, scale, and manage containerized applications using Kubernetes.

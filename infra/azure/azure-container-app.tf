@@ -1,7 +1,7 @@
-resource "azurerm_container_app" "krake_app" {
-  name                         = "krake-api-${var.environment_id}"
-  container_app_environment_id = azurerm_container_app_environment.krake_app_env.id
-  resource_group_name          = azurerm_resource_group.krake_rg.name
+resource "azurerm_container_app" "hangar_app" {
+  name                         = "hangar-api-${var.environment_id}"
+  container_app_environment_id = azurerm_container_app_environment.hangar_app_env.id
+  resource_group_name          = azurerm_resource_group.hangar_rg.name
   revision_mode                = "Single"
 
   template {
@@ -9,7 +9,7 @@ resource "azurerm_container_app" "krake_app" {
     max_replicas = 3
 
     container {
-      name   = "krakeapp-${var.environment_id}"
+      name   = "hangarapp-${var.environment_id}"
       image  = "mcr.microsoft.com/k8se/quickstart:latest"
       cpu    = 0.25
       memory = "0.5Gi"

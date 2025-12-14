@@ -1,5 +1,5 @@
-resource "azurerm_resource_group" "krake_rg" {
-  name     = "krake-rg"
+resource "azurerm_resource_group" "hangar_rg" {
+  name     = "hangar-rg"
   location = var.region_location
 
   tags = {

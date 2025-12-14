@@ -10,7 +10,7 @@ terraform {
   # then uncomment and run 'tofu init' to migrate state to Azure Blob Storage.
   backend "azurerm" {
     resource_group_name  = "reference-rg"
-    storage_account_name = "krakeiacfiles"
+    storage_account_name = "hangariacfiles"
     container_name       = "terraform"
     key                  = "terraform.tfstate"
   }

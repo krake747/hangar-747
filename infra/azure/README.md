@@ -1,21 +1,26 @@
 # Azure Infrastructure
 
-This directory contains Terraform (OpenTofu) configurations for deploying Azure resources, including container apps, storage, and more.
+This directory contains Terraform (OpenTofu) configurations for deploying Azure resources, including container apps,
+storage, and more.
+
+> Note: The current files are from a private personal project. I modified them to fit this repo.
+>
+> [Deployed Resource](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)
 
 ## Infrastructure Overview
 
 The Terraform configurations deploy the following resources:
 
-- **Resource Groups**: `krake-rg` (main) and `reference-rg` (for shared resources)
-- **Storage Account**: `krakeiacfiles` in `reference-rg` for Terraform state storage
+- **Resource Groups**: `hangar-rg` (main) and `reference-rg` (for shared resources)
+- **Storage Account**: `hangariacfiles` in `reference-rg` for Terraform state storage
 - **Log Analytics Workspace**: For monitoring and logging
-- **Container Registry**: `krakeregistry{env}` for storing container images
+- **Container Registry**: `hangarregistry{env}` for storing container images
 - **Container App Environment**: Runtime environment for container apps
-- **Container App**: `krake-api-{env}` running the application
+- **Container App**: `hangar-api-{env}` running the application
 
 ```mermaid
 graph TD
-    A[krake-rg] --> B[Log Analytics Workspace]
+    A[hangar-rg] --> B[Log Analytics Workspace]
     A --> C[Container Registry]
     B --> D[Container App Environment]
     D --> E[Container App]
@@ -82,7 +87,7 @@ SP_OBJECT_ID=$(az ad sp show --id "$SERVICE_PRINCIPAL_CLIENT_ID" --query id -o t
 az role assignment create \
   --assignee "$SP_OBJECT_ID" \
   --role "Storage Blob Data Contributor" \
-  --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/reference-rg/providers/Microsoft.Storage/storageAccounts/krakeiacfiles"
+  --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/reference-rg/providers/Microsoft.Storage/storageAccounts/hangariacfiles"
 
 # Assign Contributor role to service principal on subscription
 az role assignment create \
@@ -100,7 +105,7 @@ tofu plan -var-file=dev.tfvars
 tofu apply -var-file=dev.tfvars
 ```
 
-> Note: The OpenTofu workflow can be automated via GitHub Actions. See `.github/workflows/deploy-infra-to-azure.yml` for details.
+> Note: The OpenTofu workflow can be automated via GitHub Actions. See `.infra/deploy-infra-to-azure.yml` for details.
 
 Create a `dev.tfvars` file (ignored by Git) with:
 

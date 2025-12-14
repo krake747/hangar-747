@@ -43,7 +43,7 @@ jobs:
         run: |
           set -euo pipefail
           az storage blob show \
-            --account-name krakeiacfiles \
+            --account-name hangariacfiles \
             --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
             --container-name terraform \
             --name terraform.tfstate \

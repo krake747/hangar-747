@@ -12,7 +12,7 @@ sudo add-apt-repository ppa:dotnet/backports
 sudo apt-get update && sudo apt-get install -y dotnet-sdk-10.0
 ```
 
-> Note: .NET 10 might not be available yet via Ubunutu package manager. See [Manual Install](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#manual-install).
+> Note: .NET 10 might not be available yet via Ubuntu package manager. See [Manual Install](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#manual-install).
 
 ## Setup the Solution File
 

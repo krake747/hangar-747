@@ -9,7 +9,7 @@ container apps, storage, and more. For details on how to deploy Azure services, 
 
 ## CI/CD Pipeline
 
-The template workflow automates the personal IAC for a private project. It runs in the CI/CD pipeline to deploy
+The release-and-deploy workflow automates the deployment of the managed API resource. It runs in the CI/CD pipeline to deploy
 the following resource: [Web Api](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)
 
 ### Deploy Infrastructure to Azure Workflow

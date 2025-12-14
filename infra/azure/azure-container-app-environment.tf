@@ -1,3 +1,8 @@
+# Azure Container App Environment
+# Defines the environment for running container apps, including networking and scaling.
+# Required to host container apps with shared settings.
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app_environment
+
 resource "azurerm_container_app_environment" "hangar_app_env" {
   name                       = "hangarappenv${var.environment_id}"
   location                   = azurerm_resource_group.hangar_rg.location

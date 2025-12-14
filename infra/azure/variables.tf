@@ -1,3 +1,7 @@
+# Variable Definitions
+# Defines input variables for the Terraform configuration.
+# Allows customization of resource names and settings per environment.
+
 variable "environment_id" {
   type        = string
   description = "Environment identifier"

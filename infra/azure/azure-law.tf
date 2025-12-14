@@ -1,3 +1,8 @@
+# Azure Log Analytics Workspace
+# Provides a workspace for collecting and analyzing log data from Azure resources.
+# Needed for monitoring, alerting, and insights into application performance.
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace
+
 resource "azurerm_log_analytics_workspace" "hangar_law" {
   name                = "hangarlaw${var.environment_id}"
   location            = azurerm_resource_group.hangar_rg.location

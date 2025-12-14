@@ -1,3 +1,9 @@
+# Terraform Backend and Provider Configuration
+# Configures the backend for state storage in Azure Blob Storage and sets up the Azure provider.
+# Ensures state is stored remotely for collaboration and CI/CD.
+# https://www.terraform.io/language/settings/backends/azurerm
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
+
 terraform {
   required_providers {
     azurerm = {

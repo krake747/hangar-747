@@ -1,3 +1,8 @@
+# Azure Container Registry
+# A managed Docker registry service for storing and managing container images.
+# Required to store Docker images built in CI/CD pipelines for deployment.
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry
+
 resource "azurerm_container_registry" "hangar_acr" {
   name                          = "hangarregistry${var.environment_id}"
   resource_group_name           = azurerm_resource_group.hangar_rg.name

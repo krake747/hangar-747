@@ -1,3 +1,8 @@
+# Azure Container App
+# Runs containerized applications in a serverless environment.
+# Hosts the application API, providing scalability and ease of deployment.
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
+
 resource "azurerm_container_app" "hangar_app" {
   name                         = "hangar-api-${var.environment_id}"
   container_app_environment_id = azurerm_container_app_environment.hangar_app_env.id

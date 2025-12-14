@@ -1,3 +1,8 @@
+# Azure Storage Account
+# Provides cloud storage for blobs, files, queues, and tables.
+# Used here for Terraform state storage in a blob container.
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account
+
 resource "azurerm_storage_account" "terraform_state" {
   name                     = "hangariacfiles"
   resource_group_name      = azurerm_resource_group.reference_rg.name

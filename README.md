@@ -34,7 +34,7 @@ This section outlines where I am right now and the concrete goals I plan to achi
 * building CLI tools
 * building small HTTP services
 
-`/golang` directory contains my Go learning projects, and the `dotnet/` directory contains my .NET learning projects.
+`/golang` directory contains my Go learning projects, and the `/dotnet` directory contains my .NET learning projects.
 
 This phase builds the foundational programming skills for developing cloud-native applications and tooling.
 

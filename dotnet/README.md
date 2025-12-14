@@ -9,25 +9,13 @@ sudo add-apt-repository ppa:dotnet/backports
 ```
 
 ```shell
-sudo apt-get update && sudo apt-get install -y dotnet-sdk-9.0
+sudo apt-get update && sudo apt-get install -y dotnet-sdk-10.0
 ```
+
+> Note: .NET 10 might not be available yet via Ubunutu package manager. See [Manual Install](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#manual-install).
 
 ## Setup the Solution File
 
 ```shell
 dotnet new sln -n Hangar747
-```
-
-## User Secrets
-
-```json
-{
-    "ConnectionStrings": {
-        "Gotenberg": "http://localhost:3000/"
-    },
-    "Networking": {
-        "SkyOps": "http://localhost:7000/",
-        "SkyConvert": "http://localhost:7001/"
-    }
-}
 ```

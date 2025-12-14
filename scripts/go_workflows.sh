@@ -13,5 +13,5 @@ for dir in golang/*/; do
 	WORKFLOW=$(echo "${WORKFLOW_TEMPLATE}" | sed "s/{{package}}/${package}/g")
 
 	# save workflow to .github/workflows/{package}
-	echo "${WORKFLOW}" > .github/workflows/${package}.yml
+	echo "${WORKFLOW}" > .github/workflows/go-${package}.yml
 done

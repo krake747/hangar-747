@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - "golang/bookstore/**"
-      - ".github/workflows/bookstore.yml"
+      - ".github/workflows/go-bookstore.yml"
 
 jobs:
   test:

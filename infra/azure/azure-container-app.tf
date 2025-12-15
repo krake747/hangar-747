@@ -10,8 +10,8 @@ resource "azurerm_container_app" "hangar_app" {
   revision_mode                = "Single"
 
   template {
-    min_replicas = 1
-    max_replicas = 3
+    min_replicas = 0
+    max_replicas = 1
 
     container {
       name   = "hangarapp-${var.environment_id}"

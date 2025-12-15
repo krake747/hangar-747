@@ -25,7 +25,6 @@ env:
   CONTAINER_APP_NAME: hangar-api-dev
   CONTAINER_APP_ENV: hangarappenvdev
   RESOURCE_GROUP: hangar-rg
-  TARGET_PORT: 8080
   ACR: ${{ vars.ACR_LOGIN_SERVER }}
 
 jobs:
@@ -147,14 +146,14 @@ jobs:
         with:
           registryUrl: ${{ env.ACR }}
           imageToDeploy: ${{ env.ACR }}/${{ env.IMAGE_NAME }}:${{ needs.release.outputs.GIT_TAG }}
-          targetPort: ${{ env.TARGET_PORT }}
+          targetPort: 8080
           ingress: external
           containerAppName: ${{ env.CONTAINER_APP_NAME }}
           containerAppEnvironment: ${{ env.CONTAINER_APP_ENV }}
           resourceGroup: ${{ env.RESOURCE_GROUP }}
           environmentVariables: |
             ASPNETCORE_ENVIRONMENT=Production
-            ASPNETCORE_URLS=http://+:${{ env.TARGET_PORT }}
+            ASPNETCORE_URLS=http://+:8080
 
   push-tag:
     needs:

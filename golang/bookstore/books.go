@@ -59,8 +59,8 @@ func OpenCatalog(path string) (*Catalog, error) {
 }
 
 func (catalog *Catalog) Sync() error {
-	catalog.mu.RLock()
-	defer catalog.mu.RUnlock()
+	catalog.mu.Lock()
+	defer catalog.mu.Unlock()
 	file, err := os.Create(catalog.Path)
 	if err != nil {
 		return err

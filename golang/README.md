@@ -60,22 +60,42 @@ Goal: create a modern Go web service with best practices.
 
 ### Reflections
 
-Focusing on translating C# skills to Go, I migrate the file-based bookstore to an Echo and SQLite
-API. Echo's routing and middleware feel similar to .NET's minimal API and middleware integration,
-but Go's explicit error handling contrasts with C#'s exceptions. Problem details for API errors
-mirror .NET's structured responses.
+This step focuses on applying my C# experience in a Go project and understanding which skills
+transfer directly and which require a different mindset. Rebuilding the file-based bookstore as an
+Echo API with SQLite helps me focus less on the language and more on service design.
 
-File-based persistence lacks proper concurrency, transactions, and query performance – it's fine for
-simple cases but falls short for real applications. Integrating SQLite is a step up since it's an
-actual database, providing ACID transactions and efficient queries, much like working with a
-relational database like PostgreSQL or SQL Server.
+Echo feels familiar. Routing and middleware are close to .NET’s minimal APIs, which makes it easy to
+get productive. Go’s error handling forces me to be more explicit. Without exceptions, I have to
+think through error paths more carefully, which makes the code easier to reason about and the API
+behavior more predictable. Using problem details for errors aligns well with the API patterns I
+already use in .NET.
 
-Structured logging with slog parallels Serilog, both serving as stepping stones to OpenTelemetry for
-distributed tracing. Testing in Go is straightforward like xUnit, with built-in runners and
-table-driven tests.
+The limitations of file-based persistence become clear quickly. Concurrency, transactions, and
+querying are hard to get right without a real database. Switching to SQLite is an important step.
+Even though it is lightweight, it provides ACID guarantees and behaves like a proper relational
+database, similar to PostgreSQL or SQL Server.
 
-Adding golangci-lint into CI/CD, like Roslyn analyzers, ensures code quality automatically. GitHub
-Actions expands my CI/CD knowledge beyond Azure Pipelines for cloud-native automation.
+I also focus more on operational concerns. Structured logging with `slog` helps me think about logs
+as structured data and prepares the codebase for adding OpenTelemetry later. Testing in Go is
+straightforward, and table-driven tests encourage simple and readable test cases.
 
-There's no dependency injectionhere, unlike .NET's common DI containers. Overall, this project
-teaches me Go's simplicity and efficiency, building on my C# foundations for maintainable services.
+Adding `golangci-lint` and GitHub Actions brings the project closer to production standards.
+Automating tests and linting in CI reinforces good habits and expands my CI/CD experience beyond
+Azure Pipelines.
+
+Go does not rely on dependency injection containers like .NET. Wiring dependencies manually feels
+different. It makes data flow and ownership very clear and easy to understand.
+
+Overall, this step helps me build confidence in designing maintainable services in Go while applying
+the same engineering principles I use in my .NET work.
+
+## 3. Build a Production-Ready API with Go (Planned)
+
+This step focuses on evolving the bookstore API toward a more production-ready, cloud-native
+service. Key areas of focus include:
+
+- Database -> PostgreSQL or MongoDB (TBD)
+- Containerization -> Dockerfile, Docker Compose
+- Observability -> OpenTelemetry
+- Configuration Management -> Environment variables, config files
+- Secrets -> Vault

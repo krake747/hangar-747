@@ -1,6 +1,6 @@
 .PHONY: all build clean test gotest deps fmt lint fmt-md help
 
-all: deps fmt lint test build
+all: deps fmt fmt-md lint test build
 
 build:
 	@echo "Building CLIs..."

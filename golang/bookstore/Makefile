@@ -1,6 +1,6 @@
 .PHONY: all build clean test gotest deps fmt fmt-md help
 
-all: deps fmt test build
+all: deps fmt fmt-md test build
 
 build:
 	@echo "Building CLI..."

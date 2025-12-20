@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 
 	"bookstore2/core/books"
 )
@@ -21,7 +22,11 @@ func NewClient(addr string) *Client {
 }
 
 func (client *Client) MakeAPIRequest(URI string, result any) error {
-	resp, err := http.Get("http://" + client.addr + "/v1/" + URI)
+	url := client.addr + "/v1/" + URI
+	if !strings.HasPrefix(url, "http://") {
+		url = "http://" + url
+	}
+	resp, err := http.Get(url)
 	if err != nil {
 		return err
 	}
@@ -36,9 +41,11 @@ func (client *Client) MakeAPIRequest(URI string, result any) error {
 	if err != nil {
 		return err
 	}
-	err = json.Unmarshal(data, result)
-	if err != nil {
-		return fmt.Errorf("%v in %q", err, data)
+	if result != nil {
+		err = json.Unmarshal(data, result)
+		if err != nil {
+			return fmt.Errorf("%v in %q", err, data)
+		}
 	}
 	return nil
 }
@@ -71,21 +78,51 @@ func (client *Client) GetCopies(ID string) (int, error) {
 }
 
 func (client *Client) AddCopies(ID string, copies int) (int, error) {
-	URI := fmt.Sprintf("addcopies/%s/%d", ID, copies)
-	stock := 0
-	err := client.MakeAPIRequest(URI, &stock)
+	url := client.addr + "/v1/addcopies/" + ID + "/" + fmt.Sprintf("%d", copies)
+	if !strings.HasPrefix(url, "http://") {
+		url = "http://" + url
+	}
+	resp, err := http.Post(url, "application/json", nil)
 	if err != nil {
 		return 0, err
+	}
+	defer resp.Body.Close() //nolint:errcheck
+	if resp.StatusCode != http.StatusOK {
+		return 0, fmt.Errorf("unexpected status %d", resp.StatusCode)
+	}
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return 0, err
+	}
+	var stock int
+	err = json.Unmarshal(data, &stock)
+	if err != nil {
+		return 0, fmt.Errorf("%v in %q", err, data)
 	}
 	return stock, nil
 }
 
 func (client *Client) SubCopies(ID string, copies int) (int, error) {
-	URI := fmt.Sprintf("subcopies/%s/%d", ID, copies)
-	stock := 0
-	err := client.MakeAPIRequest(URI, &stock)
+	url := client.addr + "/v1/subcopies/" + ID + "/" + fmt.Sprintf("%d", copies)
+	if !strings.HasPrefix(url, "http://") {
+		url = "http://" + url
+	}
+	resp, err := http.Post(url, "application/json", nil)
 	if err != nil {
 		return 0, err
+	}
+	defer resp.Body.Close() //nolint:errcheck
+	if resp.StatusCode != http.StatusOK {
+		return 0, fmt.Errorf("unexpected status %d", resp.StatusCode)
+	}
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return 0, err
+	}
+	var stock int
+	err = json.Unmarshal(data, &stock)
+	if err != nil {
+		return 0, fmt.Errorf("%v in %q", err, data)
 	}
 	return stock, nil
 }

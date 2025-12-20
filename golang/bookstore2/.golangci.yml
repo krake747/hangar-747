@@ -13,4 +13,11 @@ linters:
     - unused
     - lll
 
-
+formatters:
+  enable:
+    - gofumpt
+    - goimports
+  settings:
+    gofumpt:
+      module-path: bookstore2
+      extra-rules: true

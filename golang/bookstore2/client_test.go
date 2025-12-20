@@ -9,7 +9,6 @@ import (
 
 	"bookstore2/core"
 	"bookstore2/core/books"
-
 	"github.com/labstack/echo/v4"
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -32,15 +31,15 @@ func getTestClient(t *testing.T) *core.Client {
 	e.GET("/v1/list", h.ListBooks)
 	e.GET("/v1/find/:id", h.FindBook)
 	e.GET("/v1/getcopies/:id", h.GetCopies)
-	e.POST("/v1/addcopies/:id/:count", h.AddCopies)
-	e.POST("/v1/subcopies/:id/:count", h.SubCopies)
+	e.Any("/v1/addcopies/:id/:count", h.AddCopies)
+	e.Any("/v1/subcopies/:id/:count", h.SubCopies)
 
 	// Start test server
 	ts := httptest.NewServer(e)
 	t.Cleanup(ts.Close)
 
 	// Create client with test server URL
-	client := core.NewClient(ts.URL[7:]) // Remove http://
+	client := core.NewClient(ts.URL)
 
 	return client
 }

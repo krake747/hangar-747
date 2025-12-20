@@ -1,10 +1,13 @@
 package bookstore2_test
 
 import (
+	"cmp"
 	"database/sql"
+	"slices"
 	"testing"
 
 	"bookstore2/internal/models"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -135,18 +138,11 @@ func getTestBookStore(t *testing.T) *models.BookStore {
 func assertTestBooks(t *testing.T, got []models.Book) {
 	t.Helper()
 	want := []models.Book{ABC, XYZ}
-	// Sort by author
-	for i := 0; i < len(got)-1; i++ {
-		for j := i + 1; j < len(got); j++ {
-			if got[i].Author > got[j].Author {
-				got[i], got[j] = got[j], got[i]
-			}
-		}
-	}
-	for i, b := range got {
-		if b != want[i] {
-			t.Fatalf("want %#v, got %#v", want, got)
-		}
+	slices.SortFunc(got, func(a, b models.Book) int {
+		return cmp.Compare(a.Author, b.Author)
+	})
+	if !slices.Equal(want, got) {
+		t.Fatalf("want %#v, got %#v", want, got)
 	}
 }
 

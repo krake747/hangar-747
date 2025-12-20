@@ -20,7 +20,7 @@ clean:
 
 test:
 	@echo "Running tests..."
-	go test -v ./...
+	gotestdox -v ./...
 
 deps:
 	@echo "Installing dependencies..."
@@ -29,6 +29,9 @@ deps:
 	@echo "Installing CLI tools..."
 	@if ! command -v gofumpt >/dev/null 2>&1; then \
 		go install mvdan.cc/gofumpt@latest; \
+	fi
+	@if ! command -v gotestdox >/dev/null 2>&1; then \
+		go install github.com/bitfield/gotestdox/cmd/gotestdox@latest; \
 	fi
 
 fmt:

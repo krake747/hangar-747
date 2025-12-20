@@ -1,7 +1,7 @@
+version: "2"
+
 run:
   timeout: 5m
-  issues-exit-code: 1
-  tests: true
 
 linters:
   enable:
@@ -13,13 +13,15 @@ linters:
     - unused
     - lll
 
-linters-settings:
-  gofmt:
-    simplify: true
-  goimports:
-    local-prefixes: bookstore2
-  lll:
-    line-length: 120
+  settings:
+    lll:
+      line-length: 120
+      tab-width: 1
 
-issues:
-  exclude-use-default: false
+formatters:
+  enable:
+    - gofumpt
+  settings:
+    gofumpt:
+      module-path: bookstore2
+      extra-rules: true

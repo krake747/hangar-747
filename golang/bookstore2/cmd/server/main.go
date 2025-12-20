@@ -37,8 +37,10 @@ func main() {
 		if pd, ok := err.(*shared.ProblemDetail); ok {
 			_ = c.JSON(pd.Status, pd)
 		} else {
-			_ = c.JSON(http.StatusInternalServerError,
-				shared.NewProblemDetail(http.StatusInternalServerError, "Internal Server Error", err.Error()))
+			_ = c.JSON(
+				http.StatusInternalServerError,
+				shared.NewProblemDetail(http.StatusInternalServerError, "Internal Server Error", err.Error()),
+			)
 		}
 	}
 

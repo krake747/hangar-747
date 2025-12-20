@@ -60,7 +60,7 @@ Goal: create a modern Go web service with best practices.
 
 ### Reflections
 
-As a senior developer with C# experience, I focus on translating those skills to Go. Migrating the file-based bookstore to an Echo and SQLite API highlights the differences: Echo's routing feels similar to ASP.NET middleware, but Go's explicit error handling contrasts with C#'s exceptions.
+Focusing on translating C# skills to Go, I migrate the file-based bookstore to an Echo and SQLite API. This highlights the differences: Echo's routing feels similar to ASP.NET middleware, but Go's explicit error handling contrasts with C#'s exceptions.
 
 Integrating SQLite reminds me of Entity Framework, but Go's sql package requires more manual work with prepared statements and transactions – a trade-off for performance and control.
 

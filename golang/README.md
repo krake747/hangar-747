@@ -67,11 +67,12 @@ mirror .NET's structured responses.
 
 File-based persistence lacks proper concurrency, transactions, and query performance – it's fine for
 simple cases but falls short for real applications. Integrating SQLite is a step up since it's an
-actual database, providing ACID transactions and efficient queries, much like working with SQL Server
-in .NET.
+actual database, providing ACID transactions and efficient queries, much like working with a
+relational database like PostgreSQL or SQL Server.
 
-Structured logging with slog parallels Serilog, and testing in Go is straightforward like xUnit.
-Setting up golangci-lint and GitHub Actions expands my CI/CD knowledge.
+Structured logging with slog parallels Serilog, providing structured JSON output for better observability. Testing in Go is straightforward like xUnit, with built-in test runners and table-driven tests making it easy to cover edge cases.
+
+Setting up golangci-lint feels like adding Roslyn analyzers in .NET, enforcing code quality automatically. GitHub Actions for CI/CD expands my knowledge beyond Azure Pipelines, showing how to automate builds, tests, and deployments in a cloud-native way.
 
 Defer patterns for cleanup are new, replacing C#'s using statements. There's no dependency injection
 here, unlike .NET's common DI containers. Overall, this project teaches me Go's simplicity and

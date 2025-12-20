@@ -60,10 +60,19 @@ Goal: create a modern Go web service with best practices.
 
 ### Reflections
 
-I migrated the original file-based bookstore to a database-backed API using Echo, learning the power of web frameworks for structured development. Echo simplified routing and middleware, allowing me to focus on business logic rather than low-level HTTP handling. Integrating SQLite taught me about transactions, prepared statements, and data persistence beyond files.
+I migrated the original file-based bookstore to a database-backed API using Echo, learning the power
+of web frameworks for structured development. Echo simplified routing and middleware, allowing me to
+focus on business logic rather than low-level HTTP handling. Integrating SQLite taught me about
+transactions, prepared statements, and data persistence beyond files.
 
-Adopting structured logging with slog improved observability, and adding comprehensive tests ensured reliability. Setting up golangci-lint for code quality and GitHub Actions for CI expanded my DevOps skills, enforcing standards automatically.
+Adopting structured logging with slog improved observability, and adding comprehensive tests ensured
+reliability. Setting up golangci-lint for code quality and GitHub Actions for CI expanded my DevOps
+skills, enforcing standards automatically.
 
-The migration highlighted the importance of modular architecture, separating handlers, models, and clients. I also learned about defer patterns for resource management and problem details for API errors. This project solidified my understanding of building production-ready Go services.
+The migration highlighted the importance of modular architecture, separating handlers, models, and
+clients. I also learned about defer patterns for resource management and problem details for API
+errors. This project solidified my understanding of building production-ready Go services.
 
-I expanded the original CRUD operations, added proper error responses, and integrated tooling for maintainability. The journey from simple file storage to a robust API demonstrated Go's strengths in web development.
+I expanded the original CRUD operations, added proper error responses, and integrated tooling for
+maintainability. The journey from simple file storage to a robust API demonstrated Go's strengths in
+web development.

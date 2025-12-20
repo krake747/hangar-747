@@ -20,6 +20,7 @@ serving. This migration introduces:
 ## Features
 
 Through the migration, we added:
+
 - RESTful API with JSON responses and consistent error handling.
 - Middleware for problem details (RFC 7807) to improve API usability.
 - Structured logging with slog for better observability.
@@ -27,10 +28,11 @@ Through the migration, we added:
 
 ## Getting Started
 
-Run `make all` to install dependencies, lint, test, and build everything. Start the server with `./bin/server` (defaults to `localhost:3000` with `books.db`). Use CLI tools like `./bin/list` to interact.
+Run `make all` to install dependencies, lint, test, and build everything. Start the server with
+`./bin/server` (defaults to `localhost:3000` with `books.db`). Use CLI tools like `./bin/list` to
+interact.
 
 ## API & CLI
 
-**Endpoints**: GET /v1/list, GET /v1/find/{id}, GET /v1/getcopies/{id}, POST /v1/addcopies/{id}/{count}, POST /v1/subcopies/{id}/{count}. All return JSON; errors use problem details.
-
-**CLIs**: server, list, find <ID>, getcopies <ID>, addcopies <ID> <count>, subcopies <ID> <count>, client. Connect to localhost:3000 by default.
+**CLIs**: server, list, find <ID>, getcopies <ID>, addcopies <ID> <count>, subcopies <ID> <count>,
+client. Connect to localhost:3000 by default.

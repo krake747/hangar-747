@@ -2,6 +2,7 @@
 
 all:
 	cd bookstore && make all
+	cd bookstore2 && make all
 
 fmt-md:
 	@echo "Formatting root markdown files..."

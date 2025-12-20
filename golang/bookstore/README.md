@@ -1,32 +1,32 @@
 # Bookstore
 
-This was my starting point in building a Go web application, using simple file-based storage to
-learn the fundamentals of HTTP servers and data management.
+This is my starting point in building a Go web application. I use simple file-based storage to learn
+the fundamentals of HTTP servers and data management.
 
-Built with basic net/http and JSON files, it taught me the basics of routing, concurrency with
+Built with basic `net/http` and JSON files, I learn the basics of routing, concurrency with
 `sync.RWMutex`, and simple API design.
 
 ## Features
 
-You can manage a catalog of books with titles, authors, and stock levels. The RESTful API allows
-listing, finding, and updating inventory. CLI tools provide easy interaction with the server.
+We manage a catalog of books with titles, authors, and stock levels. The RESTful API lets us list,
+find, and update inventory. CLI tools let us interact with the server easily.
 
 ## Getting Started
 
-Run `make all` to install dependencies, test, and build everything. Start the server with
-`./bin/server` (defaults to `localhost:3000` with `catalog` file). Use CLI tools like `./bin/list`
-to interact.
+I run `make all` to install dependencies, test, and build everything. I start the server with
+`./bin/server` (defaulting to `localhost:3000` with the `catalog` file). I use CLI tools like
+`./bin/list` to interact with it.
 
 ## API & CLI
 
 **CLIs**:
 
-- server
-- list
-- find <ID>
-- getcopies <ID>
-- addcopies <ID> <count>
-- subcopies <ID> <count>
-- client
+- `server`
+- `list`
+- `find <ID>`
+- `getcopies <ID>`
+- `addcopies <ID> <count>`
+- `subcopies <ID> <count>`
+- `client`
 
-Connect to localhost:3000 by default.
+By default, we connect to `localhost:3000`.

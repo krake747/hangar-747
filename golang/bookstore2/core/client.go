@@ -104,51 +104,19 @@ func (client *Client) GetCopies(ID string) (int, error) {
 }
 
 func (client *Client) AddCopies(ID string, copies int) (int, error) {
-	url := client.addr + "/v1/addcopies/" + ID + "/" + fmt.Sprintf("%d", copies)
-	if !strings.HasPrefix(url, "http://") {
-		url = "http://" + url
-	}
-	resp, err := http.Post(url, "application/json", nil)
+	stock := 0
+	err := client.MakePostRequest("addcopies/"+ID+"/"+fmt.Sprintf("%d", copies), &stock)
 	if err != nil {
 		return 0, err
-	}
-	defer resp.Body.Close() //nolint:errcheck
-	if resp.StatusCode != http.StatusOK {
-		return 0, fmt.Errorf("unexpected status %d", resp.StatusCode)
-	}
-	data, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return 0, err
-	}
-	var stock int
-	err = json.Unmarshal(data, &stock)
-	if err != nil {
-		return 0, fmt.Errorf("%v in %q", err, data)
 	}
 	return stock, nil
 }
 
 func (client *Client) SubCopies(ID string, copies int) (int, error) {
-	url := client.addr + "/v1/subcopies/" + ID + "/" + fmt.Sprintf("%d", copies)
-	if !strings.HasPrefix(url, "http://") {
-		url = "http://" + url
-	}
-	resp, err := http.Post(url, "application/json", nil)
+	stock := 0
+	err := client.MakePostRequest("subcopies/"+ID+"/"+fmt.Sprintf("%d", copies), &stock)
 	if err != nil {
 		return 0, err
-	}
-	defer resp.Body.Close() //nolint:errcheck
-	if resp.StatusCode != http.StatusOK {
-		return 0, fmt.Errorf("unexpected status %d", resp.StatusCode)
-	}
-	data, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return 0, err
-	}
-	var stock int
-	err = json.Unmarshal(data, &stock)
-	if err != nil {
-		return 0, fmt.Errorf("%v in %q", err, data)
 	}
 	return stock, nil
 }

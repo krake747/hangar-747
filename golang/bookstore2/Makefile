@@ -34,7 +34,7 @@ deps:
 		go install github.com/bitfield/gotestdox/cmd/gotestdox@latest; \
 	fi
 	@if ! command -v golangci-lint >/dev/null 2>&1; then \
-		go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest; \
+		curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v2.7.2; \
 	fi
 
 lint:

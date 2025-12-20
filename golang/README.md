@@ -45,11 +45,11 @@ It is a good starting point for expansion.
 Since Job Arundel is a big fan of testing, I added a GitHub Actions workflow that runs the tests via
 `make` in CI. This is expanding my knowledge on DevOps with simple CI workflows.
 
-## 2. Build a Simple Web API with Echo (Current)
+## 2. Build a Simple Web API with Echo (Completed)
 
 Focus areas:
 
-- set up an Echo project
+- set up an [Echo](https://echo.labstack.com/) project
 - basic routing and middleware
 - JSON responses and error handling
 - database integration with SQLite
@@ -77,6 +77,5 @@ table-driven tests.
 Adding golangci-lint into CI/CD, like Roslyn analyzers, ensures code quality automatically. GitHub
 Actions expands my CI/CD knowledge beyond Azure Pipelines for cloud-native automation.
 
-Defer patterns for cleanup are new, replacing C#'s using statements. There's no dependency injection
-here, unlike .NET's common DI containers. Overall, this project teaches me Go's simplicity and
-efficiency, building on my C# foundations for maintainable services.
+There's no dependency injectionhere, unlike .NET's common DI containers. Overall, this project
+teaches me Go's simplicity and efficiency, building on my C# foundations for maintainable services.

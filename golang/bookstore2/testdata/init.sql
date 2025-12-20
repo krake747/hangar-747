@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS books (
 );
 
 INSERT OR IGNORE INTO books (id, title, author, copies) VALUES
-    ('abc', 'In the Company of Cheerful Ladies', 'Alexander McCall Smith', 0),
-    ('def', 'White Heat', 'Dominic Sandbrook', 2);
+    ('abc', 'In the Company of Cheerful Ladies', 'Alexander McCall Smith', 1),
+    ('xyz', 'White Heat', 'Dominic Sandbrook', 2);

@@ -1,3 +1,4 @@
+
 version: "2"
 
 run:
@@ -5,8 +6,6 @@ run:
 
 linters:
   enable:
-    - gofmt
-    - goimports
     - govet
     - ineffassign
     - staticcheck
@@ -21,6 +20,7 @@ linters:
 formatters:
   enable:
     - gofumpt
+    - goimports
   settings:
     gofumpt:
       module-path: bookstore2

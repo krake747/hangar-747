@@ -34,8 +34,12 @@ deps:
 		go install github.com/bitfield/gotestdox/cmd/gotestdox@latest; \
 	fi
 	@if ! command -v golangci-lint >/dev/null 2>&1; then \
-		go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest; \
+		curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin; \
 	fi
+	@echo "Installed tool versions:"
+	@echo "  gofumpt: $$(gofumpt --version)"
+	@echo "  gotestdox: $$(go version -m $(shell go env GOPATH)/bin/gotestdox 2>/dev/null | grep 'mod' | head -1 || echo 'unknown')"
+	@echo "  golangci-lint: $$(golangci-lint version)"
 
 lint:
 	@echo "Running linter..."

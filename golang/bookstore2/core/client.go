@@ -21,7 +21,7 @@ func NewClient(addr string) *Client {
 	}
 }
 
-func (client *Client) MakeAPIRequest(URI string, result any) error {
+func (client *Client) MakeGetRequest(URI string, result any) error {
 	url := client.addr + "/v1/" + URI
 	if !strings.HasPrefix(url, "http://") {
 		url = "http://" + url
@@ -50,9 +50,35 @@ func (client *Client) MakeAPIRequest(URI string, result any) error {
 	return nil
 }
 
+func (client *Client) MakePostRequest(URI string, result any) error {
+	url := client.addr + "/v1/" + URI
+	if !strings.HasPrefix(url, "http://") {
+		url = "http://" + url
+	}
+	resp, err := http.Post(url, "application/json", nil)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close() //nolint:errcheck
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("unexpected status %d", resp.StatusCode)
+	}
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+	if result != nil {
+		err = json.Unmarshal(data, result)
+		if err != nil {
+			return fmt.Errorf("%v in %q", err, data)
+		}
+	}
+	return nil
+}
+
 func (client *Client) GetAllBooks() ([]books.Book, error) {
 	bookList := []books.Book{}
-	err := client.MakeAPIRequest("list", &bookList)
+	err := client.MakeGetRequest("list", &bookList)
 	if err != nil {
 		return nil, err
 	}
@@ -61,7 +87,7 @@ func (client *Client) GetAllBooks() ([]books.Book, error) {
 
 func (client *Client) GetBook(ID string) (books.Book, error) {
 	book := books.Book{}
-	err := client.MakeAPIRequest("find/"+ID, &book)
+	err := client.MakeGetRequest("find/"+ID, &book)
 	if err != nil {
 		return books.Book{}, err
 	}
@@ -70,7 +96,7 @@ func (client *Client) GetBook(ID string) (books.Book, error) {
 
 func (client *Client) GetCopies(ID string) (int, error) {
 	copies := 0
-	err := client.MakeAPIRequest("getcopies/"+ID, &copies)
+	err := client.MakeGetRequest("getcopies/"+ID, &copies)
 	if err != nil {
 		return 0, err
 	}

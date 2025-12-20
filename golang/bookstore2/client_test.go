@@ -9,9 +9,12 @@ import (
 
 	"bookstore2/core"
 	"bookstore2/core/books"
+
 	"github.com/labstack/echo/v4"
 	_ "github.com/mattn/go-sqlite3"
 )
+
+var ABC = books.Book{ID: "abc", Title: "In the Company of Cheerful Ladies", Author: "Alexander McCall Smith", Copies: 1}
 
 func getTestClient(t *testing.T) *core.Client {
 	t.Helper()
@@ -65,7 +68,6 @@ func TestGetAllBooks_OnClientReturnsAllBooks(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	// Assert
 	expected := []books.Book{
 		{ID: "abc", Title: "In the Company of Cheerful Ladies", Author: "Alexander McCall Smith", Copies: 1},
 		{ID: "xyz", Title: "White Heat", Author: "Dominic Sandbrook", Copies: 2},
@@ -73,7 +75,6 @@ func TestGetAllBooks_OnClientReturnsAllBooks(t *testing.T) {
 	if len(bookList) != len(expected) {
 		t.Fatalf("want %d books, got %d", len(expected), len(bookList))
 	}
-	// Simple check
 	for _, b := range bookList {
 		if b.ID == "abc" && b.Copies != 1 {
 			t.Errorf("abc copies want 1, got %d", b.Copies)
@@ -84,10 +85,43 @@ func TestGetAllBooks_OnClientReturnsAllBooks(t *testing.T) {
 	}
 }
 
+func TestGetBook_OnClientFindsBookByID(t *testing.T) {
+	t.Parallel()
+	client := getTestClient(t)
+	got, err := client.GetBook("abc")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got != ABC {
+		t.Fatalf("want %#v, got %#v", ABC, got)
+	}
+}
+
 func TestGetBook_OnClientReturnsErrorWhenBookNotFound(t *testing.T) {
 	t.Parallel()
 	client := getTestClient(t)
 	_, err := client.GetBook("bogus")
+	if err == nil {
+		t.Error("want error when book not found, got nil")
+	}
+}
+
+func TestGetCopies_OnClientReturnsCopiesForBook(t *testing.T) {
+	t.Parallel()
+	client := getTestClient(t)
+	copies, err := client.GetCopies("abc")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if copies != 1 {
+		t.Fatalf("want 1 copy, got %d", copies)
+	}
+}
+
+func TestGetCopies_OnClientErrorsWhenBookNotFound(t *testing.T) {
+	t.Parallel()
+	client := getTestClient(t)
+	_, err := client.GetCopies("bogus")
 	if err == nil {
 		t.Error("want error when book not found, got nil")
 	}

@@ -62,7 +62,7 @@ Goal: create a modern Go web service with best practices.
 
 Focusing on translating C# skills to Go, I migrate the file-based bookstore to an Echo and SQLite API. This highlights the differences: Echo's routing feels similar to ASP.NET middleware, but Go's explicit error handling contrasts with C#'s exceptions.
 
-Integrating SQLite reminds me of ADO.NET and Dapper (since I know those), but Go's sql package requires more manual work with prepared statements and transactions – a trade-off for performance and control compared to Entity Framework.
+File-based persistence lacks proper concurrency, transactions, and query performance – it's fine for simple cases but falls short for real applications. Integrating SQLite is a step up since it's an actual database, providing ACID transactions and efficient queries. It reminds me of ADO.NET and Dapper, but Go's sql package requires more manual work with prepared statements – a trade-off for performance and control compared to Entity Framework.
 
 Structured logging with slog parallels Serilog, and testing in Go is straightforward like xUnit. Setting up golangci-lint and GitHub Actions expands my CI knowledge, automating quality like in Azure DevOps.
 

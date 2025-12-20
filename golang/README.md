@@ -60,10 +60,10 @@ Goal: create a modern Go web service with best practices.
 
 ### Reflections
 
-I migrate the original file-based bookstore to a modern API using Echo and SQLite. Echo makes routing and middleware much simpler compared to manual HTTP handling, letting me focus on the logic instead of boilerplate.
+As a senior developer with C# experience, I focus on translating those skills to Go. Migrating the file-based bookstore to an Echo and SQLite API highlights the differences: Echo's routing feels similar to ASP.NET middleware, but Go's explicit error handling contrasts with C#'s exceptions.
 
-Integrating SQLite is a big step – learning about databases, transactions, and prepared statements feels daunting at first, but it shows me how much more reliable data handling can be beyond just files.
+Integrating SQLite reminds me of Entity Framework, but Go's sql package requires more manual work with prepared statements and transactions – a trade-off for performance and control.
 
-Setting up structured logging with slog and comprehensive tests improves the whole development process. Adding golangci-lint and GitHub Actions for CI expands my DevOps knowledge, making code quality automatic.
+Structured logging with slog parallels Serilog, and testing in Go is straightforward like xUnit. Setting up golangci-lint and GitHub Actions expands my CI knowledge, automating quality like in Azure DevOps.
 
-Things I'm still getting used to are defer patterns for resource cleanup and structured error responses. Overall, this project teaches me the value of frameworks and tools in building maintainable Go services. It is a solid next step after the basics.
+Defer patterns for cleanup are new, replacing C#'s using statements. Overall, this project teaches me Go's simplicity and efficiency, building on my C# foundations for maintainable services.

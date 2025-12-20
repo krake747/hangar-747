@@ -43,7 +43,7 @@ func (bs *BookStore) GetAllBooks() ([]Book, error) {
 	if err != nil {
 		return nil, err
 	}
-	_ = rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var books []Book
 	for rows.Next() {

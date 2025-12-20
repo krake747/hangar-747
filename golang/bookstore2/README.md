@@ -1,20 +1,26 @@
 # Bookstore2
 
-A demonstration of migrating a simple file-based Go application to a modern web service using Echo and SQLite, learning best practices along the way.
+A demonstration of migrating a simple file-based Go application to a modern web service using Echo
+and SQLite, learning best practices along the way.
 
-Originally a basic file-based bookstore with manual HTTP handling, bookstore2 showcases improvements in persistence, error handling, and developer tooling through a hands-on migration.
+Originally a basic file-based bookstore with manual HTTP handling, bookstore2 showcases improvements
+in persistence, error handling, and developer tooling through a hands-on migration.
 
 ## Migration Story
 
-The original bookstore used a JSON file for storage with in-memory operations and basic net/http for serving. This migration introduces:
+The original bookstore used a JSON file for storage with in-memory operations and basic net/http for
+serving. This migration introduces:
+
 - **Database Persistence**: SQLite for reliable, concurrent data handling instead of file locking.
 - **Web Framework**: Echo for structured routing, middleware, and request management.
 - **Quality Tools**: Linting, formatting, and CI/CD to enforce code standards.
-- **Architecture**: Modular design with clear separation of HTTP handlers, business logic, and API clients.
+- **Architecture**: Modular design with clear separation of HTTP handlers, business logic, and API
+  clients.
 
 ## Features
 
 Through the migration, we added:
+
 - RESTful API with JSON responses and consistent error handling.
 - Middleware for problem details (RFC 7807) to improve API usability.
 - Structured logging with slog for better observability.
@@ -24,12 +30,7 @@ Through the migration, we added:
 
 ## Learnings from Migrating to Echo
 
-- **Routing**: Echo's router simplifies defining and matching API endpoints compared to manual path parsing.
-- **Middleware**: Enables centralized handling of cross-cutting concerns like errors, logging, and request processing.
-- **Context Management**: Using echo.Context provides a clean way to handle request lifecycles, validation, and responses.
-- **Error Handling**: Structured problem details make API errors more informative and consistent for clients.
-- **Testing**: Echo's testing utilities make it easier to write robust integration tests for HTTP endpoints.
-- **Persistence**: Database transactions ensure data consistency and handle concurrency better than file-based approaches.
+Migrating to Echo taught us the value of structured routing, where the framework's router makes it straightforward to define and match API endpoints without manual path parsing. We discovered the power of middleware for centralizing cross-cutting concerns, such as error handling, logging, and request processing, which improves maintainability. Context management with echo.Context became essential for cleanly handling request lifecycles, including validation and responses. For error handling, adopting structured problem details resulted in more informative and consistent API responses. Testing became more robust with Echo's utilities, simplifying the creation of integration tests for HTTP endpoints. Finally, embracing database transactions ensured data consistency and better concurrency handling compared to file-based storage.
 
 ## Getting Started
 
@@ -37,7 +38,7 @@ Through the migration, we added:
 2. Run tests and linter: `make test && make lint`
 3. Build CLIs: `make build`
 4. Start the server: `./bin/server [db_path]`
-    - Defaults to `books.db` and `localhost:3000`.
+   - Defaults to `books.db` and `localhost:3000`.
 5. Use CLIs, e.g., `./bin/list` to view books.
 
 ## API Endpoints

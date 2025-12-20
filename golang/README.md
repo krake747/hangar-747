@@ -60,19 +60,10 @@ Goal: create a modern Go web service with best practices.
 
 ### Reflections
 
-I migrated the original file-based bookstore to a database-backed API using Echo, learning the power
-of web frameworks for structured development. Echo simplified routing and middleware, allowing me to
-focus on business logic rather than low-level HTTP handling. Integrating SQLite taught me about
-transactions, prepared statements, and data persistence beyond files.
+I migrated the original file-based bookstore to a modern API using Echo and SQLite. Echo made routing and middleware much simpler compared to manual HTTP handling, letting me focus on the logic instead of boilerplate.
 
-Adopting structured logging with slog improved observability, and adding comprehensive tests ensured
-reliability. Setting up golangci-lint for code quality and GitHub Actions for CI expanded my DevOps
-skills, enforcing standards automatically.
+Integrating SQLite was a big step – learning about databases, transactions, and prepared statements felt daunting at first, but it showed me how much more reliable data handling can be beyond just files.
 
-The migration highlighted the importance of modular architecture, separating handlers, models, and
-clients. I also learned about defer patterns for resource management and problem details for API
-errors. This project solidified my understanding of building production-ready Go services.
+Setting up structured logging with slog and comprehensive tests improved the whole development process. Adding golangci-lint and GitHub Actions for CI expanded my DevOps knowledge, making code quality automatic.
 
-I expanded the original CRUD operations, added proper error responses, and integrated tooling for
-maintainability. The journey from simple file storage to a robust API demonstrated Go's strengths in
-web development.
+Things I'm still getting used to are defer patterns for resource cleanup and structured error responses. Overall, this project taught me the value of frameworks and tools in building maintainable Go services. It was a solid next step after the basics.

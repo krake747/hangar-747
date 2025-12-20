@@ -27,7 +27,7 @@ func main() {
 	defer db.Close()
 
 	bookStore := books.NewBookStore(db)
-	h := books.NewHandler(bookStore)
+	h := books.NewHandler(logger, bookStore)
 
 	e := echo.New()
 

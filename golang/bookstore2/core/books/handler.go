@@ -1,19 +1,17 @@
-package handlers
+package books
 
 import (
 	"net/http"
 	"strconv"
 
-	"bookstore2/internal/models"
-
 	"github.com/labstack/echo/v4"
 )
 
 type Handler struct {
-	BookStore *models.BookStore
+	BookStore *BookStore
 }
 
-func NewHandler(bs *models.BookStore) *Handler {
+func NewHandler(bs *BookStore) *Handler {
 	return &Handler{BookStore: bs}
 }
 
@@ -67,7 +65,7 @@ func (h *Handler) SubCopies(c echo.Context) error {
 	newCopies, err := h.BookStore.SubCopies(id, copies)
 	if err != nil {
 		status := http.StatusNotFound
-		if err == models.ErrNotEnoughStock {
+		if err == ErrNotEnoughStock {
 			status = http.StatusBadRequest
 		}
 		return c.JSON(status, map[string]string{"error": err.Error()})

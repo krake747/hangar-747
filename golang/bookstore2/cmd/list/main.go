@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"bookstore2/internal/client"
+	"bookstore2/core"
 )
 
 func main() {
-	c := client.NewClient("localhost:3000")
+	c := core.NewClient("localhost:3000")
 	bookList, err := c.GetAllBooks()
 	if err != nil {
 		fmt.Println(err)

@@ -1,4 +1,4 @@
-package client
+package core
 
 import (
 	"encoding/json"
@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	"bookstore2/internal/models"
+	"bookstore2/core/books"
 )
 
 type Client struct {
@@ -43,8 +43,8 @@ func (client *Client) MakeAPIRequest(URI string, result any) error {
 	return nil
 }
 
-func (client *Client) GetAllBooks() ([]models.Book, error) {
-	bookList := []models.Book{}
+func (client *Client) GetAllBooks() ([]books.Book, error) {
+	bookList := []books.Book{}
 	err := client.MakeAPIRequest("list", &bookList)
 	if err != nil {
 		return nil, err
@@ -52,11 +52,11 @@ func (client *Client) GetAllBooks() ([]models.Book, error) {
 	return bookList, nil
 }
 
-func (client *Client) GetBook(ID string) (models.Book, error) {
-	book := models.Book{}
+func (client *Client) GetBook(ID string) (books.Book, error) {
+	book := books.Book{}
 	err := client.MakeAPIRequest("find/"+ID, &book)
 	if err != nil {
-		return models.Book{}, err
+		return books.Book{}, err
 	}
 	return book, nil
 }

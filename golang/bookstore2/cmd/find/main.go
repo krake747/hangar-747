@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"bookstore2/internal/client"
+	"bookstore2/core"
 )
 
 func main() {
@@ -13,7 +13,7 @@ func main() {
 		return
 	}
 	ID := os.Args[1]
-	c := client.NewClient("localhost:3000")
+	c := core.NewClient("localhost:3000")
 	book, err := c.GetBook(ID)
 	if err != nil {
 		fmt.Println(err)

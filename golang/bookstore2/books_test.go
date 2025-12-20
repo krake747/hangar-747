@@ -6,7 +6,7 @@ import (
 	"slices"
 	"testing"
 
-	"bookstore2/internal/models"
+	"bookstore2/core/books"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -49,7 +49,7 @@ func TestAddBook_AddsGivenBookToBookStore(t *testing.T) {
 	if err == nil {
 		t.Fatal("book already present")
 	}
-	err = bs.AddBook(models.Book{
+	err = bs.AddBook(books.Book{
 		ID:     "123",
 		Title:  "The Prize of all the Oceans",
 		Author: "Glyn Williams",
@@ -66,7 +66,7 @@ func TestAddBook_AddsGivenBookToBookStore(t *testing.T) {
 
 func TestSetCopies_SetsNumberOfCopiesToGivenValue(t *testing.T) {
 	t.Parallel()
-	book := models.Book{
+	book := books.Book{
 		Copies: 5,
 	}
 	err := book.SetCopies(12)
@@ -80,7 +80,7 @@ func TestSetCopies_SetsNumberOfCopiesToGivenValue(t *testing.T) {
 
 func TestSetCopies_ReturnsErrorIfCopiesNegative(t *testing.T) {
 	t.Parallel()
-	book := models.Book{}
+	book := books.Book{}
 	err := book.SetCopies(-1)
 	if err == nil {
 		t.Error("want error for negative copies, got nil")
@@ -110,7 +110,7 @@ func TestSetCopies_OnBookStoreModifiesSpecifiedBook(t *testing.T) {
 	}
 }
 
-func getTestBookStore(t *testing.T) *models.BookStore {
+func getTestBookStore(t *testing.T) *books.BookStore {
 	t.Helper()
 	db, err := sql.Open("sqlite3", ":memory:")
 	if err != nil {
@@ -132,13 +132,13 @@ func getTestBookStore(t *testing.T) *models.BookStore {
 	if err != nil {
 		t.Fatal(err)
 	}
-	return models.NewBookStore(db)
+	return books.NewBookStore(db)
 }
 
-func assertTestBooks(t *testing.T, got []models.Book) {
+func assertTestBooks(t *testing.T, got []books.Book) {
 	t.Helper()
-	want := []models.Book{ABC, XYZ}
-	slices.SortFunc(got, func(a, b models.Book) int {
+	want := []books.Book{ABC, XYZ}
+	slices.SortFunc(got, func(a, b books.Book) int {
 		return cmp.Compare(a.Author, b.Author)
 	})
 	if !slices.Equal(want, got) {
@@ -147,14 +147,14 @@ func assertTestBooks(t *testing.T, got []models.Book) {
 }
 
 var (
-	ABC = models.Book{
+	ABC = books.Book{
 		Title:  "In the Company of Cheerful Ladies",
 		Author: "Alexander McCall Smith",
 		Copies: 1,
 		ID:     "abc",
 	}
 
-	XYZ = models.Book{
+	XYZ = books.Book{
 		Title:  "White Heat",
 		Author: "Dominic Sandbrook",
 		Copies: 2,

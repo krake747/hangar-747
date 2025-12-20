@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	"bookstore2/internal/client"
+	"bookstore2/core"
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	c := client.NewClient("localhost:3000")
+	c := core.NewClient("localhost:3000")
 	stock, err := c.AddCopies(ID, copies)
 	if err != nil {
 		fmt.Println(err)

@@ -4,9 +4,8 @@ import (
 	"log"
 	"os"
 
-	"bookstore2/internal/database"
-	"bookstore2/internal/handlers"
-	"bookstore2/internal/models"
+	"bookstore2/core"
+	"bookstore2/core/books"
 
 	"github.com/labstack/echo/v4"
 )
@@ -17,14 +16,14 @@ func main() {
 		dbPath = os.Args[1]
 	}
 
-	db, err := database.NewDB(dbPath)
+	db, err := core.NewDB(dbPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 
-	bookStore := models.NewBookStore(db)
-	h := handlers.NewHandler(bookStore)
+	bookStore := books.NewBookStore(db)
+	h := books.NewHandler(bookStore)
 
 	e := echo.New()
 

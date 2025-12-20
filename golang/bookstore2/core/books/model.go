@@ -43,7 +43,7 @@ func (bs *BookStore) GetAllBooks() ([]Book, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	_ = rows.Close()
 
 	var books []Book
 	for rows.Next() {
@@ -59,7 +59,8 @@ func (bs *BookStore) GetAllBooks() ([]Book, error) {
 
 func (bs *BookStore) GetBook(ID string) (Book, error) {
 	var b Book
-	err := bs.DB.QueryRow("SELECT id, title, author, copies FROM books WHERE id = ?", ID).Scan(&b.ID, &b.Title, &b.Author, &b.Copies)
+	err := bs.DB.QueryRow("SELECT id, title, author, copies FROM books WHERE id = ?", ID).
+		Scan(&b.ID, &b.Title, &b.Author, &b.Copies)
 	if err == sql.ErrNoRows {
 		return b, fmt.Errorf("ID %q not found", ID)
 	}
@@ -80,7 +81,7 @@ func (bs *BookStore) AddCopies(ID string, copies int) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	defer tx.Rollback()
+	defer func() { _ = tx.Rollback() }()
 
 	var currentCopies int
 	err = tx.QueryRow("SELECT copies FROM books WHERE id = ?", ID).Scan(&currentCopies)
@@ -106,7 +107,7 @@ func (bs *BookStore) SubCopies(ID string, copies int) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	defer tx.Rollback()
+	defer func() { _ = tx.Rollback() }()
 
 	var currentCopies int
 	err = tx.QueryRow("SELECT copies FROM books WHERE id = ?", ID).Scan(&currentCopies)
@@ -132,7 +133,8 @@ func (bs *BookStore) SubCopies(ID string, copies int) (int, error) {
 }
 
 func (bs *BookStore) AddBook(book Book) error {
-	_, err := bs.DB.Exec("INSERT INTO books (id, title, author, copies) VALUES (?, ?, ?, ?)", book.ID, book.Title, book.Author, book.Copies)
+	_, err := bs.DB.Exec("INSERT INTO books (id, title, author, copies) VALUES (?, ?, ?, ?)",
+		book.ID, book.Title, book.Author, book.Copies)
 	return err
 }
 

@@ -26,7 +26,7 @@ func main() {
 		logger.Error("Failed to initialize database", "error", err)
 		os.Exit(1)
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 
 	bookStore := books.NewBookStore(db)
 	h := books.NewHandler(logger, bookStore)
@@ -35,9 +35,10 @@ func main() {
 
 	e.HTTPErrorHandler = func(err error, c echo.Context) {
 		if pd, ok := err.(*shared.ProblemDetail); ok {
-			c.JSON(pd.Status, pd)
+			_ = c.JSON(pd.Status, pd)
 		} else {
-			c.JSON(http.StatusInternalServerError, shared.NewProblemDetail(http.StatusInternalServerError, "Internal Server Error", err.Error()))
+			_ = c.JSON(http.StatusInternalServerError,
+				shared.NewProblemDetail(http.StatusInternalServerError, "Internal Server Error", err.Error()))
 		}
 	}
 

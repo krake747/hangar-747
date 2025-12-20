@@ -1,6 +1,6 @@
-.PHONY: all build clean test gotest deps fmt fmt-md help
+.PHONY: all build clean test gotest deps fmt lint fmt-md help
 
-all: deps fmt test build
+all: deps fmt lint test build
 
 build:
 	@echo "Building CLIs..."
@@ -33,6 +33,13 @@ deps:
 	@if ! command -v gotestdox >/dev/null 2>&1; then \
 		go install github.com/bitfield/gotestdox/cmd/gotestdox@latest; \
 	fi
+	@if ! command -v golangci-lint >/dev/null 2>&1; then \
+		go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest; \
+	fi
+
+lint:
+	@echo "Running linter..."
+	$(shell go env GOPATH)/bin/golangci-lint run ./...
 
 fmt:
 	@echo "Formatting code..."
@@ -47,6 +54,7 @@ help:
 	@echo "  build    - Build all CLI applications"
 	@echo "  clean    - Clean build artifacts"
 	@echo "  test     - Run tests"
+	@echo "  lint     - Run linter"
 	@echo "  deps     - Download dependencies and install tools"
 	@echo "  fmt      - Format code"
 	@echo "  fmt-md   - Format markdown files"

@@ -126,3 +126,12 @@ func TestGetCopies_OnClientErrorsWhenBookNotFound(t *testing.T) {
 		t.Error("want error when book not found, got nil")
 	}
 }
+
+func TestAddCopies_OnClientErrorsWhenBookNotFound(t *testing.T) {
+	t.Parallel()
+	client := getTestClient(t)
+	_, err := client.AddCopies("bogus", 1)
+	if err == nil {
+		t.Error("want error when book not found, got nil")
+	}
+}

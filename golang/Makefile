@@ -1,10 +1,11 @@
 .PHONY: all fmt-md
 
-# Default target
 all:
 	cd bookstore && make all
+	cd bookstore2 && make all
 
-# Format root markdown files
 fmt-md:
 	@echo "Formatting root markdown files..."
 	npx prettier --write '*.md'
+	cd bookstore && make fmt-md
+	cd bookstore2 && make fmt-md

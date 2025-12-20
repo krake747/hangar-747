@@ -19,5 +19,13 @@ to interact.
 
 ## API & CLI
 
-**CLIs**: server, list, find <ID>, getcopies <ID>, addcopies <ID> <count>, subcopies <ID> <count>, client. Connect to
-localhost:3000 by default.
+**CLIs**:
+- server
+- list
+- find <ID>
+- getcopies <ID>
+- addcopies <ID> <count>
+- subcopies <ID> <count>
+- client
+
+Connect to localhost:3000 by default.

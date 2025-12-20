@@ -34,12 +34,7 @@ Migrating to Echo taught us the value of structured routing, where the framework
 
 ## Getting Started
 
-1. Install dependencies: `make deps`
-2. Run tests and linter: `make test && make lint`
-3. Build CLIs: `make build`
-4. Start the server: `./bin/server [db_path]`
-   - Defaults to `books.db` and `localhost:3000`.
-5. Use CLIs, e.g., `./bin/list` to view books.
+Run `make all` to install dependencies, lint, test, and build everything. Start the server with `./bin/server` (defaults to `localhost:3000` with `books.db`). Use CLI tools like `./bin/list` to interact.
 
 ## API Endpoints
 

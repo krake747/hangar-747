@@ -1,10 +1,10 @@
-name: "bookstore"
+name: "bookstore2"
 
 on:
   push:
     paths:
-      - "golang/bookstore/**"
-      - ".github/workflows/go-bookstore.yml"
+      - "golang/bookstore2/**"
+      - ".github/workflows/go-bookstore2.yml"
 
 jobs:
   test:
@@ -24,10 +24,10 @@ jobs:
 
       - name: Install dependencies
         run: |-
-          cd golang/bookstore
+          cd golang/bookstore2
           make deps
 
       - name: Run tests
         run: |-
-          cd golang/bookstore
+          cd golang/bookstore2
           make test

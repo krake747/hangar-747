@@ -116,7 +116,6 @@ func getTestBookStore(t *testing.T) *books.BookStore {
 	if err != nil {
 		t.Fatal(err)
 	}
-	// Create table and insert test data
 	_, err = db.Exec(`CREATE TABLE books (
 		id TEXT PRIMARY KEY,
 		title TEXT NOT NULL,

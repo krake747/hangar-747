@@ -13,7 +13,6 @@ func NewDB(dbPath string) (*sql.DB, error) {
 		return nil, err
 	}
 
-	// Run init script
 	initSQL, err := os.ReadFile("testdata/init.sql")
 	if err != nil {
 		return nil, err

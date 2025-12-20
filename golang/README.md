@@ -2,6 +2,11 @@
 
 This folder tracks my progress as I learn Go for cloud-native development and DevOps tooling.
 
+## Projects
+
+- [Bookstore](./bookstore/README.md) - Original file-based implementation
+- [Bookstore2](./bookstore2/README.md) - Modernized with Echo and SQLite
+
 ## Learning Resources
 
 - **[Tour of Go](https://go.dev/tour/)**
@@ -42,13 +47,23 @@ Since Job Arundel is a big fan of testing, I added a GitHub Actions workflow tha
 
 ## 2. Build a Simple Web API with Echo (Current)
 
-Next step:
+Focus areas:
 
 - set up an Echo project
-- basic routing
-- JSON responses
-- request handling
-- logging and middleware
-- containerizing the API
+- basic routing and middleware
+- JSON responses and error handling
+- database integration with SQLite
+- structured logging and testing
+- linting and CI/CD
 
-Goal: create a minimal Go web service to build on later.
+Goal: create a modern Go web service with best practices.
+
+### Reflections
+
+I migrated the original file-based bookstore to a database-backed API using Echo, learning the power of web frameworks for structured development. Echo simplified routing and middleware, allowing me to focus on business logic rather than low-level HTTP handling. Integrating SQLite taught me about transactions, prepared statements, and data persistence beyond files.
+
+Adopting structured logging with slog improved observability, and adding comprehensive tests ensured reliability. Setting up golangci-lint for code quality and GitHub Actions for CI expanded my DevOps skills, enforcing standards automatically.
+
+The migration highlighted the importance of modular architecture, separating handlers, models, and clients. I also learned about defer patterns for resource management and problem details for API errors. This project solidified my understanding of building production-ready Go services.
+
+I expanded the original CRUD operations, added proper error responses, and integrated tooling for maintainability. The journey from simple file storage to a robust API demonstrated Go's strengths in web development.

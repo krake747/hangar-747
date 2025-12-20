@@ -79,6 +79,9 @@ func (client *Client) GetCopies(ID string) (int, error) {
 
 func (client *Client) AddCopies(ID string, copies int) (int, error) {
 	url := client.addr + "/v1/addcopies/" + ID + "/" + fmt.Sprintf("%d", copies)
+	if !strings.HasPrefix(url, "http://") {
+		url = "http://" + url
+	}
 	resp, err := http.Post(url, "application/json", nil)
 	if err != nil {
 		return 0, err
@@ -101,6 +104,9 @@ func (client *Client) AddCopies(ID string, copies int) (int, error) {
 
 func (client *Client) SubCopies(ID string, copies int) (int, error) {
 	url := client.addr + "/v1/subcopies/" + ID + "/" + fmt.Sprintf("%d", copies)
+	if !strings.HasPrefix(url, "http://") {
+		url = "http://" + url
+	}
 	resp, err := http.Post(url, "application/json", nil)
 	if err != nil {
 		return 0, err

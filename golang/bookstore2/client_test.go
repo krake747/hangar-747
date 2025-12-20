@@ -9,6 +9,7 @@ import (
 
 	"bookstore2/core"
 	"bookstore2/core/books"
+
 	"github.com/labstack/echo/v4"
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -20,7 +21,6 @@ func getTestClient(t *testing.T) *core.Client {
 
 	// Init DB
 	db := initTestDB(t)
-	t.Cleanup(func() { db.Close() })
 
 	bookStore := books.NewBookStore(db)
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))

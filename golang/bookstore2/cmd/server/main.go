@@ -2,10 +2,12 @@ package main
 
 import (
 	"log/slog"
+	"net/http"
 	"os"
 
 	"bookstore2/core"
 	"bookstore2/core/books"
+	"bookstore2/core/shared"
 
 	"github.com/labstack/echo/v4"
 )
@@ -30,6 +32,14 @@ func main() {
 	h := books.NewHandler(logger, bookStore)
 
 	e := echo.New()
+
+	e.HTTPErrorHandler = func(err error, c echo.Context) {
+		if pd, ok := err.(*shared.ProblemDetail); ok {
+			c.JSON(pd.Status, pd)
+		} else {
+			c.JSON(http.StatusInternalServerError, shared.NewProblemDetail(http.StatusInternalServerError, "Internal Server Error", err.Error()))
+		}
+	}
 
 	e.GET("/", func(c echo.Context) error {
 		return c.String(200, "Welcome to the Bookstore API")

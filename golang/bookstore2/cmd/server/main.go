@@ -28,6 +28,9 @@ func main() {
 
 	e := echo.New()
 
+	e.GET("/", func(c echo.Context) error {
+		return c.String(200, "Welcome to the Bookstore API")
+	})
 	e.GET("/v1/list", h.ListBooks)
 	e.GET("/v1/find/:id", h.FindBook)
 	e.GET("/v1/getcopies/:id", h.GetCopies)

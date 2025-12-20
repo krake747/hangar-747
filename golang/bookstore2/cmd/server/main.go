@@ -50,8 +50,8 @@ func main() {
 	e.GET("/v1/list", h.ListBooks)
 	e.GET("/v1/find/:id", h.FindBook)
 	e.GET("/v1/getcopies/:id", h.GetCopies)
-	e.GET("/v1/addcopies/:id/:copies", h.AddCopies)
-	e.GET("/v1/subcopies/:id/:copies", h.SubCopies)
+	e.POST("/v1/addcopies/:id/:copies", h.AddCopies)
+	e.POST("/v1/subcopies/:id/:copies", h.SubCopies)
 
 	addr := "localhost:3000"
 	logger.Info("Starting server", "addr", addr, "dbPath", dbPath)

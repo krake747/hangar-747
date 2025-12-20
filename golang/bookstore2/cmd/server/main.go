@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"log/slog"
 	"os"
 
 	"bookstore2/core"
@@ -11,14 +11,18 @@ import (
 )
 
 func main() {
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+
 	dbPath := "books.db"
 	if len(os.Args) > 1 {
 		dbPath = os.Args[1]
 	}
 
+	logger.Info("Initializing database", "path", dbPath)
 	db, err := core.NewDB(dbPath)
 	if err != nil {
-		log.Fatal(err)
+		logger.Error("Failed to initialize database", "error", err)
+		os.Exit(1)
 	}
 	defer db.Close()
 
@@ -37,6 +41,10 @@ func main() {
 	e.GET("/v1/subcopies/:id/:copies", h.SubCopies)
 
 	addr := "localhost:3000"
-	log.Printf("Starting server on %s with DB %s", addr, dbPath)
-	log.Fatal(e.Start(addr))
+	logger.Info("Starting server", "addr", addr, "dbPath", dbPath)
+	logger.Info("Server started successfully", "addr", addr)
+	if err := e.Start(addr); err != nil {
+		logger.Error("Failed to start server", "error", err)
+		os.Exit(1)
+	}
 }

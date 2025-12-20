@@ -30,11 +30,21 @@ Through the migration, we added:
 
 ## Learnings from Migrating to Echo
 
-Migrating to Echo taught us the value of structured routing, where the framework's router makes it straightforward to define and match API endpoints without manual path parsing. We discovered the power of middleware for centralizing cross-cutting concerns, such as error handling, logging, and request processing, which improves maintainability. Context management with echo.Context became essential for cleanly handling request lifecycles, including validation and responses. For error handling, adopting structured problem details resulted in more informative and consistent API responses. Testing became more robust with Echo's utilities, simplifying the creation of integration tests for HTTP endpoints. Finally, embracing database transactions ensured data consistency and better concurrency handling compared to file-based storage.
+Migrating to Echo taught us the value of structured routing, where the framework's router makes it
+straightforward to define and match API endpoints without manual path parsing. We discovered the
+power of middleware for centralizing cross-cutting concerns, such as error handling, logging, and
+request processing, which improves maintainability. Context management with echo.Context became
+essential for cleanly handling request lifecycles, including validation and responses. For error
+handling, adopting structured problem details resulted in more informative and consistent API
+responses. Testing became more robust with Echo's utilities, simplifying the creation of integration
+tests for HTTP endpoints. Finally, embracing database transactions ensured data consistency and
+better concurrency handling compared to file-based storage.
 
 ## Getting Started
 
-Run `make all` to install dependencies, lint, test, and build everything. Start the server with `./bin/server` (defaults to `localhost:3000` with `books.db`). Use CLI tools like `./bin/list` to interact.
+Run `make all` to install dependencies, lint, test, and build everything. Start the server with
+`./bin/server` (defaults to `localhost:3000` with `books.db`). Use CLI tools like `./bin/list` to
+interact.
 
 ## API Endpoints
 

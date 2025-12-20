@@ -35,6 +35,7 @@ interact.
 ## API & CLI
 
 **CLIs**:
+
 - server
 - list
 - find <ID>

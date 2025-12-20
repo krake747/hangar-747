@@ -70,9 +70,12 @@ simple cases but falls short for real applications. Integrating SQLite is a step
 actual database, providing ACID transactions and efficient queries, much like working with a
 relational database like PostgreSQL or SQL Server.
 
-Structured logging with slog parallels Serilog, both serving as stepping stones to OpenTelemetry for distributed tracing. Testing in Go is straightforward like xUnit, with built-in runners and table-driven tests.
+Structured logging with slog parallels Serilog, both serving as stepping stones to OpenTelemetry for
+distributed tracing. Testing in Go is straightforward like xUnit, with built-in runners and
+table-driven tests.
 
-Adding golangci-lint into CI/CD, like Roslyn analyzers, ensures code quality automatically. GitHub Actions expands my CI/CD knowledge beyond Azure Pipelines for cloud-native automation.
+Adding golangci-lint into CI/CD, like Roslyn analyzers, ensures code quality automatically. GitHub
+Actions expands my CI/CD knowledge beyond Azure Pipelines for cloud-native automation.
 
 Defer patterns for cleanup are new, replacing C#'s using statements. There's no dependency injection
 here, unlike .NET's common DI containers. Overall, this project teaches me Go's simplicity and

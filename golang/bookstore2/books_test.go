@@ -64,6 +64,20 @@ func TestAddBook_AddsGivenBookToBookStore(t *testing.T) {
 	}
 }
 
+func TestAddBook_ReturnsErrorIfIDExists(t *testing.T) {
+	t.Parallel()
+	bs := getTestBookStore(t)
+	err := bs.AddBook(books.Book{
+		ID:     "abc", // exists in init
+		Title:  "Duplicate",
+		Author: "Test",
+		Copies: 1,
+	})
+	if err == nil {
+		t.Error("want error for duplicate ID, got nil")
+	}
+}
+
 func TestSetCopies_SetsNumberOfCopiesToGivenValue(t *testing.T) {
 	t.Parallel()
 	book := books.Book{

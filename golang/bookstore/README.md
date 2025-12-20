@@ -14,10 +14,10 @@ listing, finding, and updating inventory. CLI tools provide easy interaction wit
 ## Getting Started
 
 Run `make all` to install dependencies, test, and build everything. Start the server with
-`./bin/server` (defaults to `localhost:8080` with `catalog` file). Use CLI tools like `./bin/list`
+`./bin/server` (defaults to `localhost:3000` with `catalog` file). Use CLI tools like `./bin/list`
 to interact.
 
 ## API & CLI
 
-**CLIs**: server, list, find <ID>, add <ID> <Title> <Author>, setcopies <ID> <Count>. Connect to
+**CLIs**: server, list, find <ID>, getcopies <ID>, addcopies <ID> <count>, subcopies <ID> <count>, client. Connect to
 localhost:3000 by default.

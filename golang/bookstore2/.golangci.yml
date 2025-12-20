@@ -1,3 +1,5 @@
+version: "2"
+
 run:
   timeout: 5m
   issues-exit-code: 1
@@ -5,21 +7,10 @@ run:
 
 linters:
   enable:
-    - gofmt
-    - goimports
     - govet
     - ineffassign
     - staticcheck
     - unused
     - lll
 
-linters-settings:
-  gofmt:
-    simplify: true
-  goimports:
-    local-prefixes: bookstore2
-  lll:
-    line-length: 120
 
-issues:
-  exclude-use-default: false

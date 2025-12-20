@@ -20,59 +20,17 @@ serving. This migration introduces:
 ## Features
 
 Through the migration, we added:
-
 - RESTful API with JSON responses and consistent error handling.
 - Middleware for problem details (RFC 7807) to improve API usability.
 - Structured logging with slog for better observability.
-- Comprehensive test suite with parallel execution.
-- CLI tools for all inventory operations.
 - SQLite database with transactions for data integrity.
-
-## Learnings from Migrating to Echo
-
-Migrating to Echo taught us the value of structured routing, where the framework's router makes it
-straightforward to define and match API endpoints without manual path parsing. We discovered the
-power of middleware for centralizing cross-cutting concerns, such as error handling, logging, and
-request processing, which improves maintainability. Context management with echo.Context became
-essential for cleanly handling request lifecycles, including validation and responses. For error
-handling, adopting structured problem details resulted in more informative and consistent API
-responses. Testing became more robust with Echo's utilities, simplifying the creation of integration
-tests for HTTP endpoints. Finally, embracing database transactions ensured data consistency and
-better concurrency handling compared to file-based storage.
 
 ## Getting Started
 
-Run `make all` to install dependencies, lint, test, and build everything. Start the server with
-`./bin/server` (defaults to `localhost:3000` with `books.db`). Use CLI tools like `./bin/list` to
-interact.
+Run `make all` to install dependencies, lint, test, and build everything. Start the server with `./bin/server` (defaults to `localhost:3000` with `books.db`). Use CLI tools like `./bin/list` to interact.
 
-## API Endpoints
+## API & CLI
 
-- `GET /v1/list`: List all books.
-- `GET /v1/find/{id}`: Find a book by ID.
-- `GET /v1/getcopies/{id}`: Get stock for a book.
-- `POST /v1/addcopies/{id}/{count}`: Add stock.
-- `POST /v1/subcopies/{id}/{count}`: Subtract stock.
+**Endpoints**: GET /v1/list, GET /v1/find/{id}, GET /v1/getcopies/{id}, POST /v1/addcopies/{id}/{count}, POST /v1/subcopies/{id}/{count}. All return JSON; errors use problem details.
 
-All endpoints return JSON; errors use problem details format.
-
-## CLI Tools
-
-- `server`: Start the HTTP server.
-- `list`: List all books.
-- `find <ID>`: Find a book by ID.
-- `getcopies <ID>`: Get stock for a book.
-- `addcopies <ID> <count>`: Add stock.
-- `subcopies <ID> <count>`: Subtract stock.
-- `client`: Test server connectivity.
-
-All CLIs connect to `localhost:3000` by default.
-
-## Development
-
-- Format code: `make fmt`
-- Run tests: `make test`
-- Lint code: `make lint`
-- Build all: `make all`
-
-Learned to integrate linting and formatting into the workflow for consistent code quality.
+**CLIs**: server, list, find <ID>, getcopies <ID>, addcopies <ID> <count>, subcopies <ID> <count>, client. Connect to localhost:3000 by default.

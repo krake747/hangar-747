@@ -60,10 +60,19 @@ Goal: create a modern Go web service with best practices.
 
 ### Reflections
 
-Focusing on translating C# skills to Go, I migrate the file-based bookstore to an Echo and SQLite API. This highlights the differences: Echo's routing feels similar to ASP.NET middleware, but Go's explicit error handling contrasts with C#'s exceptions.
+Focusing on translating C# skills to Go, I migrate the file-based bookstore to an Echo and SQLite
+API. Echo's routing and middleware feel similar to .NET's minimal API and middleware integration,
+but Go's explicit error handling contrasts with C#'s exceptions. Problem details for API errors
+mirror .NET's structured responses.
 
-File-based persistence lacks proper concurrency, transactions, and query performance – it's fine for simple cases but falls short for real applications. Integrating SQLite is a step up since it's an actual database, providing ACID transactions and efficient queries. It reminds me of ADO.NET and Dapper, but Go's sql package requires more manual work with prepared statements – a trade-off for performance and control compared to Entity Framework.
+File-based persistence lacks proper concurrency, transactions, and query performance – it's fine for
+simple cases but falls short for real applications. Integrating SQLite is a step up since it's an
+actual database, providing ACID transactions and efficient queries, much like working with SQL Server
+in .NET.
 
-Structured logging with slog parallels Serilog, and testing in Go is straightforward like xUnit. Setting up golangci-lint and GitHub Actions expands my CI knowledge, automating quality like in Azure DevOps.
+Structured logging with slog parallels Serilog, and testing in Go is straightforward like xUnit.
+Setting up golangci-lint and GitHub Actions expands my CI/CD knowledge.
 
-Defer patterns for cleanup are new, replacing C#'s using statements. Overall, this project teaches me Go's simplicity and efficiency, building on my C# foundations for maintainable services.
+Defer patterns for cleanup are new, replacing C#'s using statements. There's no dependency injection
+here, unlike .NET's common DI containers. Overall, this project teaches me Go's simplicity and
+efficiency, building on my C# foundations for maintainable services.

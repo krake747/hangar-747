@@ -83,3 +83,12 @@ func TestGetAllBooks_OnClientReturnsAllBooks(t *testing.T) {
 		}
 	}
 }
+
+func TestGetBook_OnClientReturnsErrorWhenBookNotFound(t *testing.T) {
+	t.Parallel()
+	client := getTestClient(t)
+	_, err := client.GetBook("bogus")
+	if err == nil {
+		t.Error("want error when book not found, got nil")
+	}
+}

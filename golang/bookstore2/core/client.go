@@ -25,7 +25,7 @@ func (client *Client) MakeAPIRequest(URI string, result any) error {
 	if err != nil {
 		return err
 	}
-	defer func() { _ = resp.Body.Close() }()
+	defer resp.Body.Close() //nolint:errcheck
 	if resp.StatusCode == http.StatusNotFound {
 		return errors.New("not found")
 	}

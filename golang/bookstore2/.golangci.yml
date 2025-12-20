@@ -1,4 +1,3 @@
-
 version: "2"
 
 run:
@@ -19,9 +18,17 @@ linters:
 
 formatters:
   enable:
+    - gofmt
     - gofumpt
     - goimports
   settings:
+    gofmt:
+      simplify: false
+      rewrite-rules:
+        - pattern: "interface{}"
+          replacement: "any"
+        - pattern: "a[b:len(a)]"
+          replacement: "a[b:]"
     gofumpt:
       module-path: bookstore2
       extra-rules: true

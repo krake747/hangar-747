@@ -97,6 +97,41 @@ func TestAddCopies_CorrectlyUpdatesStockLevel(t *testing.T) {
 	}
 }
 
+func TestSubCopies_CorrectlyUpdatesStockLevel(t *testing.T) {
+	t.Parallel()
+	bs := getTestBookStore(t)
+	copies, err := bs.GetCopies("abc")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if copies != 1 {
+		t.Fatalf("want 1 copy before change, got %d", copies)
+	}
+	stock, err := bs.SubCopies("abc", 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if stock != 0 {
+		t.Fatalf("want 0 copies after change, got %d", stock)
+	}
+}
+
+func TestSubCopies_FailsIfStockLevelTooLow(t *testing.T) {
+	t.Parallel()
+	bs := getTestBookStore(t)
+	copies, err := bs.GetCopies("abc")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if copies != 1 {
+		t.Fatalf("want 1 copy before change, got %d", copies)
+	}
+	_, err = bs.SubCopies("abc", 2)
+	if err == nil {
+		t.Error("want error when subtracting more than available, got nil")
+	}
+}
+
 func TestSetCopies_SetsNumberOfCopiesToGivenValue(t *testing.T) {
 	t.Parallel()
 	book := books.Book{

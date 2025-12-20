@@ -1,30 +1,19 @@
 # Bookstore
 
-A simple book inventory management system built with Go, using file-based storage.
+This was my starting point in building a Go web application, using simple file-based storage to learn the fundamentals of HTTP servers and data management.
+
+Built with basic net/http and JSON files, it taught me the basics of routing, concurrency with sync.RWMutex, and simple API design before evolving into the more advanced bookstore2.
 
 ## Features
 
-- Manage a catalog of books with title, author, and stock levels.
-- RESTful API for listing, finding, and updating book inventory.
-- CLI tools for interacting with the server.
+You can manage a catalog of books with titles, authors, and stock levels. The RESTful API allows listing, finding, and updating inventory. CLI tools provide easy interaction with the server.
 
 ## Getting Started
 
-Run `make all` to install dependencies, test, and build. Start the server with `./bin/server [catalog_path]` (defaults to `catalog` and `localhost:8080`). Use CLIs like `./bin/list` to interact.
+Run `make all` to install dependencies, test, and build everything. Start the server with `./bin/server` (defaults to `localhost:8080` with `catalog` file). Use CLI tools like `./bin/list` to interact.
 
-## API Endpoints
+## API & CLI
 
-- `GET /list`: List all books.
-- `GET /find/{id}`: Find a book by ID.
-- `POST /add/{id}/{title}/{author}`: Add a book.
-- `POST /setcopies/{id}/{count}`: Set stock.
+**Endpoints**: GET /list, GET /find/{id}, POST /add/{id}/{title}/{author}, POST /setcopies/{id}/{count}. All return JSON.
 
-## CLI Tools
-
-- `server`: Start the HTTP server.
-- `list`: List all books.
-- `find <ID>`: Find a book by ID.
-- `add <ID> <Title> <Author>`: Add a book.
-- `setcopies <ID> <Count>`: Set stock.
-
-All CLIs connect to `localhost:8080` by default.
+**CLIs**: server, list, find <ID>, add <ID> <Title> <Author>, setcopies <ID> <Count>. Connect to localhost:8080 by default.

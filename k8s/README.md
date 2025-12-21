@@ -8,30 +8,42 @@ orchestration by providing hands-on experience with Kubernetes resources and dep
 ## Essential K8s manifests
 
 - `hangar-namespace.yml`: A manifest to create a dedicated namespace for hangar-related resources.
-- `hangar-ingress.yml`: A manifest to set up ingress rules for routing traffic to hangar services.
 - `skyops.yml`: A manifest to deploy the SkyOps outside facing web api.
 - `skyhelp.yml`: A manifest to deploy the SkyHelp internal microservice.
 
 I run in the `/dotnet` directory `bash build.sh` to create the docker images for SkyOps and SkyHelp.
-Then I run `bash apply.sh` in this directory to deploy the manifests to my local Minikube.
+Then I run `bash load.sh` to load the docker images to Minikube and `bash apply.sh` in this
+directory to deploy the manifests to my local Minikube.
+
+We either portforward the services or use Minikube's service command to access the SkyOps API.
+
+```bash
+minikube service skyops --url -n hangar
+```
+
+We can test the SkyOps API which internally calls the SkyHelp microservice like this (depends on the
+tunnel port):
+
+```bash
+curl http://127.0.0.1:41589/redirect/skyhelp
+```
 
 ## Reflections
 
 As a fullstack developer, diving into Kubernetes is essential for my workflows. I need to be able to
-build and deploy the web applications I create.
+build, configure and deploy the web applications I create.
 
-For this project, I focused on understanding core Kubernetes concepts like namespaces, deployments
-and services. Deployments run app containers. They ensure apps are always running. Services expose
-my deployments so other parts of your app can reach them.
+For this project, I focused on understanding core Kubernetes concepts like namespaces, deployments ,
+services and config maps. Deployments run app containers. They ensure apps are always running.
+Services expose my deployments so other parts of your app can reach them. ConfigMap stores
+configuration data separately from code, making it easier to manage settings without changing the
+app itself.
 
 - SkyOps is the external-facing API created as a `NodePort` service.
 - SkyHelp is an internal microservice created as a `ClusterIP` service.
 
 For internal communication Services get DNS names like `skyhelp.hangar.svc.cluster.local`. This
 allows SkyOps to call SkyHelp securely within the cluster.
-
-There are still more advanced topics like Helm charts, operators, and cluster management that I need
-to explore further.
 
 I mostly followed standard Kubernetes patterns to deploy the SkyOps and SkyHelp microservices in
 this repo. Setting up ingress for external access while keeping SkyHelp internal-only was a good

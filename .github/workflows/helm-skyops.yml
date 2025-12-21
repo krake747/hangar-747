@@ -1,0 +1,32 @@
+name: "helm-skyops"
+
+on:
+  push:
+    paths:
+      - "helm/skyops/**"
+      - ".github/workflows/helm-skyops.yml"
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.15.2
+
+      - name: Lint Helm chart
+        run: helm lint helm/skyops
+
+      - name: Package Helm chart
+        run: helm package helm/skyops
+
+      - name: Upload packaged chart
+        uses: actions/upload-artifact@v4
+        with:
+          name: skyops-chart
+          path: |
+            skyops-*.tgz

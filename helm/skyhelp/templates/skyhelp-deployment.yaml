@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: skyhelp
+  name: skyhelp
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.skyhelp.replicas }}
+  selector:
+    matchLabels:
+      app: skyhelp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: skyhelp
+    spec:
+      containers:
+        - name: skyhelp
+          image: {{ .Values.skyhelp.image }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .Values.skyhelp.service.targetPort }}
+          resources: {{ toYaml .Values.skyhelp.resources | nindent 12 }}

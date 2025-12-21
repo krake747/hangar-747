@@ -1,64 +1,85 @@
-# Helm
+# Helm Charts for Hangar
 
-Helm helps me manage Kubernetes applications.
+This directory contains Helm charts for deploying Hangar applications to Kubernetes.
 
-A *Chart* is a Helm package. It contains all of the resource definitions necessary to run an
-application, tool, or service inside of a Kubernetes cluster.
+## Reflections
 
-A *Repository* is the place where charts can be collected and shared. See
-[Artifacthub.io](https://artifacthub.io/)
+As a fullstack developer, using Helm is important for managing complex Kubernetes deployments. It
+allows me to package applications with configurations, dependencies, and templating for reusability
+across environments. For now, there is no separate environment, but Helm charts will make
+that transition easier in the future.
 
-A *Release* is an instance of a chart running in a Kubernetes cluster. One chart can often be
-installed many times into the same cluster.
+For this project, I focused on core Helm concepts like charts, templates, values, and releases.
+Charts bundle Kubernetes manifests into versioned packages. Templates enable dynamic rendering with
+Helm templating. Values provide parameterization for customization. Releases track installations and
+upgrades.
 
-Helm installs *charts* into Kubernetes, creating a new *release* for each installation. And to find
-new charts, you can search Helm chart *repositories*.
+- SkyOps chart packages the external API with NodePort service and environment configurations.
+- SkyHelp chart packages the internal microservice with ClusterIP service and resource limits.
 
-## Setup Helm
+This modular approach with separate charts improved maintainability compared to raw YAMLs.
+Integrating Helm into CI/CD pipelines ensures consistent, reproducible deployments.
 
-We first need a Kubernetes cluster that is up and running. For now I am using Minikube.
+## Available Charts
 
-To install helm on WSL we can run:
+- `helm/skyops`: Chart for SkyOps (external API service)
+- `helm/skyhelp`: Chart for SkyHelp (internal microservice)
 
-```shell
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4 | bash
+## Installation
+
+```bash
+# Install SkyHelp first (dependency for SkyOps)
+helm install skyhelp ./helm/skyhelp --create-namespace --namespace hangar
+
+# Then install SkyOps
+helm install skyops ./helm/skyops --namespace hangar
 ```
 
-To update Helm to latest version:
+Or use the simple script: `bash apply.sh` (from the `helm/` directory)
 
-```shell
-helm repo update
+## Dry Run (Validation)
+
+Validate charts before deployment
+
+### Dry-run install
+
+```bash
+helm install skyhelp ./helm/skyhelp --namespace hangar --dry-run=client
+helm install skyops ./helm/skyops --namespace hangar --dry-run=client
 ```
 
-## Initialize a Helm Chart repository
+### Dry-run templates
 
-```shell
-helm repo add bitnami https://charts.bitnami.com/bitnami
+```bash
+helm template skyhelp ./helm/skyhelp --namespace hangar
+helm template skyops ./helm/skyops --namespace hangar
 ```
 
-## Install a Helm chart
+## Upgrading
 
-This will install the `nginx` chart
-
-```shell
-helm install my-nginx bitnami/nginx
+```bash
+helm upgrade skyhelp ./helm/skyhelp --namespace hangar
+helm upgrade skyops ./helm/skyops --namespace hangar
 ```
 
-## List Helm releases
+## Uninstalling
 
-```shell
-helm list
+```bash
+helm uninstall skyops --namespace hangar
+helm uninstall skyhelp --namespace hangar
 ```
 
-## Uninstall a Helm chart
+## Configuration
 
-```shell
-helm uninstall my-nginx
-```
+Customize deployments by editing `values.yaml` in each chart directory. Common parameters:
 
-## Getting Started with Helm
+- `image`: Docker image tag
+- `replicas`: Number of pod replicas
+- `service.port`: Service port
+- `resources`: CPU/memory limits and requests
 
-To learn more about Helm and how to write Helm templates I follow the official
-[Getting started](https://helm.sh/docs/chart_template_guide/getting_started/) guide.
+## Additional Resources
 
-In that guide we create a Helm chart from scratch.
+- [Helm Getting Started](https://helm.sh/docs/chart_template_guide/getting_started/)
+- [Helm Chart Best Practices](https://helm.sh/docs/chart_best_practices/)
+- [Helm Template Guide](https://helm.sh/docs/chart_template_guide/)

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: skyops
+  namespace: {{ .Values.namespace }}
+data:
+  Networking__SkyHelp: "http://skyhelp.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.skyhelp.service.port }}/"

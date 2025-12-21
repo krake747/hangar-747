@@ -1,0 +1,14 @@
+{
+    "lsp": {
+        "helm_ls": {
+            "settings": {
+                "helm-ls": {
+                    "logLevel": "info",
+                    "yamlls": {
+                        "enabled": true
+                    }
+                }
+            }
+        }
+    }
+}

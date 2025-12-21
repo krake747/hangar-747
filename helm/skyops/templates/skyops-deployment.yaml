@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: skyops
+  name: skyops
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.skyops.replicas }}
+  selector:
+    matchLabels:
+      app: skyops
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: skyops
+    spec:
+      containers:
+        - name: skyops
+          image: {{ .Values.skyops.image }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .Values.skyops.service.targetPort }}
+          resources: {{ toYaml .Values.skyops.resources | nindent 12 }}
+          env:
+            - name: Networking__SkyHelp
+              value: "http://skyhelp.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.skyhelp.service.port }}/"

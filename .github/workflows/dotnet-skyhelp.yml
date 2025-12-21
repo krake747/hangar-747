@@ -1,0 +1,32 @@
+name: "skyhelp"
+
+on:
+  push:
+    paths:
+      - "dotnet/SkyHelp/**"
+      - ".github/workflows/dotnet-skyhelp.yml"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dotnet/SkyHelp
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal

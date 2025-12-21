@@ -1,0 +1,32 @@
+name: "helm-skyhelp"
+
+on:
+  push:
+    paths:
+      - "helm/skyhelp/**"
+      - ".github/workflows/helm-skyhelp.yml"
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v4.0.4
+
+      - name: Lint Helm chart
+        run: helm lint helm/skyhelp
+
+      - name: Package Helm chart
+        run: helm package helm/skyhelp
+
+      - name: Upload packaged chart
+        uses: actions/upload-artifact@v4
+        with:
+          name: skyhelp-chart
+          path: |
+            skyhelp-*.tgz

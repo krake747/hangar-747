@@ -54,11 +54,6 @@ spec:
                 configMapKeyRef:
                   name: skyops
                   key: Networking__SkyOps
-            - name: Networking__SkyConvert
-              valueFrom:
-                configMapKeyRef:
-                  name: skyops
-                  key: Networking__SkyConvert
 status: {}
 
 ---

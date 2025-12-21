@@ -1,10 +1,10 @@
-## Hangar 747
+# Hangar 747
 
-The first thing I want to create is a _namespace_ called `hangar-747` to organise my resources.
+The first thing I want to create is a _namespace_ called `hangar` to organise my resources.
 Then I want to create the _deployment_ which will manage and create the pods. Finally, I want to
 create the _service_ which will expose my deployment to network traffic.
 
-### Namespace
+## Namespace
 
 What is a `k8s` namespace?
 
@@ -13,13 +13,8 @@ ingresses, etc live in a namespace.
 
 How to list `k8s` namespaces?
 
-```shell
+```bash
 k get namespaces
-```
-
-Alternatively, this is the shorthand command
-
-```shell
 k get ns
 ```
 
@@ -28,39 +23,39 @@ docs.
 
 How to create a namespace file?
 
-```shell
-k create ns hangar-747 --dry-run=client -o yaml > namespace.yaml
+```bash
+k create ns hangar --dry-run=client -o yaml > hangar-namespace.yaml
 ```
 
 Here, we can remove the `creationTimestamp: null` property, since it can't be set manually
 
 How to apply the namespace?
 
-```shell
+```bash
 k apply -f namespace.yaml
 ```
 
 How to get the current context and then set it to this namespace? (This way we avoid writing `-n`
 everywhere)
 
-```shell
+```bash
 k config current-context
-k config set-context --current --namespace=hangar-747
+k config set-context --current --namespace=hangar
 ```
 
 How to describe a namespace>
 
-```shell
-k describe ns hangar-747
+```bash
+k describe ns hangar
 ```
 
 How to delete a namespace?
 
-```shell
-k delete ns hangar-747
+```bash
+k delete ns hangar
 ```
 
-### Deployment
+## Deployment
 
 What is a `k8s` deployment?
 
@@ -68,13 +63,13 @@ A **deployment** manages pods. We create the deployment instead of managing pods
 
 How to get a deployment?
 
-```shell
+```bash
 k get deployment
 ```
 
 Alternatively, this is the shorthand command
 
-```shell
+```bash
 k get deploy
 ```
 
@@ -83,7 +78,7 @@ How to create a deployment?
 The following command will create a deployment called `my-nginx` using the official `nginx` image
 with 3 replicas.
 
-```shell
+```bash
 k create deploy my-nginx --image=nginx --replicas=3
 ```
 
@@ -92,7 +87,7 @@ How to create a deployment from a local image?
 Minikube has its own Docker daemon, so we just need to load the image from our local Docker
 environment into Minikube's Docker registry.
 
-```shell
+```bash
 minikube image load skyops:latest
 ```
 
@@ -101,20 +96,20 @@ How do know if the image got loaded correctly?
 This command will let us point the our local Docker environment to Minikube's Docker daemon and
 allow us to list the images.
 
-```shell
+```bash
 eval $(minikube -p minikube docker-env)
 docker images | grep skyops
 ```
 
 To revert the changes we can run
 
-```shell
+```bash
 eval $(minikube -p minikube docker-env --unset)
 ```
 
 Once we know it is loaded in Minikube we run our deployment
 
-```shell
+```bash
 k create deploy skyops --image=skyops --dry-run=client -o yaml > deployment.yaml
 ```
 
@@ -132,14 +127,14 @@ spec:
 
 How to apply the deployment?
 
-```shell
+```bash
 k apply -f deployment.yaml
 ```
 
 How to delete a deployment?
 
-```shell
-k delete deploy hangar-747
+```bash
+k delete deploy hangar
 ```
 
 How can we access the pod from outside of the cluster without a service?
@@ -169,19 +164,19 @@ There are four different types of `k8s` services:
 
 How to get a service?
 
-```shell
+```bash
 k get service
 ```
 
 Alternatively, this is the shorthand command
 
-```shell
+```bash
 k get svc
 ```
 
 Or we need to additionally specify the namespace:
 
-```shell
+```bash
 k get svc -n=default
 ```
 
@@ -191,7 +186,7 @@ How to create a service?
 
 This is the default type for a Kubernetes service.
 
-```shell
+```bash
 k expose deploy skyops --type=ClusterIP --port=7000 --target-port=8080 --dry-run=client -o yaml > clusterip-service.yaml
 ```
 
@@ -205,7 +200,7 @@ We can use `k port-forward service/skyops 7000:7000` to expose it and test via
 
 **NodePort**
 
-```shell
+```bash
 k expose deploy skyops --type=NodePort --port=7000 --target-port=8080 --dry-run=client -o yaml > service.yaml
 ```
 
@@ -214,13 +209,13 @@ k expose deploy skyops --type=NodePort --port=7000 --target-port=8080 --dry-run=
 
 How to apply a service?
 
-```shell
+```bash
 k apply -f service.yaml
 ```
 
 We do the NodePort example here. Once it is applied we run
 
-```shell
+```bash
 k get svc skyops -o wide
 ```
 
@@ -232,8 +227,8 @@ We should see something like this:
 
 This creates a tunnel to access (might be related to using docker driver on linux)
 
-```shell
-minikube service skyops -n hangar-747
+```bash
+minikube service skyops -n hangar
 ```
 
 This provides a url that we can access.

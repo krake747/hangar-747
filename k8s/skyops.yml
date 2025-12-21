@@ -49,11 +49,11 @@ spec:
               cpu: "250m"
               memory: "256Mi"
           env:
-            - name: Networking__SkyOps
+            - name: Networking__SkyHelp
               valueFrom:
                 configMapKeyRef:
                   name: skyops
-                  key: Networking__SkyOps
+                  key: Networking__SkyHelp
 status: {}
 
 ---
@@ -63,4 +63,4 @@ metadata:
   name: skyops
   namespace: hangar
 data:
-  Networking__SkyOps: "http://skyops.hangar.svc.cluster.local:7000/"
+  Networking__SkyHelp: "http://skyhelp.hangar.svc.cluster.local:7010/"

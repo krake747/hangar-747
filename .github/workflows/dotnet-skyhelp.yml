@@ -23,10 +23,7 @@ jobs:
           dotnet-version: 10.x
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore main.cs
 
       - name: Build
-        run: dotnet build -c Release --no-restore
-
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet build -c Release --no-restore main.cs

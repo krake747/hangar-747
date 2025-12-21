@@ -119,21 +119,21 @@ spec:
       resources: {}
 ```
 
-How to apply the deployment?
+### How to apply the deployment?
 
 ```bash
 k apply -f deployment.yml
 ```
 
-How to delete a deployment?
+### How to delete a deployment?
 
 ```bash
 k delete deploy hangar
 ```
 
-How can we access the pod from outside of the cluster without a service?
+### How can we access the pod from outside of the cluster without a service?
 
-```
+```bash
 k get pods
 k port-forward pod/<entire pod-name> 7001:8080
 ```
@@ -156,15 +156,10 @@ There are four different types of `k8s` services:
 3. `LoadBalancer` - External load balancer (often in cloud)
 4. `ExternalName` - Maps a service to an external DNS name
 
-How to get a service?
+### How to get a service?
 
 ```bash
 k get service
-```
-
-Alternatively, this is the shorthand command
-
-```bash
 k get svc
 ```
 
@@ -174,7 +169,7 @@ Or we need to additionally specify the namespace:
 k get svc -n=default
 ```
 
-How to create a service?
+### How to create a service?
 
 **ClusterIP**
 
@@ -201,7 +196,7 @@ k expose deploy skyops --type=NodePort --port=7000 --target-port=8080 --dry-run=
 - `port: 7000`: The port exposed by the service.
 - `targetPort: 8080`: The container port to which the service will forward traffic.
 
-How to apply a service?
+### How to apply a service?
 
 ```bash
 k apply -f service.yml

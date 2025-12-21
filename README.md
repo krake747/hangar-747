@@ -2,8 +2,8 @@
 
 This document outlines the roadmap, goals, and topics I will cover to build a strong foundational
 understanding of DevOps and cloud-native engineering. I already work as a full-stack developer
-(frontend + backend), and now I want to extend my skills into platform engineering, automation, and
-cloud operations.
+(frontend and backend), and now I want to extend my skills into platform engineering, automation,
+and cloud operations.
 
 ## Goals
 

@@ -36,8 +36,8 @@ spec:
         app: skyops
     spec:
       containers:
-        - image: skyops:latest
-          name: skyops
+        - name: skyops
+          image: skyops:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

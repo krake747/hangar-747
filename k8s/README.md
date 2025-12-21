@@ -53,3 +53,8 @@ alias d='docker'
 alias k='kubectl'
 complete -o default -F __start_kubectl k
 ```
+
+## Essential K8s manifests
+
+- `apply.sh`: A script to apply all Kubernetes manifests in the current directory.
+- `hangar-nam   

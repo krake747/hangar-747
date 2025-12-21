@@ -57,4 +57,5 @@ complete -o default -F __start_kubectl k
 ## Essential K8s manifests
 
 - `apply.sh`: A script to apply all Kubernetes manifests in the current directory.
-- `hangar-nam   
+- `hangar-namespace.yml`: A manifest to create a dedicated namespace for hangar-related resources.
+- `hangar-ingress.yml`: A manifest to set up ingress rules for routing traffic to hangar services.

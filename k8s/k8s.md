@@ -21,7 +21,7 @@ k get ns
 **Note:** Running the `-h | less` command is useful to quickly reference and navigate the `k8s`
 docs.
 
-How to create a namespace file?
+How to create the `hangar` namespace file?
 
 ```bash
 k create ns hangar --dry-run=client -o yaml > hangar-namespace.yaml

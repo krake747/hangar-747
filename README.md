@@ -17,6 +17,7 @@ I will learn how to design, deploy, and operate cloud-native applications.
 - [OpenTofu](https://opentofu.org/)/[Terraform](https://developer.hashicorp.com/terraform) for
   infrastructure as code
 - [Azure](https://azure.microsoft.com/en-us/get-started/azure-portal) as the cloud platform
+- [Docker](https://www.docker.com/) for containerization of applications
 - [Kubernetes (K8s)](https://kubernetes.io/) as the orchestration layer
 - [Helm](https://helm.sh/) for application packaging and deployment
 
@@ -60,7 +61,24 @@ This phase establishes the automation backbone of the entire DevOps workflow.
 See the `.github` folder for CI/CD workflow files and `infra/` for deployment and infrastructure
 automation workflows.
 
-### 3. Learn OpenTofu (Terraform) to create cloud environments
+### 3. Learn Docker for Containerization
+
+**Goal:** Containerize Go and .NET applications for consistent deployment.
+
+**Focus areas:**
+
+- write Dockerfiles for Go and .NET apps
+- build and run Docker images locally
+- push images to Azure Container Registry (ACR)
+- understand container networking and volumes
+
+This phase enables packaging applications into portable containers for deployment across
+environments.
+
+See the `dotnet/` directory for Dockerfiles and containerization examples and `infra/` for ACR
+integration.
+
+### 4. Learn OpenTofu (Terraform) to create cloud environments
 
 **Goal:** Provision Azure resources using infrastructure as code and build reusable OpenTofu
 modules.
@@ -79,7 +97,7 @@ live deployed resource
 [Web Api](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/) (The first
 response might be slow due the container's cold start)
 
-### 4. Learn Kubernetes fundamentals
+### 5. Learn Kubernetes fundamentals
 
 **Goal:** Learn the basics of deploying and exposing services using Kubernetes with Minikube.
 
@@ -94,7 +112,7 @@ response might be slow due the container's cold start)
 For hands-on examples, see the `/k8s` directory containing Kubernetes manifests and deployment
 scripts.
 
-### 5. Learn Helm for Application Packaging and Deployment
+### 6. Learn Helm for Application Packaging and Deployment
 
 **Goal:** Package, configure, and deploy applications consistently across environments using Helm
 charts.
@@ -111,7 +129,7 @@ charts.
 For hands-on examples, see the `/helm` directory containing Helm charts and example values files
 used to deploy applications to local Kubernetes clusters.
 
-### 6. Deploy to a local Kubernetes cluster (mini PC)
+### 7. Deploy to a local Kubernetes cluster (mini PC)
 
 **Goal:** Deploy and run applications on a local Kubernetes cluster hosted on a mini PC, simulating
 a small production-like environment.

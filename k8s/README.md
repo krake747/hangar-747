@@ -5,6 +5,31 @@ setup instructions for local development tools like Minikube and K9s, along with
 deploying applications to a local cluster. This helps me build a strong foundation in container
 orchestration by providing hands-on experience with Kubernetes resources and deployment strategies.
 
+## Reflections
+
+As a fullstack developer, diving into Kubernetes is essential for my workflows. I need to be able to
+build and deploy the web applications I create.
+
+For this project, I focused on understanding core Kubernetes concepts like namespaces, deployments
+and services. Deployments run app containers. They ensure apps are always running. Services expose
+my deployments so other parts of your app can reach them.
+
+- SkyOps is the external-facing API created as a `NodePort` service.
+- SkyHelp is an internal microservice created as a `ClusterIP` service.
+
+For internal communication Services get DNS names like `skyhelp.hangar.svc.cluster.local`. This
+allows SkyOps to call SkyHelp securely within the cluster.
+
+There are still more advanced topics like Helm charts, operators, and cluster management that I need
+to explore further.
+
+I mostly followed standard Kubernetes patterns to deploy the SkyOps and SkyHelp microservices in
+this repo. Setting up ingress for external access while keeping SkyHelp internal-only was a good
+lesson in service communication.
+
+Adding namespace isolation and proper resource limits expands my knowledge on production-ready
+deployments. The local development setup with Minikube and K9s made experimentation much easier.
+
 ## Installation
 
 We recommend using the automated script from root folder for installation:
@@ -59,6 +84,8 @@ complete -o default -F __start_kubectl k
 - `apply.sh`: A script to apply all Kubernetes manifests in the current directory.
 - `hangar-namespace.yml`: A manifest to create a dedicated namespace for hangar-related resources.
 - `hangar-ingress.yml`: A manifest to set up ingress rules for routing traffic to hangar services.
+- `skyops.yml`: A manifest to deploy the SkyOps outside facing web api.
+- `skyhelp.yml`: A manifest to deploy the SkyHelp internal microservice.
 
 ## Additional Resources
 

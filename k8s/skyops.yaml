@@ -36,8 +36,8 @@ spec:
         app: skyops
     spec:
       containers:
-        - image: skyops-api:latest
-          name: skyops-api
+        - image: skyops:latest
+          name: skyops
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -69,4 +69,3 @@ metadata:
   namespace: hangar-747
 data:
   Networking__SkyOps: "http://skyops.hangar-747.svc.cluster.local:7000/"
-  Networking__SkyConvert: "http://skyconvert.hangar-747.svc.cluster.local:7001/"

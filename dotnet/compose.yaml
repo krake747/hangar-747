@@ -1,9 +1,9 @@
 services:
-  skyops-api:
-    image: skyops-api:latest
+  skyops:
+    image: skyops:latest
     container_name: skyops
     build:
       context: .
-      dockerfile: ./SkyOps.Api/Dockerfile
+      dockerfile: ./SkyOps/Dockerfile
     ports:
       - 7000:8080

@@ -17,13 +17,3 @@ spec:
                 name: skyops
                 port:
                   number: 7000
-    - host: skyconvert.hangar-747.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: skyconvert
-                port:
-                  number: 7001

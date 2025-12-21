@@ -3,7 +3,7 @@ name: "skyops"
 on:
   push:
     paths:
-      - "dotnet/SkyOps.Api/**"
+      - "dotnet/SkyOps/**"
       - ".github/workflows/dotnet-skyops.yml"
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: dotnet/SkyOps.Api
+        working-directory: dotnet/SkyOps
 
     steps:
       - name: Checkout code

@@ -1,1 +1,1 @@
-docker build -t skyops-api:latest -f SkyOps.Api/Dockerfile .
+docker build -t skyops:latest -f SkyOps/Dockerfile .

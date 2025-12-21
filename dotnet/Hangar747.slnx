@@ -1,3 +1,3 @@
 <Solution>
-  <Project Path="SkyOps.Api/SkyOps.Api.csproj" />
+  <Project Path="SkyOps/SkyOps.csproj" />
 </Solution>

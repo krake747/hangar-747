@@ -76,7 +76,8 @@ cloud resource management.
 
 For detailed Terraform configurations, see [/infra/azure/README.md](./infra/azure/README.md). and a
 live deployed resource
-[Web Api](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)
+[Web Api](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/) (The first
+response might be slow due the container's cold start)
 
 ### 4. Learn Kubernetes fundamentals
 
@@ -98,12 +99,17 @@ scripts.
 **Goal:** Package, configure, and deploy applications consistently across environments using Helm
 charts.
 
-TBD
+**Focus areas:**
 
-Sure — here’s **Section 6 rewritten to match the exact tone, structure, and conciseness** of your
-example.
+- understand Helm concepts (charts, templates, values, releases)
+- create a Helm chart for an existing Kubernetes application
+- parameterize deployments using `values.yaml`
+- manage environment-specific configuration (dev, local, prod)
+- install, upgrade, and rollback releases
+- structure charts for reuse and maintainability
 
----
+For hands-on examples, see the `/helm` directory containing Helm charts and example values files
+used to deploy applications to local Kubernetes clusters.
 
 ### 6. Deploy to a local Kubernetes cluster (mini PC)
 

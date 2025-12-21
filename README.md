@@ -99,3 +99,22 @@ scripts.
 charts.
 
 TBD
+
+Sure — here’s **Section 6 rewritten to match the exact tone, structure, and conciseness** of your
+example.
+
+---
+
+### 6. Deploy to a local Kubernetes cluster (mini PC)
+
+**Goal:** Deploy and run applications on a local Kubernetes cluster hosted on a mini PC, simulating
+a small production-like environment.
+
+**Focus areas:**
+
+- install and run a lightweight Kubernetes distribution (e.g. k3s)
+- deploy containerized APIs to the cluster
+- create Kubernetes deployments, services, and ingress resources
+- expose services to the local network
+- configure basic storage and resource limits
+- verify application accessibility from other devices on the network

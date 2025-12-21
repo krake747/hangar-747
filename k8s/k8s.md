@@ -1,17 +1,17 @@
 # Hangar 747
 
-The first thing I want to create is a _namespace_ called `hangar` to organise my resources.
-Then I want to create the _deployment_ which will manage and create the pods. Finally, I want to
-create the _service_ which will expose my deployment to network traffic.
+The first thing I want to create is a _namespace_ called `hangar` to organise my resources. Then I
+want to create the _deployment_ which will manage and create the pods. Finally, I want to create the
+_service_ which will expose my deployment to network traffic.
 
 ## Namespace
 
-What is a `k8s` namespace?
+### What is a `k8s` namespace?
 
 A **namespace** is just a logical grouping of things. In this case, services, pods, nodes,
 ingresses, etc live in a namespace.
 
-How to list `k8s` namespaces?
+### How to list `k8s` namespaces?
 
 ```bash
 k get namespaces
@@ -21,35 +21,34 @@ k get ns
 **Note:** Running the `-h | less` command is useful to quickly reference and navigate the `k8s`
 docs.
 
-How to create the `hangar` namespace file?
+### How to create the `hangar` namespace file?
 
 ```bash
 k create ns hangar --dry-run=client -o yml > hangar-namespace.yml
 ```
 
-Here, we can remove the `creationTimestamp: null` property, since it can't be set manually
-
-How to apply the namespace?
+### How to apply the namespace to our k8s cluster?
 
 ```bash
 k apply -f hangar-namespace.yml
 ```
 
-How to get the current context and then set it to this namespace? (This way we avoid writing `-n`
-everywhere)
+### How to get the current context and then set it to this namespace?
+
+This way we avoid writing `-n` everywhere.
 
 ```bash
 k config current-context
 k config set-context --current --namespace=hangar
 ```
 
-How to describe a namespace>
+### How to describe a `namespace`?
 
 ```bash
 k describe ns hangar
 ```
 
-How to delete a namespace?
+### How to delete a namespace?
 
 ```bash
 k delete ns hangar
@@ -57,23 +56,18 @@ k delete ns hangar
 
 ## Deployment
 
-What is a `k8s` deployment?
+### What is a `k8s` deployment?
 
 A **deployment** manages pods. We create the deployment instead of managing pods ourselves.
 
-How to get a deployment?
+### How to get a deployment?
 
 ```bash
 k get deployment
-```
-
-Alternatively, this is the shorthand command
-
-```bash
 k get deploy
 ```
 
-How to create a deployment?
+### How to create a deployment?
 
 The following command will create a deployment called `my-nginx` using the official `nginx` image
 with 3 replicas.
@@ -82,7 +76,7 @@ with 3 replicas.
 k create deploy my-nginx --image=nginx --replicas=3
 ```
 
-How to create a deployment from a local image?
+### How to create a deployment from a local image?
 
 Minikube has its own Docker daemon, so we just need to load the image from our local Docker
 environment into Minikube's Docker registry.
@@ -91,7 +85,7 @@ environment into Minikube's Docker registry.
 minikube image load skyops:latest
 ```
 
-How do know if the image got loaded correctly?
+### How do know if the image got loaded correctly?
 
 This command will let us point the our local Docker environment to Minikube's Docker daemon and
 allow us to list the images.

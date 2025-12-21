@@ -63,10 +63,10 @@ Example output:
 
 ```json
 {
-    "appId": "uuid",
-    "displayName": "devaccess",
-    "password": "pw",
-    "tenant": "uuid"
+  "appId": "uuid",
+  "displayName": "devaccess",
+  "password": "pw",
+  "tenant": "uuid"
 }
 ```
 

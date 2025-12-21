@@ -112,11 +112,11 @@ we want to set `imagePullPolicy: IfNotPresent` in the deployment file.
 
 ```yml
 spec:
-    containers:
-        - name: skyops
-          image: skyops:latest
-          imagePullPolicy: IfNotPresent # Avoid pulling the image from an external registry
-          resources: {}
+  containers:
+    - name: skyops
+      image: skyops:latest
+      imagePullPolicy: IfNotPresent # Avoid pulling the image from an external registry
+      resources: {}
 ```
 
 How to apply the deployment?

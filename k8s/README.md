@@ -1,5 +1,51 @@
 # Kubernetes (k8s)
 
+## Getting started with Minikube
+
+Minikube is local Kubernetes. All it requires is a Docker container.
+
+[Minikube Docs](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download)
+
+```shell
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+sudo dpkg -i minikube_latest_amd64.deb
+```
+
+Verfiy the installation via:
+
+```shell
+minikube start
+```
+
+In case the `kubectl` client and server don't match, we can update this via:
+
+```shell
+curl -LO "https://dl.k8s.io/release/v1.32.0/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client
+```
+
+## Getting started with K9s
+
+K9s is a TUI to manage a Kubernetes cluster.
+
+[K9s Docs](https://k9scli.io/)
+
+**Note:** You might need to download the latest version and modify the tarball url accordingly.
+
+```shell
+curl -LO https://github.com/derailed/k9s/releases/download/v0.50.16/k9s_Linux_amd64.tar.gz
+tar -xvzf k9s_Linux_amd64.tar.gz
+sudo mv k9s /usr/local/bin/
+rm k9s_Linux_amd64.tar.gz
+```
+
+Verfiy the version via:
+
+```shell
+k9s version
+```
+
 ## Hangar 747
 
 The first thing I want to create is a **namespace** called `hangar-747` to organise my resources. Then I want to create

@@ -8,7 +8,7 @@ I already work as a full-stack developer (frontend + backend), and now I want to
 Build a practical foundation in DevOps principles and modern cloud infrastructure.
 To achieve this, I will learn how to design, deploy, and operate cloud-native applications.
 
-## Tech Stack
+## Tech stack
 
 * [Go](https://go.dev/) and [.NET](https://dotnet.microsoft.com/en-us/) for building cloud tooling and microservices
 * [OpenTofu](https://opentofu.org/)/[Terraform](https://developer.hashicorp.com/terraform) for infrastructure as code
@@ -23,7 +23,7 @@ I will also establish consistent workflows for CI/CD, environment management, an
 I am currently progressing through the foundational stages of DevOps with a focus on cloud-native development and Azure.
 This section outlines where I am right now and the concrete goals I plan to achieve next.
 
-### 1. Learn Go Basics
+### 1. Learn Go basics
 
 **Goal:** Build simple cloud-native utilities and services.
 
@@ -38,7 +38,7 @@ This section outlines where I am right now and the concrete goals I plan to achi
 
 This phase builds the foundational programming skills for developing cloud-native applications and tooling.
 
-### 2. Build CI/CD Pipelines with GitHub Actions
+### 2. Build CI/CD pipelines with GitHub Actions
 
 **Goal:** Automatically build and test Go and .NET projects.
 
@@ -52,7 +52,7 @@ This phase establishes the automation backbone of the entire DevOps workflow.
 
 See the `.github` folder for CI/CD workflow files and `infra/` for deployment and infrastructure automation workflows.
 
-### 3. Learn OpenTofu (Terraform) to Create Cloud Environments
+### 3. Learn OpenTofu (Terraform) to create cloud environments
 
 **Goal:** Provision Azure resources using infrastructure as code and build reusable OpenTofu modules.
 
@@ -70,9 +70,17 @@ and a live deployed resource [Web Api](https://krake-api-dev.mangoplant-23fd7721
 
 ### 4. Learn Kubernetes fundamentals
 
-**Goal:** Understand how to deploy, scale, and manage containerized applications using Kubernetes.
+**Goal:** Learn the basics of deploying and exposing services using Kubernetes with Minikube.
 
-TBD
+**Focus areas:**
+
+* deploy a simple web API to Minikube cluster
+* create Kubernetes deployments and services
+* expose services via LoadBalancer, NodePort, or Ingress
+* configure basic networking and port forwarding
+* test API accessibility from outside the cluster
+
+For hands-on examples, see the `/k8s` directory containing Kubernetes manifests and deployment scripts.
 
 ### 5. Learn Helm for Application Packaging and Deployment
 
@@ -81,45 +89,6 @@ TBD
 TBD
 
 ---
-
-# hangar-747
-
-My homelab playground.
-
-## Tech Stack
-
--   WSL with Ununtu distro (for now)
--   Docker Engine
--   Kubernetes via minikube
-
-## Setup for WSL
-
-### Docker
-
-### Minikube
-
-Minikube is local Kubernetes. All it requires is a Docker container.
-
-[Minikube Docs](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download)
-
-```shell
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-sudo dpkg -i minikube_latest_amd64.deb
-```
-
-Verfiy the installation via:
-
-```shell
-minikube start
-```
-
-In case the `kubectl` client and server don't match, we can update this via:
-
-```shell
-curl -LO "https://dl.k8s.io/release/v1.32.0/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-kubectl version --client
-```
 
 ### K9s
 
@@ -130,7 +99,7 @@ K9s is a TUI to manage a Kubernetes cluster.
 **Note:** You might need to download the latest version and modify the tarball url accordingly.
 
 ```shell
-curl -LO https://github.com/derailed/k9s/releases/download/v0.40.3/k9s_Linux_amd64.tar.gz
+curl -LO https://github.com/derailed/k9s/releases/download/v0.50.16/k9s_Linux_amd64.tar.gz
 tar -xvzf k9s_Linux_amd64.tar.gz
 sudo mv k9s /usr/local/bin/
 rm k9s_Linux_amd64.tar.gz

@@ -1,4 +1,5 @@
 services:
+  
   skyops:
     image: skyops:latest
     container_name: skyops
@@ -7,3 +8,12 @@ services:
       dockerfile: ./SkyOps/Dockerfile
     ports:
       - 7000:8080
+      
+  skyhelp:
+    image: skyhelp:latest
+    container_name: skyhelp
+    build:
+      context: .
+      dockerfile: ./SkyHelp/Dockerfile
+    ports:
+      - 7010:8080

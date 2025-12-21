@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: skyhelp
+  name: skyhelp
+  namespace: hangar
+spec:
+  ports:
+    - port: 7010
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: skyhelp
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: skyhelp
+  name: skyhelp
+  namespace: hangar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skyhelp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: skyhelp
+    spec:
+      containers:
+        - name: skyhelp
+          image: skyhelp:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+status: {}

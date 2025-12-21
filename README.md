@@ -71,12 +71,13 @@ automation workflows.
 - build and run Docker images locally
 - push images to Azure Container Registry (ACR)
 - understand container networking and volumes
+- local development with Docker Compose
 
 This phase enables packaging applications into portable containers for deployment across
 environments.
 
-See the `dotnet/` directory for Dockerfiles and containerization examples and `infra/` for ACR
-integration.
+See the `dotnet/` directory for Dockerfiles and the `compose` orchestration and containerization
+examples and `infra/` for ACR integration.
 
 ### 4. Learn OpenTofu (Terraform) to create cloud environments
 

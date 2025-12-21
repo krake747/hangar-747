@@ -24,7 +24,7 @@ docs.
 How to create the `hangar` namespace file?
 
 ```bash
-k create ns hangar --dry-run=client -o yaml > hangar-namespace.yaml
+k create ns hangar --dry-run=client -o yml > hangar-namespace.yml
 ```
 
 Here, we can remove the `creationTimestamp: null` property, since it can't be set manually
@@ -32,7 +32,7 @@ Here, we can remove the `creationTimestamp: null` property, since it can't be se
 How to apply the namespace?
 
 ```bash
-k apply -f namespace.yaml
+k apply -f hangar-namespace.yml
 ```
 
 How to get the current context and then set it to this namespace? (This way we avoid writing `-n`
@@ -110,13 +110,13 @@ eval $(minikube -p minikube docker-env --unset)
 Once we know it is loaded in Minikube we run our deployment
 
 ```bash
-k create deploy skyops --image=skyops --dry-run=client -o yaml > deployment.yaml
+k create deploy skyops --image=skyops --dry-run=client -o yml > deployment.yml
 ```
 
 **Note:** If `k8s` is trying to pull the image even though it is available locally in Minikube then
 we want to set `imagePullPolicy: IfNotPresent` in the deployment file.
 
-```yaml
+```yml
 spec:
     containers:
         - name: skyops
@@ -128,7 +128,7 @@ spec:
 How to apply the deployment?
 
 ```bash
-k apply -f deployment.yaml
+k apply -f deployment.yml
 ```
 
 How to delete a deployment?
@@ -187,7 +187,7 @@ How to create a service?
 This is the default type for a Kubernetes service.
 
 ```bash
-k expose deploy skyops --type=ClusterIP --port=7000 --target-port=8080 --dry-run=client -o yaml > clusterip-service.yaml
+k expose deploy skyops --type=ClusterIP --port=7000 --target-port=8080 --dry-run=client -o yml > clusterip-service.yml
 ```
 
 This will expose port 7000 to external clients (within the cluster), and route the traffic to
@@ -201,7 +201,7 @@ We can use `k port-forward service/skyops 7000:7000` to expose it and test via
 **NodePort**
 
 ```bash
-k expose deploy skyops --type=NodePort --port=7000 --target-port=8080 --dry-run=client -o yaml > service.yaml
+k expose deploy skyops --type=NodePort --port=7000 --target-port=8080 --dry-run=client -o yml > service.yml
 ```
 
 - `port: 7000`: The port exposed by the service.
@@ -210,7 +210,7 @@ k expose deploy skyops --type=NodePort --port=7000 --target-port=8080 --dry-run=
 How to apply a service?
 
 ```bash
-k apply -f service.yaml
+k apply -f service.yml
 ```
 
 We do the NodePort example here. Once it is applied we run

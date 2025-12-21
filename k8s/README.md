@@ -43,7 +43,8 @@ For more details, visit the [K9s Docs](https://k9scli.io/).
 
 ## Aliases
 
-Add an alias `d` for docker and `k` for `kubectl` to the `.bashrc` file. Open it and add these three lines.
+Add an alias `d` for docker and `k` for `kubectl` to the `.bashrc` file. Open it and add these three
+lines.
 
 ```shell
 alias d='docker'

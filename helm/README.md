@@ -2,16 +2,17 @@
 
 Helm helps me manage Kubernetes applications.
 
-A *Chart* is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or
-service inside of a Kubernetes cluster.
+A *Chart* is a Helm package. It contains all of the resource definitions necessary to run an
+application, tool, or service inside of a Kubernetes cluster.
 
-A *Repository* is the place where charts can be collected and shared. See [Artifacthub.io](https://artifacthub.io/)
+A *Repository* is the place where charts can be collected and shared. See
+[Artifacthub.io](https://artifacthub.io/)
 
-A *Release* is an instance of a chart running in a Kubernetes cluster. One chart can often be installed many times
-into the same cluster.
+A *Release* is an instance of a chart running in a Kubernetes cluster. One chart can often be
+installed many times into the same cluster.
 
-Helm installs *charts* into Kubernetes, creating a new *release* for each installation. And to find new charts, you
-can search Helm chart *repositories*.
+Helm installs *charts* into Kubernetes, creating a new *release* for each installation. And to find
+new charts, you can search Helm chart *repositories*.
 
 ## Setup Helm
 

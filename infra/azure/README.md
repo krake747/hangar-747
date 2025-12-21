@@ -1,7 +1,7 @@
 # Azure Infrastructure
 
-This directory contains Terraform (OpenTofu) configurations for deploying Azure resources, including container apps,
-storage, and more.
+This directory contains Terraform (OpenTofu) configurations for deploying Azure resources, including
+container apps, storage, and more.
 
 > Note: The current files are from a private personal project. I modified them to fit this repo.
 > [Deployed Resource](https://krake-api-dev.mangoplant-23fd7721.westeurope.azurecontainerapps.io/)
@@ -17,14 +17,15 @@ The Terraform configurations deploy the following resources:
 - **Container App Environment**: Runtime environment for container apps
 - **Container App**: `hangar-api-{env}` running the application
 
-The `reference-rg` and the `terraform` container in the storage account host the Terraform state file,
-enabling CI/CD deployments without needing to manage local state files.
+The `reference-rg` and the `terraform` container in the storage account host the Terraform state
+file, enabling CI/CD deployments without needing to manage local state files.
 
-The Container App provides a simple and scalable way to host Docker images, offering benefits like automatic scaling,
-built-in load balancing, and integration with Azure's ecosystem for easy deployment and management.
+The Container App provides a simple and scalable way to host Docker images, offering benefits like
+automatic scaling, built-in load balancing, and integration with Azure's ecosystem for easy
+deployment and management.
 
-As a best practice, all resources are tagged with `environment` and `src` keys for better organization,
-cost tracking, and resource management.
+As a best practice, all resources are tagged with `environment` and `src` keys for better
+organization, cost tracking, and resource management.
 
 ```mermaid
 graph TD
@@ -59,21 +60,24 @@ az ad sp create-for-rbac --name devaccess
 ```
 
 Example output:
+
 ```json
 {
-  "appId": "uuid",
-  "displayName": "devaccess",
-  "password": "pw",
-  "tenant": "uuid"
+    "appId": "uuid",
+    "displayName": "devaccess",
+    "password": "pw",
+    "tenant": "uuid"
 }
 ```
 
-Map the output to ARM_ environment variables:
+Map the output to ARM\_ environment variables:
+
 - `appId` → `ARM_CLIENT_ID`
 - `password` → `ARM_CLIENT_SECRET`
 - `tenant` → `ARM_TENANT_ID`
 
 Get the subscription ID:
+
 ```bash
 az account show --query id -o tsv
 ```
@@ -82,7 +86,8 @@ This maps to `ARM_SUBSCRIPTION_ID`.
 
 ### 3. Assign Roles
 
-Assign necessary roles to the service principal (replace `<subscription-id>` and `<client-id>` with actual values):
+Assign necessary roles to the service principal (replace `<subscription-id>` and `<client-id>` with
+actual values):
 
 ```bash
 SUBSCRIPTION_ID="<subscription-id>"
@@ -113,7 +118,8 @@ tofu plan -var-file=dev.tfvars
 tofu apply -var-file=dev.tfvars
 ```
 
-> Note: The OpenTofu workflow can be automated via GitHub Actions. See `.infra/deploy-infra-to-azure.yml` for details.
+> Note: The OpenTofu workflow can be automated via GitHub Actions. See
+> `.infra/deploy-infra-to-azure.yml` for details.
 
 Create a `dev.tfvars` file (ignored by Git) with:
 
@@ -130,5 +136,5 @@ az provider register --namespace Microsoft.Sql
 az provider register --namespace Microsoft.App
 ```
 
-Ensure you have the correct credentials and roles assigned. Check your Azure account permissions and service
-principal roles if authentication fails.
+Ensure you have the correct credentials and roles assigned. Check your Azure account permissions and
+service principal roles if authentication fails.

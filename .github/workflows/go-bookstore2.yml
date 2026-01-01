@@ -30,4 +30,4 @@ jobs:
       - name: Run tests
         run: |-
           cd golang/bookstore2
-          make test
+          go test -v ./...
